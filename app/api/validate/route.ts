@@ -1,10 +1,18 @@
-import { OPENAI_BASE, explainError, keyMissing, readKey } from "@/app/lib/openai";
+import { OPENAI_BASE, explainError } from "@/app/lib/openai";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
-  const key = readKey(req);
-  if (!key) return keyMissing();
+  // Deliberately reads the header directly rather than via readKey(): this
+  // route exists to check a key the visitor typed, so it must never silently
+  // validate the deployment's own key and report success.
+  const key = req.headers.get("x-openai-key")?.trim();
+  if (!key) {
+    return Response.json(
+      { error: "No API key supplied. Reload and enter your key." },
+      { status: 401 },
+    );
+  }
 
   if (!/^sk-[A-Za-z0-9_\-]{20,}$/.test(key)) {
     return Response.json(

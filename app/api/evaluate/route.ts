@@ -5,7 +5,11 @@ import {
   keyMissing,
   readKey,
 } from "@/app/lib/openai";
+import { LIMITS, validatePassages } from "@/app/lib/corpus";
+import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
+import { buildContext } from "@/app/lib/prompt";
 
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
@@ -57,17 +61,42 @@ const clamp = (n: unknown) =>
   Math.max(0, Math.min(100, Math.round(typeof n === "number" ? n : 0)));
 
 export async function POST(req: Request) {
-  const key = readKey(req);
-  if (!key) return keyMissing();
+  const resolved = readKey(req);
+  if (!resolved) return keyMissing();
+  const { key, shared } = resolved;
+
+  if (shared) {
+    const verdict = rateLimit(clientId(req, "evaluate"), 40);
+    if (!verdict.ok) return tooMany(verdict);
+  }
 
   const body = await req.json().catch(() => null);
-  const { context, question, answer } = body ?? {};
-  if (!context || !question || !answer) {
+  const question = typeof body?.question === "string" ? body.question.trim() : "";
+  const answer = typeof body?.answer === "string" ? body.answer : "";
+
+  if (!question || !answer || !Array.isArray(body?.passages)) {
     return Response.json(
-      { error: "Expected { context, question, answer }." },
+      { error: "Expected { passages, question, answer }." },
       { status: 400 },
     );
   }
+  if (question.length > LIMITS.maxQuestionChars) {
+    return Response.json({ error: "Question too long." }, { status: 400 });
+  }
+  if (answer.length > 8000) {
+    return Response.json({ error: "Answer too long to judge." }, { status: 400 });
+  }
+  if (shared) {
+    const problem = validatePassages(body.passages);
+    if (problem) return Response.json({ error: problem }, { status: 400 });
+  }
+
+  const context = buildContext(
+    body.passages.map((p: { title?: string; text: string }) => ({
+      title: p.title ?? "Document",
+      text: p.text,
+    })),
+  );
 
   try {
     const res = await callOpenAI("/chat/completions", key, {

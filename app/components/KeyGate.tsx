@@ -3,11 +3,20 @@
 import { useState } from "react";
 import { Spinner } from "./ui";
 
-export default function KeyGate({ onReady }: { onReady: (key: string) => void }) {
+export default function KeyGate({
+  onReady,
+  demoKeyAvailable = false,
+  onUseDemo,
+}: {
+  onReady: (key: string) => void;
+  demoKeyAvailable?: boolean;
+  onUseDemo?: () => void;
+}) {
   const [key, setKey] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [show, setShow] = useState(false);
+  const [showKeyForm, setShowKeyForm] = useState(!demoKeyAvailable);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -40,7 +49,9 @@ export default function KeyGate({ onReady }: { onReady: (key: string) => void })
               <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-terracotta" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-terracotta" />
             </span>
-            Interactive · Bring your own key
+            {demoKeyAvailable
+              ? "Interactive · Live demo"
+              : "Interactive · Bring your own key"}
           </div>
 
           <h1 className="font-display text-[46px] font-bold leading-[1.04] tracking-tight text-ink sm:text-[54px]">
@@ -52,6 +63,38 @@ export default function KeyGate({ onReady }: { onReady: (key: string) => void })
           </p>
         </div>
 
+        {demoKeyAvailable && (
+          <div className="card mb-3 p-5 shadow-warm-lg">
+            <button onClick={onUseDemo} className="btn-amber w-full py-3 text-[15px]">
+              Start exploring — no key needed
+              <svg
+                viewBox="0 0 20 20"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 10h11M11 6l4 4-4 4" />
+              </svg>
+            </button>
+            <p className="mt-3 text-center text-[12.5px] leading-relaxed text-ink-soft">
+              Runs on the site owner&apos;s key. Rate limited, and restricted to
+              questions about the three bundled documents.
+            </p>
+            {!showKeyForm && (
+              <button
+                onClick={() => setShowKeyForm(true)}
+                className="mt-2 w-full text-center text-[12.5px] font-semibold text-terracotta underline decoration-terracotta/30 underline-offset-2 hover:decoration-terracotta"
+              >
+                Or use your own key for unlimited access
+              </button>
+            )}
+          </div>
+        )}
+
+        {!showKeyForm ? null : (
         <form onSubmit={submit} className="card p-6 shadow-warm-lg">
           <label
             htmlFor="key"
@@ -137,6 +180,7 @@ export default function KeyGate({ onReady }: { onReady: (key: string) => void })
             </Assurance>
           </div>
         </form>
+        )}
 
         <p className="mt-5 text-center text-[12.5px] text-muted">
           Need a key? Create one at{" "}

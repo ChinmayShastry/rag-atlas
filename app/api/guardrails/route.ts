@@ -7,7 +7,10 @@ import {
   readKey,
 } from "@/app/lib/openai";
 import type { GuardResult, GuardVerdict } from "@/app/lib/types";
+import { LIMITS } from "@/app/lib/corpus";
+import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
 
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
@@ -121,8 +124,14 @@ async function runClassifier(
 }
 
 export async function POST(req: Request) {
-  const key = readKey(req);
-  if (!key) return keyMissing();
+  const resolved = readKey(req);
+  if (!resolved) return keyMissing();
+  const { key, shared } = resolved;
+
+  if (shared) {
+    const verdict = rateLimit(clientId(req, "guardrails"), 60);
+    if (!verdict.ok) return tooMany(verdict);
+  }
 
   const body = await req.json().catch(() => null);
   const text: string = body?.text ?? "";
@@ -131,6 +140,14 @@ export async function POST(req: Request) {
 
   if (!text.trim()) {
     return Response.json({ error: "Nothing to check." }, { status: 400 });
+  }
+  if (text.length > LIMITS.maxGuardrailChars) {
+    return Response.json(
+      {
+        error: `Guardrail probes are limited to ${LIMITS.maxGuardrailChars} characters.`,
+      },
+      { status: 400 },
+    );
   }
 
   try {

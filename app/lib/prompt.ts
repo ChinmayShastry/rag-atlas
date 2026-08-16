@@ -11,9 +11,19 @@ Rules:
 
 export const BASELINE_SYSTEM_PROMPT = `You are a helpful assistant. Answer the question from your own knowledge. Be concise: two to five sentences.`;
 
-export function buildContext(retrieved: Scored[]): string {
-  return retrieved
-    .map((r, i) => `[${i + 1}] (${r.chunk.docTitle})\n${r.chunk.text}`)
+export interface ContextPassage {
+  title: string;
+  text: string;
+}
+
+/** The wire shape sent to the API routes — no scores, no chunk internals. */
+export function toPassages(retrieved: Scored[]): ContextPassage[] {
+  return retrieved.map((r) => ({ title: r.chunk.docTitle, text: r.chunk.text }));
+}
+
+export function buildContext(passages: ContextPassage[]): string {
+  return passages
+    .map((p, i) => `[${i + 1}] (${p.title})\n${p.text}`)
     .join("\n\n");
 }
 

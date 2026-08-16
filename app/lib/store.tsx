@@ -66,6 +66,12 @@ export interface UsageEntry {
 interface RagState {
   apiKey: string;
   setApiKey: (k: string) => void;
+  /** True when the deployment carries its own key, so no gate is required. */
+  demoKeyAvailable: boolean;
+  usingDemoKey: boolean;
+  configLoaded: boolean;
+  /** Either the visitor supplied a key, or the deployment has one. */
+  canCallApi: boolean;
 
   docs: Doc[];
   docsLoading: boolean;
@@ -147,6 +153,8 @@ export function useRag(): RagState {
 
 export function RagProvider({ children }: { children: React.ReactNode }) {
   const [apiKey, setApiKey] = useState("");
+  const [demoKeyAvailable, setDemoKeyAvailable] = useState(false);
+  const [configLoaded, setConfigLoaded] = useState(false);
 
   const [docs, setDocs] = useState<Doc[]>([]);
   const [docsLoading, setDocsLoading] = useState(true);
@@ -190,6 +198,21 @@ export function RagProvider({ children }: { children: React.ReactNode }) {
   // Caches: dragging a slider back to a previous value costs nothing.
   const chunkCache = useRef(new Map<string, number[][]>());
   const queryCache = useRef(new Map<string, number[]>());
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/config")
+      .then((r) => r.json())
+      .then((d) => {
+        if (cancelled) return;
+        setDemoKeyAvailable(!!d.demoKeyAvailable);
+      })
+      .catch(() => {})
+      .finally(() => !cancelled && setConfigLoaded(true));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -264,7 +287,10 @@ export function RagProvider({ children }: { children: React.ReactNode }) {
         vectors: number[][];
         dimensions: number;
         usage: { inputTokens: number; outputTokens: number };
-      }>("/api/embed", apiKey, { texts: chunks.map((c) => c.text) });
+      }>("/api/embed", apiKey, {
+        kind: "chunks",
+        texts: chunks.map((c) => c.text),
+      });
 
       chunkCache.current.set(chunkSignature, data.vectors);
       setVectors(data.vectors);
@@ -300,7 +326,7 @@ export function RagProvider({ children }: { children: React.ReactNode }) {
       const data = await apiPost<{
         vectors: number[][];
         usage: { inputTokens: number; outputTokens: number };
-      }>("/api/embed", apiKey, { texts: [q] });
+      }>("/api/embed", apiKey, { kind: "query", texts: [q] });
 
       queryCache.current.set(q, data.vectors[0]);
       setQueryVector(data.vectors[0]);
@@ -371,6 +397,10 @@ export function RagProvider({ children }: { children: React.ReactNode }) {
   const value: RagState = {
     apiKey,
     setApiKey,
+    demoKeyAvailable,
+    usingDemoKey: demoKeyAvailable && !apiKey,
+    configLoaded,
+    canCallApi: !!apiKey || demoKeyAvailable,
     docs,
     docsLoading,
     activeDocIds,

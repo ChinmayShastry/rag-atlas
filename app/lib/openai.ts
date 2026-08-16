@@ -5,10 +5,30 @@ export const CHAT_MODEL = "gpt-4o-mini";
 export const EMBED_MODEL = "text-embedding-3-small";
 export const MODERATION_MODEL = "omni-moderation-latest";
 
-export function readKey(req: Request): string | null {
-  const key = req.headers.get("x-openai-key")?.trim();
-  if (!key) return null;
-  return key;
+export interface ResolvedKey {
+  key: string;
+  /** True when spending the deployment's shared key rather than the visitor's. */
+  shared: boolean;
+}
+
+/** Whether this deployment carries a demo key of its own. */
+export function hasServerKey(): boolean {
+  return !!process.env.OPENAI_API_KEY?.trim();
+}
+
+/**
+ * A key supplied by the visitor always wins — they are paying, so they get the
+ * unrestricted path. Otherwise fall back to the deployment's shared key, which
+ * is rate limited and restricted to the bundled corpus.
+ */
+export function readKey(req: Request): ResolvedKey | null {
+  const supplied = req.headers.get("x-openai-key")?.trim();
+  if (supplied) return { key: supplied, shared: false };
+
+  const server = process.env.OPENAI_API_KEY?.trim();
+  if (server) return { key: server, shared: true };
+
+  return null;
 }
 
 export function keyMissing() {

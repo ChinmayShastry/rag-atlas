@@ -7,7 +7,7 @@ import { ErrorNote, Insight, Panel, Spinner, Stat, StepSection } from "./ui";
 
 export default function Step3Embedding() {
   const {
-    apiKey,
+    canCallApi,
     chunks,
     vectors,
     embedDims,
@@ -79,7 +79,7 @@ export default function Step3Embedding() {
                   runEmbedding();
                   reachStep(3);
                 }}
-                disabled={embedding || !apiKey || !chunks.length}
+                disabled={embedding || !canCallApi || !chunks.length}
                 className="btn-primary"
               >
                 {embedding ? (

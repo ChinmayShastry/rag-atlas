@@ -36,9 +36,32 @@ rm -rf .next && npm run dev
 npx vercel --prod
 ```
 
-That is the whole deployment. There are **no environment variables to configure** — every visitor brings their own key, so there is nothing secret to store. The app works identically on Vercel's free tier.
-
 If you would rather use the dashboard: push this folder to a GitHub repo, then import it at [vercel.com/new](https://vercel.com/new). Vercel detects Next.js automatically.
+
+By default there are **no environment variables to configure** — every visitor brings their own key, so there is nothing secret to store.
+
+### Optional: run the demo on your own key
+
+If you want visitors to try the site without needing a key, set one environment variable in Vercel (Settings → Environment Variables), then **redeploy** — env vars only apply to new builds:
+
+```
+OPENAI_API_KEY=sk-...
+```
+
+Name it exactly that. **Never prefix it with `NEXT_PUBLIC_`**, which would ship the key into the browser bundle for anyone to read.
+
+With that set, the landing page offers "Start exploring — no key needed", and the API routes automatically switch into a restricted mode:
+
+| Protection | Behaviour |
+|---|---|
+| **Corpus lock** | Text submitted for embedding, generation, or judging must be a genuine excerpt of `public/corpus/*.txt`. This is what stops the endpoints being used as a free general-purpose LLM proxy. |
+| **Prompt assembly** | The server builds the prompt itself. Callers choose a question and passages; they cannot supply a raw `messages` array. |
+| **Rate limits** | Per IP, per hour: 40 generations, 40 evaluations, 60 guardrail checks, 20 chunk-embedding batches, 60 query embeddings. |
+| **Length caps** | Questions 400 chars, passages 4,000 chars each (max 12), guardrail probes 2,000 chars. |
+
+A visitor who enters their **own** key bypasses every one of those restrictions — they are paying, so they get the unrestricted pipeline.
+
+> Before deploying with a shared key, set a **monthly budget limit** on the OpenAI account (Billing → Limits). The in-app protections are a speed bump; the budget cap is the only hard ceiling. Note that rate-limit counters live in memory, so on serverless they reset when an instance goes cold.
 
 ---
 

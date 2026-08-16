@@ -3,17 +3,13 @@
 import { useState } from "react";
 import { streamChat } from "../lib/api";
 import { DOC_COLORS, useRag } from "../lib/store";
-import {
-  BASELINE_SYSTEM_PROMPT,
-  SYSTEM_PROMPT,
-  buildContext,
-  buildUserMessage,
-} from "../lib/prompt";
+import { toPassages } from "../lib/prompt";
 import { ErrorNote, Insight, Panel, Slider, Spinner, StepSection } from "./ui";
 
 export default function Step7Generation() {
   const {
     apiKey,
+    canCallApi,
     retrieved,
     embeddedQuery,
     answer,
@@ -42,18 +38,16 @@ export default function Step7Generation() {
     setScores(null);
     const t0 = performance.now();
 
-    const context = buildContext(retrieved);
     let acc = "";
 
     try {
       await streamChat(
         apiKey,
         {
+          mode: "rag",
           temperature,
-          messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            { role: "user", content: buildUserMessage(context, embeddedQuery) },
-          ],
+          question: embeddedQuery,
+          passages: toPassages(retrieved),
         },
         {
           onDelta: (d) => {
@@ -89,11 +83,9 @@ export default function Step7Generation() {
       await streamChat(
         apiKey,
         {
+          mode: "baseline",
           temperature,
-          messages: [
-            { role: "system", content: BASELINE_SYSTEM_PROMPT },
-            { role: "user", content: embeddedQuery },
-          ],
+          question: embeddedQuery,
         },
         {
           onDelta: (d) => {
@@ -147,7 +139,7 @@ export default function Step7Generation() {
             <div className="mt-4 space-y-2">
               <button
                 onClick={generate}
-                disabled={busy || !apiKey}
+                disabled={busy || !canCallApi}
                 className="btn-primary w-full"
               >
                 {busy ? (
@@ -162,7 +154,7 @@ export default function Step7Generation() {
               </button>
               <button
                 onClick={generateBaseline}
-                disabled={baselineBusy || !apiKey}
+                disabled={baselineBusy || !canCallApi}
                 className="btn-ghost w-full"
               >
                 {baselineBusy ? <Spinner /> : null}

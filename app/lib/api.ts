@@ -1,5 +1,15 @@
 "use client";
 
+/**
+ * An empty key is valid: it means "use the deployment's demo key, if it has
+ * one". The header is omitted entirely rather than sent blank.
+ */
+function authHeaders(key: string): Record<string, string> {
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (key) headers["x-openai-key"] = key;
+  return headers;
+}
+
 export async function apiPost<T>(
   path: string,
   key: string,
@@ -7,7 +17,7 @@ export async function apiPost<T>(
 ): Promise<T> {
   const res = await fetch(path, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "x-openai-key": key },
+    headers: authHeaders(key),
     body: JSON.stringify(body),
   });
 
@@ -30,7 +40,7 @@ export async function streamChat(
 ): Promise<void> {
   const res = await fetch("/api/chat", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "x-openai-key": key },
+    headers: authHeaders(key),
     body: JSON.stringify(body),
     signal,
   });

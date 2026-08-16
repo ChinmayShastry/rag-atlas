@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Header from "./components/Header";
 import KeyGate from "./components/KeyGate";
 import Step1Corpus from "./components/Step1Corpus";
@@ -23,15 +24,29 @@ export default function Page() {
 }
 
 function Shell() {
-  const { apiKey, setApiKey } = useRag();
+  const { apiKey, setApiKey, demoKeyAvailable, configLoaded, usingDemoKey } =
+    useRag();
+  const [demoAccepted, setDemoAccepted] = useState(false);
 
-  if (!apiKey) return <KeyGate onReady={setApiKey} />;
+  // Wait for /api/config before deciding, so a deployment with a demo key
+  // never flashes the gate on first paint.
+  if (!configLoaded) return <BootSplash />;
+
+  if (!apiKey && !demoAccepted) {
+    return (
+      <KeyGate
+        onReady={setApiKey}
+        demoKeyAvailable={demoKeyAvailable}
+        onUseDemo={() => setDemoAccepted(true)}
+      />
+    );
+  }
 
   return (
     <>
       <Header />
       <main className="mx-auto max-w-[1220px] px-5 pb-24">
-        <Intro />
+        <Intro usingDemoKey={usingDemoKey} />
         <Step1Corpus />
         <Rule />
         <Step2Chunking />
@@ -59,14 +74,32 @@ function Rule() {
   return <div className="flow-rule" aria-hidden />;
 }
 
-function Intro() {
+function BootSplash() {
+  return (
+    <main className="flex min-h-screen items-center justify-center">
+      <div className="flex items-center gap-3 text-muted">
+        <span className="h-2 w-2 animate-pulse rounded-full bg-terracotta" />
+        <span className="text-[13px]">Loading…</span>
+      </div>
+    </main>
+  );
+}
+
+function Intro({ usingDemoKey }: { usingDemoKey: boolean }) {
   return (
     <section className="animate-fade-up pb-2 pt-12">
       <div className="max-w-2xl">
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-olive/35 bg-olive/[0.08] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.13em] text-olive">
-          <span className="h-1.5 w-1.5 rounded-full bg-olive" />
-          Key accepted
-        </div>
+        {usingDemoKey ? (
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber/40 bg-honey/[0.14] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.13em] text-[#9A6A16]">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber" />
+            Running on the shared demo key
+          </div>
+        ) : (
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-olive/35 bg-olive/[0.08] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.13em] text-olive">
+            <span className="h-1.5 w-1.5 rounded-full bg-olive" />
+            Your key accepted
+          </div>
+        )}
         <h1 className="font-display text-[42px] font-bold leading-[1.05] tracking-tight text-ink sm:text-[52px]">
           Watch retrieval-augmented
           <br />

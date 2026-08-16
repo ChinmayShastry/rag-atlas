@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { DOC_COLORS, useRag } from "../lib/store";
-import { SYSTEM_PROMPT, buildContext } from "../lib/prompt";
+import { SYSTEM_PROMPT, buildContext, toPassages } from "../lib/prompt";
 import { estimateTokens } from "../lib/chunking";
 import { Insight, Panel, Stat, StepSection } from "./ui";
 
@@ -11,7 +11,10 @@ export default function Step6Augmentation() {
 
   const ready = retrieved.length > 0 && !!embeddedQuery;
 
-  const context = useMemo(() => buildContext(retrieved), [retrieved]);
+  const context = useMemo(
+    () => buildContext(toPassages(retrieved)),
+    [retrieved],
+  );
   const promptTokens =
     estimateTokens(SYSTEM_PROMPT) +
     estimateTokens(context) +

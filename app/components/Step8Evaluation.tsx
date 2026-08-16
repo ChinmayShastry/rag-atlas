@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { apiPost } from "../lib/api";
 import { useRag } from "../lib/store";
-import { buildContext } from "../lib/prompt";
+import { toPassages } from "../lib/prompt";
 import type { EvalScores } from "../lib/types";
 import {
   ErrorNote,
@@ -18,6 +18,7 @@ import {
 export default function Step8Evaluation() {
   const {
     apiKey,
+    canCallApi,
     answer,
     embeddedQuery,
     retrieved,
@@ -49,7 +50,7 @@ export default function Step8Evaluation() {
         scores: EvalScores;
         usage: { inputTokens: number; outputTokens: number };
       }>("/api/evaluate", apiKey, {
-        context: buildContext(retrieved),
+        passages: toPassages(retrieved),
         question: embeddedQuery,
         answer,
       });
@@ -111,7 +112,7 @@ export default function Step8Evaluation() {
                 </p>
                 <button
                   onClick={evaluate}
-                  disabled={busy || !apiKey}
+                  disabled={busy || !canCallApi}
                   className="btn-primary"
                 >
                   {busy ? (

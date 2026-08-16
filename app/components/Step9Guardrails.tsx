@@ -55,6 +55,7 @@ const ATTACKS = [
 export default function Step9Guardrails() {
   const {
     apiKey,
+    canCallApi,
     query,
     answer,
     scores,
@@ -226,7 +227,7 @@ export default function Step9Guardrails() {
 
             <button
               onClick={runModelChecks}
-              disabled={busy || !probe.trim() || !apiKey}
+              disabled={busy || !probe.trim() || !canCallApi}
               className="btn-primary mt-3 w-full"
             >
               {busy ? (
