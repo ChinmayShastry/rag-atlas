@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /*
+   * Zero-specificity defaults so that if next/font cannot reach Google Fonts
+   * at build time, the page falls back to a decent system serif/sans/mono
+   * rather than an undefined variable (which resolves to Times New Roman).
+   * next/font's own class on <html> always wins over :where().
+   */
+  :where(:root) {
+    --font-sans:
+      ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    --font-display: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    --font-mono:
+      ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  :root {
+    --cream: #fdf7ef;
+    --parchment: #f6e9d8;
+    --card: #fffcf7;
+    --ink: #2b1d16;
+    --ink-soft: #6b5445;
+    --muted: #9c8674;
+    --line: #eadbc8;
+    --terracotta: #c1553a;
+    --amber: #de922b;
+    --honey: #f2c14e;
+    --clay: #8c4a32;
+    --olive: #6e8257;
+    --berry: #a03a4e;
+    --night: #241710;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* the sticky header is ~68px; keep anchored steps clear of it */
+    scroll-padding-top: 92px;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    background-image:
+      radial-gradient(
+        ellipse 80% 55% at 12% -8%,
+        rgba(242, 193, 78, 0.22),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 96% 4%,
+        rgba(224, 133, 96, 0.18),
+        transparent 62%
+      ),
+      radial-gradient(
+        ellipse 90% 60% at 50% 102%,
+        rgba(193, 85, 58, 0.1),
+        transparent 65%
+      );
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Warm-toned range sliders, styled for both engines. */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 26px;
+    background: transparent;
+    cursor: grab;
+  }
+  input[type="range"]:active {
+    cursor: grabbing;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      var(--terracotta) 0%,
+      var(--amber) var(--fill, 50%),
+      #e8dac8 var(--fill, 50%),
+      #e8dac8 100%
+    );
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -7px;
+    border-radius: 999px;
+    background: #fffdf9;
+    border: 3px solid var(--terracotta);
+    box-shadow: 0 2px 8px rgba(140, 74, 50, 0.35);
+    transition:
+      transform 0.14s ease,
+      box-shadow 0.14s ease;
+  }
+  input[type="range"]:hover::-webkit-slider-thumb {
+    transform: scale(1.14);
+  }
+  input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.22);
+    box-shadow: 0 0 0 6px rgba(193, 85, 58, 0.16);
+  }
+  input[type="range"]::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: #e8dac8;
+  }
+  input[type="range"]::-moz-range-progress {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--terracotta), var(--amber));
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: #fffdf9;
+    border: 3px solid var(--terracotta);
+    box-shadow: 0 2px 8px rgba(140, 74, 50, 0.35);
+  }
+
+  ::selection {
+    background: rgba(222, 146, 43, 0.28);
+  }
+
+  /* Warm scrollbars on scrollable panels */
+  .warm-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #d9c3a8 transparent;
+  }
+  .warm-scroll::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  .warm-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .warm-scroll::-webkit-scrollbar-thumb {
+    background: #ddc8ad;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  .warm-scroll::-webkit-scrollbar-thumb:hover {
+    background: #c9ae8d;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-card shadow-warm;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-150 active:translate-y-px disabled:pointer-events-none disabled:opacity-45;
+  }
+  .btn-primary {
+    @apply btn text-white shadow-warm;
+    background-image: linear-gradient(135deg, #c1553a, #b0492f 55%, #8c4a32);
+  }
+  .btn-primary:hover {
+    background-image: linear-gradient(135deg, #cf5f43, #bd5136 55%, #99513a);
+    box-shadow: 0 6px 20px -6px rgba(140, 74, 50, 0.55);
+  }
+  .btn-amber {
+    @apply btn text-ink shadow-warm;
+    background-image: linear-gradient(135deg, #f2c14e, #de922b);
+  }
+  .btn-amber:hover {
+    background-image: linear-gradient(135deg, #f6cb64, #e79c33);
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-card text-ink-soft hover:border-terracotta/45 hover:text-terracotta;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-white/70 px-3.5 py-2.5 text-sm text-ink outline-none transition placeholder:text-muted focus:border-terracotta/60 focus:ring-4 focus:ring-terracotta/10;
+  }
+
+  /* Thin animated rule used to separate pipeline stages */
+  .flow-rule {
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(193, 85, 58, 0.35),
+      transparent
+    );
+    height: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
