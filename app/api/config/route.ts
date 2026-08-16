@@ -3,8 +3,12 @@ import { hasServerKey } from "@/app/lib/openai";
 export const dynamic = "force-dynamic";
 
 /**
- * Tells the client whether this deployment can run without the visitor
- * supplying a key. Deliberately returns only a boolean — never the key.
+ * Deployment health check: confirms whether OPENAI_API_KEY reached the
+ * running server, which is otherwise awkward to verify from outside.
+ *
+ * The UI does NOT call this. It receives the same boolean from the server
+ * render instead, so that first paint never depends on a request that a
+ * privacy extension might block. Returns only a boolean — never the key.
  */
 export async function GET() {
   return Response.json({ demoKeyAvailable: hasServerKey() });

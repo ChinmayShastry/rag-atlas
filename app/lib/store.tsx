@@ -69,7 +69,6 @@ interface RagState {
   /** True when the deployment carries its own key, so no gate is required. */
   demoKeyAvailable: boolean;
   usingDemoKey: boolean;
-  configLoaded: boolean;
   /** Either the visitor supplied a key, or the deployment has one. */
   canCallApi: boolean;
 
@@ -151,10 +150,19 @@ export function useRag(): RagState {
   return ctx;
 }
 
-export function RagProvider({ children }: { children: React.ReactNode }) {
+export function RagProvider({
+  children,
+  demoKeyAvailable,
+}: {
+  children: React.ReactNode;
+  /**
+   * Supplied by the server render. Deliberately not fetched from the client:
+   * an extra round-trip for this would be blockable by privacy extensions and
+   * would gate first paint on a request that can hang.
+   */
+  demoKeyAvailable: boolean;
+}) {
   const [apiKey, setApiKey] = useState("");
-  const [demoKeyAvailable, setDemoKeyAvailable] = useState(false);
-  const [configLoaded, setConfigLoaded] = useState(false);
 
   const [docs, setDocs] = useState<Doc[]>([]);
   const [docsLoading, setDocsLoading] = useState(true);
@@ -198,21 +206,6 @@ export function RagProvider({ children }: { children: React.ReactNode }) {
   // Caches: dragging a slider back to a previous value costs nothing.
   const chunkCache = useRef(new Map<string, number[][]>());
   const queryCache = useRef(new Map<string, number[]>());
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/config")
-      .then((r) => r.json())
-      .then((d) => {
-        if (cancelled) return;
-        setDemoKeyAvailable(!!d.demoKeyAvailable);
-      })
-      .catch(() => {})
-      .finally(() => !cancelled && setConfigLoaded(true));
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -399,7 +392,6 @@ export function RagProvider({ children }: { children: React.ReactNode }) {
     setApiKey,
     demoKeyAvailable,
     usingDemoKey: demoKeyAvailable && !apiKey,
-    configLoaded,
     canCallApi: !!apiKey || demoKeyAvailable,
     docs,
     docsLoading,
