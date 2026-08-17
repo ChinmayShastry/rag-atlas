@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { STEPS } from "../lib/steps";
+import { STAGE_META, ragTypeDef } from "../lib/ragTypes";
 import { useRag } from "../lib/store";
 import { costOf, formatCount, formatUSD } from "../lib/pricing";
+import ArchitectureSwitcher from "./ArchitectureSwitcher";
 
 export default function Header() {
-  const [active, setActive] = useState("corpus");
+  const { ragType } = useRag();
+  const stages = ragTypeDef(ragType).stages;
+  const [active, setActive] = useState(stages[0]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,12 +21,13 @@ export default function Header() {
       },
       { rootMargin: "-88px 0px -62% 0px", threshold: 0 },
     );
-    STEPS.forEach((s) => {
-      const el = document.getElementById(s.id);
+    stages.forEach((id) => {
+      const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+    // Re-observe when the flow changes, since the stage set differs per type.
+  }, [stages]);
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-cream/85 backdrop-blur-md">
@@ -38,25 +42,28 @@ export default function Header() {
         </a>
 
         <nav className="warm-scroll flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto">
-          {STEPS.map((s) => {
-            const isActive = active === s.id;
+          {stages.map((id, i) => {
+            const isActive = active === id;
             return (
               <a
-                key={s.id}
-                href={`#${s.id}`}
+                key={id}
+                href={`#${id}`}
                 className={`shrink-0 rounded-lg px-2.5 py-1.5 text-[12.5px] font-semibold transition-all duration-150 ${
                   isActive
                     ? "bg-terracotta/10 text-terracotta"
                     : "text-muted hover:bg-parchment/70 hover:text-ink-soft"
                 }`}
               >
-                <span className="mr-1 font-mono text-[11px] opacity-60">{s.n}</span>
-                {s.short}
+                <span className="mr-1 font-mono text-[11px] opacity-60">
+                  {i + 1}
+                </span>
+                {STAGE_META[id]?.short ?? id}
               </a>
             );
           })}
         </nav>
 
+        <ArchitectureSwitcher />
         <CostMeter />
       </div>
     </header>

@@ -1,5 +1,7 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useEffect, useMemo, useState } from "react";
 import { apiPost } from "../lib/api";
 import { useRag } from "../lib/store";
@@ -52,7 +54,7 @@ const ATTACKS = [
   },
 ];
 
-export default function Step9Guardrails() {
+export default function Step9Guardrails({ n }: StageProps) {
   const {
     apiKey,
     canCallApi,
@@ -123,8 +125,8 @@ export default function Step9Guardrails() {
   return (
     <StepSection
       id="guardrails"
-      n={9}
-      kicker="Stage nine"
+      n={n}
+      kicker={stageKicker(n)}
       title="Guardrails"
       lede="Everything so far assumed a cooperative user and a well-behaved model. Guardrails are the checks that run when neither assumption holds."
     >
@@ -265,7 +267,7 @@ export default function Step9Guardrails() {
           <Panel title="Output guardrails — before the user sees anything">
             {outputGuards.length === 0 ? (
               <p className="py-3 text-[13px] text-muted">
-                Generate an answer in stage 7 to run output checks.
+                Generate an answer to run output checks.
               </p>
             ) : (
               <div className="space-y-2">
@@ -289,7 +291,7 @@ export default function Step9Guardrails() {
               hint={
                 scores
                   ? `This answer scored ${scores.faithfulness}. Drag across it to flip the output gate.`
-                  : "Score an answer in stage 8 to arm this gate."
+                  : "Score an answer in the evaluation stage to arm this gate."
               }
             />
             <p className="mt-3 text-[12px] leading-relaxed text-muted">
@@ -344,7 +346,7 @@ export default function Step9Guardrails() {
 
       <Insight>
         The single most important guardrail in this entire pipeline is not on
-        this page — it is the one line in the stage 6 system prompt telling the
+        this page — it is the one line in the augmentation system prompt telling the
         model to treat retrieved passages as data rather than instructions.
         Anyone who can write into your knowledge base can otherwise write
         instructions your model will follow.

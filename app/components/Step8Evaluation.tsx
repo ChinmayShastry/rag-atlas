@@ -1,5 +1,7 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useState } from "react";
 import { apiPost } from "../lib/api";
 import { useRag } from "../lib/store";
@@ -15,7 +17,7 @@ import {
   StepSection,
 } from "./ui";
 
-export default function Step8Evaluation() {
+export default function Step8Evaluation({ n }: StageProps) {
   const {
     apiKey,
     canCallApi,
@@ -72,12 +74,12 @@ export default function Step8Evaluation() {
   return (
     <StepSection
       id="evaluation"
-      n={8}
-      kicker="Stage eight"
+      n={n}
+      kicker={stageKicker(n)}
       title="Evaluation"
       lede="A fluent answer is not necessarily a correct one. Evaluation asks a second model to check the first one's work against the passages it was given."
       locked={!ready}
-      lockNote="Generate an answer in stage 7 before scoring it."
+      lockNote="Generate an answer before scoring it."
     >
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="space-y-4">
@@ -243,7 +245,7 @@ export default function Step8Evaluation() {
             <>
               Faithfulness of{" "}
               <strong className="font-bold text-ink">{scores.faithfulness}</strong>{" "}
-              means the model stayed inside its evidence. Now go back to stage 7,
+              means the model stayed inside its evidence. Now go back to generation,
               push temperature past 0.9, regenerate, and re-score — you can watch
               groundedness erode in real time.
             </>
@@ -251,8 +253,8 @@ export default function Step8Evaluation() {
             <>
               Faithfulness came in at{" "}
               <strong className="font-bold text-ink">{scores.faithfulness}</strong>
-              . Try raising top-K in stage 5 so the answer has more evidence to
-              stand on, or lowering temperature in stage 7. Evaluation is only
+              . Try raising top-K in retrieval so the answer has more evidence to
+              stand on, or lowering the temperature. Evaluation is only
               useful when it changes what you build.
             </>
           )

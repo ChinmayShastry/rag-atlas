@@ -1,5 +1,7 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useMemo, useState } from "react";
 import { STRATEGY_INFO, chunkDocs } from "../lib/chunking";
 import { DOC_COLORS, useRag } from "../lib/store";
@@ -7,7 +9,7 @@ import { chunkColor } from "../lib/types";
 import type { Chunk, Doc, Strategy } from "../lib/types";
 import { Insight, Panel, Segmented, Slider, Stat, StepSection } from "./ui";
 
-export default function Step2Chunking() {
+export default function Step2Chunking({ n }: StageProps) {
   const {
     activeDocs,
     chunks,
@@ -57,8 +59,8 @@ export default function Step2Chunking() {
   return (
     <StepSection
       id="chunking"
-      n={2}
-      kicker="Stage two"
+      n={n}
+      kicker={stageKicker(n)}
       title="Chunking"
       lede="A whole document is too big to retrieve usefully, so it gets cut into pieces. Where those cuts land decides what the model can ever find."
     >

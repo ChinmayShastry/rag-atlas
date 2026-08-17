@@ -1,12 +1,14 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useMemo } from "react";
 import { DOC_COLORS, useRag } from "../lib/store";
 import { SYSTEM_PROMPT, buildContext, toPassages } from "../lib/prompt";
 import { estimateTokens } from "../lib/chunking";
 import { Insight, Panel, Stat, StepSection } from "./ui";
 
-export default function Step6Augmentation() {
+export default function Step6Augmentation({ n }: StageProps) {
   const { retrieved, embeddedQuery, hovered, setHovered, chunks, topK } = useRag();
 
   const ready = retrieved.length > 0 && !!embeddedQuery;
@@ -28,12 +30,12 @@ export default function Step6Augmentation() {
   return (
     <StepSection
       id="augmentation"
-      n={6}
-      kicker="Stage six"
+      n={n}
+      kicker={stageKicker(n)}
       title="Augmentation"
       lede="The retrieved chunks are pasted into a prompt around your question. This assembled text is the entire universe the model gets to reason over."
       locked={!ready}
-      lockNote="Retrieve some chunks in stage 5 to assemble a prompt."
+      lockNote="Retrieve some chunks to assemble a prompt."
     >
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_290px]">
         <Panel
@@ -155,7 +157,7 @@ export default function Step6Augmentation() {
             <p className="mt-2 text-[12px] leading-relaxed text-muted">
               Without a line like this the model happily falls back on its
               training data, and you get an answer that looks grounded but is
-              not. Stage 8 measures whether it obeyed.
+              not. The evaluation stage measures whether it obeyed.
             </p>
           </Panel>
         </div>

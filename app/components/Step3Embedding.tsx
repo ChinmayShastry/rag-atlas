@@ -1,11 +1,13 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useMemo } from "react";
 import { DOC_COLORS, useRag } from "../lib/store";
 import EmbeddingPlot from "./EmbeddingPlot";
 import { ErrorNote, Insight, Panel, Spinner, Stat, StepSection } from "./ui";
 
-export default function Step3Embedding() {
+export default function Step3Embedding({ n }: StageProps) {
   const {
     canCallApi,
     chunks,
@@ -37,8 +39,8 @@ export default function Step3Embedding() {
   return (
     <StepSection
       id="embedding"
-      n={3}
-      kicker="Stage three"
+      n={n}
+      kicker={stageKicker(n)}
       title="Embedding"
       lede="Each chunk is converted into a list of 1536 numbers that encodes its meaning. Text that means similar things lands in a similar place."
     >

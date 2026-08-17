@@ -1,12 +1,14 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useState } from "react";
 import { streamChat } from "../lib/api";
 import { DOC_COLORS, useRag } from "../lib/store";
 import { toPassages } from "../lib/prompt";
 import { ErrorNote, Insight, Panel, Slider, Spinner, StepSection } from "./ui";
 
-export default function Step7Generation() {
+export default function Step7Generation({ n }: StageProps) {
   const {
     apiKey,
     canCallApi,
@@ -111,12 +113,12 @@ export default function Step7Generation() {
   return (
     <StepSection
       id="generation"
-      n={7}
-      kicker="Stage seven"
+      n={n}
+      kicker={stageKicker(n)}
       title="Generation"
-      lede="Now the model writes. It has no database and no memory of your files — only the passages assembled in stage 6."
+      lede="Now the model writes. It has no database and no memory of your files — only the passages assembled in the previous stage."
       locked={!ready}
-      lockNote="Assemble a prompt in stage 6 first."
+      lockNote="Assemble a prompt first."
     >
       <div className="grid gap-4 lg:grid-cols-[260px_minmax(0,1fr)]">
         <div className="space-y-4">
@@ -133,7 +135,7 @@ export default function Step7Generation() {
                   ? "Low: near-deterministic. What you want for grounded factual answers."
                   : temperature <= 0.7
                     ? "Medium: some variation in phrasing. Facts should still hold."
-                    : "High: creative and loose. Watch faithfulness drop in stage 8."
+                    : "High: creative and loose. Watch faithfulness drop when you score it."
               }
             />
             <div className="mt-4 space-y-2">
@@ -292,7 +294,7 @@ export default function Step7Generation() {
           <>
             Notice the bracketed citations. They exist only because the system
             prompt asked for them and the passages were numbered — a small
-            formatting decision in stage 6 that makes every claim traceable.
+            formatting decision during augmentation that makes every claim traceable.
             Press <strong className="font-bold text-ink">Compare without RAG</strong>{" "}
             to see the same question answered from memory alone.
           </>

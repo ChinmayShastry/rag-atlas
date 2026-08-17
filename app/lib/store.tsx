@@ -21,6 +21,7 @@ import type {
   Scored,
   Strategy,
 } from "./types";
+import type { RagType } from "./ragTypes";
 
 export const DOC_MANIFEST = [
   {
@@ -64,6 +65,10 @@ export interface UsageEntry {
 }
 
 interface RagState {
+  /** Which architecture is on screen. Corpus, chunks and query persist across switches. */
+  ragType: RagType;
+  setRagType: (t: RagType) => void;
+
   apiKey: string;
   setApiKey: (k: string) => void;
   /** True when the deployment carries its own key, so no gate is required. */
@@ -162,6 +167,7 @@ export function RagProvider({
    */
   demoKeyAvailable: boolean;
 }) {
+  const [ragType, setRagType] = useState<RagType>("naive");
   const [apiKey, setApiKey] = useState("");
 
   const [docs, setDocs] = useState<Doc[]>([]);
@@ -388,6 +394,8 @@ export function RagProvider({
   }, []);
 
   const value: RagState = {
+    ragType,
+    setRagType,
     apiKey,
     setApiKey,
     demoKeyAvailable,

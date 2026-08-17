@@ -12,7 +12,9 @@ import Step6Augmentation from "./Step6Augmentation";
 import Step7Generation from "./Step7Generation";
 import Step8Evaluation from "./Step8Evaluation";
 import Step9Guardrails from "./Step9Guardrails";
+import StagePlaceholder from "./StagePlaceholder";
 import { RagProvider, useRag } from "../lib/store";
+import { ragTypeDef } from "../lib/ragTypes";
 import { formatUSD } from "../lib/pricing";
 
 export default function ClientApp({
@@ -46,23 +48,7 @@ function Shell() {
       <Header />
       <main className="mx-auto max-w-[1220px] px-5 pb-24">
         <Intro usingDemoKey={usingDemoKey} />
-        <Step1Corpus />
-        <Rule />
-        <Step2Chunking />
-        <Rule />
-        <Step3Embedding />
-        <Rule />
-        <Step4Query />
-        <Rule />
-        <Step5Retrieval />
-        <Rule />
-        <Step6Augmentation />
-        <Rule />
-        <Step7Generation />
-        <Rule />
-        <Step8Evaluation />
-        <Rule />
-        <Step9Guardrails />
+        <Flow />
         <Outro />
       </main>
     </>
@@ -71,6 +57,46 @@ function Shell() {
 
 function Rule() {
   return <div className="flow-rule" aria-hidden />;
+}
+
+/** Stage id -> component. Shared stages are reused across every architecture. */
+const STAGE_COMPONENTS: Record<
+  string,
+  React.ComponentType<{ n: number }> | undefined
+> = {
+  corpus: Step1Corpus,
+  chunking: Step2Chunking,
+  embedding: Step3Embedding,
+  query: Step4Query,
+  retrieval: Step5Retrieval,
+  augmentation: Step6Augmentation,
+  generation: Step7Generation,
+  evaluation: Step8Evaluation,
+  guardrails: Step9Guardrails,
+};
+
+/** Renders the active architecture's stage list, numbering by position. */
+function Flow() {
+  const { ragType } = useRag();
+  const stages = ragTypeDef(ragType).stages;
+
+  return (
+    <>
+      {stages.map((id, i) => {
+        const Stage = STAGE_COMPONENTS[id];
+        return (
+          <div key={`${ragType}-${id}`}>
+            {i > 0 && <Rule />}
+            {Stage ? (
+              <Stage n={i + 1} />
+            ) : (
+              <StagePlaceholder n={i + 1} id={id} />
+            )}
+          </div>
+        );
+      })}
+    </>
+  );
 }
 
 function Intro({ usingDemoKey }: { usingDemoKey: boolean }) {

@@ -1,11 +1,13 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useMemo } from "react";
 import { DOC_COLORS, useRag } from "../lib/store";
 import EmbeddingPlot from "./EmbeddingPlot";
 import { Insight, Panel, Slider, Stat, StepSection } from "./ui";
 
-export default function Step5Retrieval() {
+export default function Step5Retrieval({ n }: StageProps) {
   const {
     ranked,
     retrieved,
@@ -42,12 +44,12 @@ export default function Step5Retrieval() {
   return (
     <StepSection
       id="retrieval"
-      n={5}
-      kicker="Stage five"
+      n={n}
+      kicker={stageKicker(n)}
       title="Retrieval"
       lede="Every chunk is scored against the question by cosine similarity, sorted, and the top few are kept. This is the R in RAG."
       locked={!ready}
-      lockNote="Embed a question in stage 4 to rank the chunks against it."
+      lockNote="Embed a question to rank the chunks against it."
     >
       <div className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)]">
         <div className="space-y-4">
@@ -215,7 +217,7 @@ export default function Step5Retrieval() {
             <strong className="font-bold text-ink">{best.toFixed(3)}</strong>,
             which is weak. Retrieval always returns <em>something</em> — it has
             no notion of &ldquo;no good answer exists&rdquo;. That is precisely
-            why the score floor and the guardrails in stage 9 matter.
+            why the score floor and the guardrails stage matter.
           </>
         ) : (
           <>

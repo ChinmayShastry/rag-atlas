@@ -1,11 +1,13 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useState } from "react";
 import { DOC_COLORS, useRag } from "../lib/store";
 import { estimateTokens } from "../lib/chunking";
 import { Insight, StepSection } from "./ui";
 
-export default function Step1Corpus() {
+export default function Step1Corpus({ n }: StageProps) {
   const { docs, docsLoading, activeDocIds, toggleDoc } = useRag();
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -16,8 +18,8 @@ export default function Step1Corpus() {
   return (
     <StepSection
       id="corpus"
-      n={1}
-      kicker="Stage one"
+      n={n}
+      kicker={stageKicker(n)}
       title="The corpus"
       lede={
         <>

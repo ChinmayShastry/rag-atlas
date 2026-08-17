@@ -1,5 +1,7 @@
 "use client";
 
+import { stageKicker } from "../lib/ragTypes";
+import type { StageProps } from "../lib/ragTypes";
 import { useRag } from "../lib/store";
 import { PRESET_QUERIES } from "../lib/prompt";
 import EmbeddingPlot from "./EmbeddingPlot";
@@ -11,7 +13,7 @@ const KIND_STYLE = {
   trap: { color: "#8E2F41", bg: "rgba(160,58,78,.09)", label: "not in corpus" },
 };
 
-export default function Step4Query() {
+export default function Step4Query({ n }: StageProps) {
   const {
     query,
     setQuery,
@@ -30,12 +32,12 @@ export default function Step4Query() {
   return (
     <StepSection
       id="query"
-      n={4}
-      kicker="Stage four"
+      n={n}
+      kicker={stageKicker(n)}
       title="The query"
       lede="Your question goes through the exact same embedding model as the chunks. That is the whole trick — question and answer end up in one shared space."
       locked={!ready}
-      lockNote="Embed the chunks in stage 3 first — there is nothing to compare a question against yet."
+      lockNote="Embed the chunks first — there is nothing to compare a question against yet."
     >
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
         <div className="space-y-4">
@@ -142,7 +144,7 @@ export default function Step4Query() {
             ) : (
               <p className="text-[12.5px] leading-relaxed text-muted">
                 Embed a question to drop it onto the map as a white marker. Its
-                distance to each chunk is what stage 5 ranks.
+                distance to each chunk is what retrieval ranks.
               </p>
             )}
           </Panel>
