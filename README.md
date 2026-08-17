@@ -4,6 +4,12 @@ An interactive walkthrough of retrieval-augmented generation, evaluation, and gu
 
 Nothing is simulated. Real chunking, real 1536-dimensional embeddings, real cosine ranking, real streamed generation, and a real second model grading the first.
 
+### **[▶ Try it live →](https://rag-atlas-learn.vercel.app)**
+
+![Stage 2 — chunk boundaries painted directly onto the source text, with overlap regions shown as belonging to two chunks](docs/chunking.png)
+
+> Drag **chunk size** and the ribbon re-flows instantly. Every colour band is one chunk; the striped regions are overlap — text that belongs to two chunks at once, which is what saves a fact that lands on a boundary.
+
 ---
 
 ## Run it locally
@@ -78,6 +84,18 @@ A visitor who enters their **own** key bypasses every one of those restrictions 
 | 7 | **Generation** — streamed, cited answer | temperature, plus the same question answered with no retrieval |
 | 8 | **Evaluation** — faithfulness, relevance, completeness | LLM-as-judge, with unsupported claims quoted |
 | 9 | **Guardrails** — input and output gates | attack sandbox, groundedness threshold |
+
+### Chunking strategy, compared on the same text
+
+![Three chunking strategies side by side: fixed windows produce 37 chunks that start mid-word, while sentence-aware and recursive produce none](docs/chunking-strategies.png)
+
+Same document, same size and overlap, three splitters. The counter at the bottom of each card is the honest cost of the fixed window: **37 chunks begin mid-word**, against zero for the other two.
+
+### Guardrails that fire as you type
+
+![The guardrails stage blocking a question containing an email address and a credit card number](docs/guardrails.png)
+
+Deterministic rules run client-side on every keystroke, at no cost and no latency — the card detector even runs a Luhn checksum so it does not trip on every long number. Model-based moderation and an injection classifier sit behind a button, because those spend tokens.
 
 ### Things worth trying
 
