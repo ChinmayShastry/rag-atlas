@@ -6,9 +6,11 @@ Nothing is simulated. Real chunking, real 1536-dimensional embeddings, real cosi
 
 ### **[▶ Try it live →](https://rag-atlas-learn.vercel.app)**
 
-![Stage 2 — chunk boundaries painted directly onto the source text, with overlap regions shown as belonging to two chunks](docs/chunking.png)
+![The chunk size slider sweeping from 1200 down to 300 characters: the chunk count climbs from 26 to 100, average size falls from 808 to 226, and the coloured bands over the source text re-flow in step](docs/chunking.gif)
 
-> Drag **chunk size** and the ribbon re-flows instantly. Every colour band is one chunk; the striped regions are overlap — text that belongs to two chunks at once, which is what saves a fact that lands on a boundary.
+> One slider, nothing else touched. Chunk size drops from 1200 to 300 characters, the count climbs from **26 to 100**, average size falls from 808 to 226 — and the coloured bands over the source text redraw to match. Every colour is one chunk; striped regions are overlap, text belonging to two chunks at once, which is what rescues a fact that lands on a boundary.
+>
+> This runs entirely in the browser. No request, no cost, no latency.
 
 ---
 
