@@ -1,0 +1,7099 @@
+{
+ "meta": {
+  "model": "gpt-4o-mini",
+  "builtAt": "2026-08-18T10:24:24.005Z",
+  "calls": 74,
+  "inputTokens": 25201,
+  "outputTokens": 13597,
+  "estimatedCostUsd": 0.011938349999999999
+ },
+ "nodes": [
+  {
+   "id": "green coffee",
+   "label": "green coffee",
+   "type": "material",
+   "description": "unroasted coffee seeds",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 44,
+     "end": 484
+    },
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    },
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    }
+   ],
+   "community": 2,
+   "degree": 8
+  },
+  {
+   "id": "moisture",
+   "label": "moisture",
+   "type": "measurement",
+   "description": "ten to twelve percent moisture by weight",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 44,
+     "end": 484
+    },
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    },
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 2,
+   "degree": 3
+  },
+  {
+   "id": "roasting",
+   "label": "roasting",
+   "type": "process",
+   "description": "the process that unlocks aromatic complexity",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 44,
+     "end": 484
+    }
+   ],
+   "community": 2,
+   "degree": 3
+  },
+  {
+   "id": "chemical reactions",
+   "label": "chemical reactions",
+   "type": "concept",
+   "description": "reactions driven by heat applied over time",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 44,
+     "end": 484
+    }
+   ],
+   "community": 2,
+   "degree": 1
+  },
+  {
+   "id": "heat",
+   "label": "heat",
+   "type": "material",
+   "description": "energy applied during roasting",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 44,
+     "end": 484
+    },
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    },
+    {
+     "docId": "marta",
+     "start": 365,
+     "end": 610
+    }
+   ],
+   "community": 2,
+   "degree": 4
+  },
+  {
+   "id": "time",
+   "label": "time",
+   "type": "measurement",
+   "description": "duration of the roasting process",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 44,
+     "end": 484
+    },
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    },
+    {
+     "docId": "marta",
+     "start": 365,
+     "end": 610
+    }
+   ],
+   "community": 6,
+   "degree": 4
+  },
+  {
+   "id": "charge",
+   "label": "charge",
+   "type": "process",
+   "description": "the initial step in the roasting process",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "drum",
+   "label": "drum",
+   "type": "equipment",
+   "description": "the roaster's drum used for roasting coffee",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    }
+   ],
+   "community": 21,
+   "degree": 2
+  },
+  {
+   "id": "temperature probe",
+   "label": "temperature probe",
+   "type": "equipment",
+   "description": "device used to measure temperature during roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "turnaround point",
+   "label": "turnaround point",
+   "type": "concept",
+   "description": "the low point of temperature plunge after adding green coffee",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    }
+   ],
+   "community": 2,
+   "degree": 3
+  },
+  {
+   "id": "180 degrees celsius",
+   "label": "180 degrees Celsius",
+   "type": "measurement",
+   "description": "lower target temperature for roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    }
+   ],
+   "community": 21,
+   "degree": 1
+  },
+  {
+   "id": "220 degrees celsius",
+   "label": "220 degrees Celsius",
+   "type": "measurement",
+   "description": "upper target temperature for roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    }
+   ],
+   "community": 21,
+   "degree": 1
+  },
+  {
+   "id": "eight to fourteen minutes",
+   "label": "eight to fourteen minutes",
+   "type": "measurement",
+   "description": "time range for managing temperature climb after turnaround point",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 486,
+     "end": 1074
+    }
+   ],
+   "community": 2,
+   "degree": 1
+  },
+  {
+   "id": "drying phase",
+   "label": "drying phase",
+   "type": "process",
+   "description": "the initial phase of roasting where water evaporates from the bean",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1076,
+     "end": 1567
+    }
+   ],
+   "community": 0,
+   "degree": 4
+  },
+  {
+   "id": "bean",
+   "label": "bean",
+   "type": "organism",
+   "description": "the raw material being roasted",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1076,
+     "end": 1567
+    },
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    },
+    {
+     "docId": "coffee",
+     "start": 4357,
+     "end": 4983
+    }
+   ],
+   "community": 0,
+   "degree": 9
+  },
+  {
+   "id": "water",
+   "label": "water",
+   "type": "material",
+   "description": "the liquid that must evaporate during the drying phase",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1076,
+     "end": 1567
+    },
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 0,
+   "degree": 3
+  },
+  {
+   "id": "150 degrees celsius",
+   "label": "150 degrees Celsius",
+   "type": "measurement",
+   "description": "the temperature at which the drying phase typically ends",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1076,
+     "end": 1567
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "toasted grain",
+   "label": "toasted grain",
+   "type": "concept",
+   "description": "a smell associated with the drying phase",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1076,
+     "end": 1567
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "basmati rice",
+   "label": "basmati rice",
+   "type": "concept",
+   "description": "a smell associated with the drying phase",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1076,
+     "end": 1567
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "maillard reaction",
+   "label": "Maillard reaction",
+   "type": "process",
+   "description": "couples amino acids with reducing sugars",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    }
+   ],
+   "community": 6,
+   "degree": 6
+  },
+  {
+   "id": "caramelization",
+   "label": "caramelization",
+   "type": "process",
+   "description": "breaks down sugars under heat without requiring amino acids",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    }
+   ],
+   "community": 6,
+   "degree": 3
+  },
+  {
+   "id": "amino acids",
+   "label": "amino acids",
+   "type": "material",
+   "description": "organic compounds that couple with reducing sugars in the Maillard reaction",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    }
+   ],
+   "community": 6,
+   "degree": 1
+  },
+  {
+   "id": "reducing sugars",
+   "label": "reducing sugars",
+   "type": "material",
+   "description": "sugars that couple with amino acids in the Maillard reaction",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    }
+   ],
+   "community": 6,
+   "degree": 2
+  },
+  {
+   "id": "volatile aromatic compounds",
+   "label": "volatile aromatic compounds",
+   "type": "material",
+   "description": "compounds generated by the Maillard reaction",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    }
+   ],
+   "community": 6,
+   "degree": 1
+  },
+  {
+   "id": "melanoidin pigments",
+   "label": "melanoidin pigments",
+   "type": "material",
+   "description": "brown pigments that give roasted coffee its color",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    }
+   ],
+   "community": 6,
+   "degree": 1
+  },
+  {
+   "id": "temperature",
+   "label": "temperature",
+   "type": "measurement",
+   "description": "a factor that affects the reactions",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 1569,
+     "end": 2230
+    },
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 6,
+   "degree": 2
+  },
+  {
+   "id": "first crack",
+   "label": "first crack",
+   "type": "process",
+   "description": "the point at which coffee beans begin to crack during roasting",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    },
+    {
+     "docId": "coffee",
+     "start": 2691,
+     "end": 3239
+    },
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    },
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 0,
+   "degree": 7
+  },
+  {
+   "id": "steam",
+   "label": "steam",
+   "type": "material",
+   "description": "the vapor generated during roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "carbon dioxide",
+   "label": "carbon dioxide",
+   "type": "material",
+   "description": "gas produced inside the bean during roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    },
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    }
+   ],
+   "community": 0,
+   "degree": 2
+  },
+  {
+   "id": "volume",
+   "label": "volume",
+   "type": "measurement",
+   "description": "the amount of space the bean occupies",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "silverskin",
+   "label": "silverskin",
+   "type": "material",
+   "description": "the thin layer of skin that sloughs off during roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    }
+   ],
+   "community": 0,
+   "degree": 2
+  },
+  {
+   "id": "chaff",
+   "label": "chaff",
+   "type": "material",
+   "description": "the outer layer that is removed during roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    }
+   ],
+   "community": 43,
+   "degree": 0
+  },
+  {
+   "id": "roaster's cyclone",
+   "label": "roaster's cyclone",
+   "type": "equipment",
+   "description": "the equipment that draws away the chaff",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2232,
+     "end": 2689
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "development time",
+   "label": "development time",
+   "type": "process",
+   "description": "the interval between first crack and dropping the coffee from the drum",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2691,
+     "end": 3239
+    }
+   ],
+   "community": 0,
+   "degree": 2
+  },
+  {
+   "id": "development time ratio",
+   "label": "development time ratio",
+   "type": "measurement",
+   "description": "the fraction of total roast length that development time represents",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2691,
+     "end": 3239
+    }
+   ],
+   "community": 24,
+   "degree": 3
+  },
+  {
+   "id": "fifteen percent",
+   "label": "fifteen percent",
+   "type": "measurement",
+   "description": "the lower end of the common range for development time ratio",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2691,
+     "end": 3239
+    }
+   ],
+   "community": 24,
+   "degree": 1
+  },
+  {
+   "id": "twenty-five percent",
+   "label": "twenty-five percent",
+   "type": "measurement",
+   "description": "the upper end of the common range for development time ratio",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2691,
+     "end": 3239
+    }
+   ],
+   "community": 24,
+   "degree": 1
+  },
+  {
+   "id": "sour cups",
+   "label": "sour cups",
+   "type": "concept",
+   "description": "coffee that is underdeveloped and has a sour taste",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2691,
+     "end": 3239
+    }
+   ],
+   "community": 64,
+   "degree": 0
+  },
+  {
+   "id": "generic roast flavors",
+   "label": "generic roast flavors",
+   "type": "concept",
+   "description": "flavors that mask the origin character of the coffee",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 2691,
+     "end": 3239
+    }
+   ],
+   "community": 51,
+   "degree": 0
+  },
+  {
+   "id": "coffee",
+   "label": "coffee",
+   "type": "organism",
+   "description": "the seeds of the Coffea plant used for brewing beverages",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    },
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    },
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 5
+  },
+  {
+   "id": "second crack",
+   "label": "second crack",
+   "type": "process",
+   "description": "a stage in coffee roasting characterized by a quieter, continuous sound",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    },
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 8,
+   "degree": 7
+  },
+  {
+   "id": "224 degrees celsius",
+   "label": "224 degrees Celsius",
+   "type": "measurement",
+   "description": "the temperature at which second crack occurs",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    }
+   ],
+   "community": 8,
+   "degree": 2
+  },
+  {
+   "id": "435 degrees fahrenheit",
+   "label": "435 degrees Fahrenheit",
+   "type": "measurement",
+   "description": "the temperature equivalent of 224 degrees Celsius",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    }
+   ],
+   "community": 8,
+   "degree": 1
+  },
+  {
+   "id": "drum fire",
+   "label": "drum fire",
+   "type": "concept",
+   "description": "a risk associated with over-roasting coffee",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    }
+   ],
+   "community": 8,
+   "degree": 1
+  },
+  {
+   "id": "espresso blends",
+   "label": "espresso blends",
+   "type": "concept",
+   "description": "a type of coffee roast profile",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    }
+   ],
+   "community": 8,
+   "degree": 1
+  },
+  {
+   "id": "french roasts",
+   "label": "French roasts",
+   "type": "concept",
+   "description": "a type of coffee roast profile",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3241,
+     "end": 3814
+    }
+   ],
+   "community": 8,
+   "degree": 1
+  },
+  {
+   "id": "light roast",
+   "label": "light roast",
+   "type": "process",
+   "description": "a type of coffee roast that sheds twelve to fourteen percent of its green weight",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    },
+    {
+     "docId": "coffee",
+     "start": 4357,
+     "end": 4983
+    }
+   ],
+   "community": 2,
+   "degree": 4
+  },
+  {
+   "id": "medium roast",
+   "label": "medium roast",
+   "type": "process",
+   "description": "a type of coffee roast that loses fifteen to seventeen percent of its green weight",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    }
+   ],
+   "community": 2,
+   "degree": 1
+  },
+  {
+   "id": "dark roast",
+   "label": "dark roast",
+   "type": "process",
+   "description": "a type of coffee roast that can shed eighteen to twenty percent or more of its green weight",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    },
+    {
+     "docId": "coffee",
+     "start": 4357,
+     "end": 4983
+    }
+   ],
+   "community": 2,
+   "degree": 4
+  },
+  {
+   "id": "roasted coffee",
+   "label": "roasted coffee",
+   "type": "material",
+   "description": "coffee beans that have been roasted",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    },
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    }
+   ],
+   "community": 9,
+   "degree": 10
+  },
+  {
+   "id": "weight",
+   "label": "weight",
+   "type": "measurement",
+   "description": "a measure of mass used in coffee roasting",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "volumetric dosing",
+   "label": "volumetric dosing",
+   "type": "technique",
+   "description": "a method of measuring coffee that is unreliable for roasted coffee",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    }
+   ],
+   "community": 9,
+   "degree": 1
+  },
+  {
+   "id": "density",
+   "label": "density",
+   "type": "concept",
+   "description": "the mass per unit volume of a substance",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 3816,
+     "end": 4355
+    },
+    {
+     "docId": "coffee",
+     "start": 4357,
+     "end": 4983
+    }
+   ],
+   "community": 2,
+   "degree": 4
+  },
+  {
+   "id": "caffeine",
+   "label": "caffeine",
+   "type": "measurement",
+   "description": "a stimulant found in coffee beans",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4357,
+     "end": 4983
+    },
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 4
+  },
+  {
+   "id": "chlorogenic acid",
+   "label": "chlorogenic acid",
+   "type": "material",
+   "description": "an acid found in coffee that degrades with heat",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4357,
+     "end": 4983
+    },
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "mass",
+   "label": "mass",
+   "type": "measurement",
+   "description": "the quantity of matter in an object",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4357,
+     "end": 4983
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "arabica",
+   "label": "arabica",
+   "type": "organism",
+   "description": "a species of coffee that contains more lipids and sugars",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "robusta",
+   "label": "robusta",
+   "type": "organism",
+   "description": "a species of coffee that carries more caffeine and chlorogenic acid",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "crema",
+   "label": "crema",
+   "type": "concept",
+   "description": "a thick foam on espresso",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 1
+  },
+  {
+   "id": "high-grown beans",
+   "label": "high-grown beans",
+   "type": "material",
+   "description": "coffee beans grown at elevations above 1,500 meters",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "low-grown beans",
+   "label": "low-grown beans",
+   "type": "material",
+   "description": "coffee beans grown at lower elevations",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "elevation",
+   "label": "elevation",
+   "type": "measurement",
+   "description": "the height above sea level, measured in meters",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 4985,
+     "end": 5611
+    }
+   ],
+   "community": 2,
+   "degree": 2
+  },
+  {
+   "id": "pyrolysis",
+   "label": "pyrolysis",
+   "type": "process",
+   "description": "the thermal decomposition of materials at elevated temperatures in an inert atmosphere",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    }
+   ],
+   "community": 58,
+   "degree": 0
+  },
+  {
+   "id": "degassing",
+   "label": "degassing",
+   "type": "process",
+   "description": "the process of allowing carbon dioxide to escape from freshly roasted coffee beans",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "filter coffee",
+   "label": "filter coffee",
+   "type": "technique",
+   "description": "a method of brewing coffee using a filter",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    },
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 2
+  },
+  {
+   "id": "espresso",
+   "label": "espresso",
+   "type": "technique",
+   "description": "a method of brewing coffee that uses pressure",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    },
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 2
+  },
+  {
+   "id": "dark roasts",
+   "label": "dark roasts",
+   "type": "concept",
+   "description": "a type of coffee roast that is darker and often has a stronger flavor",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    }
+   ],
+   "community": 47,
+   "degree": 0
+  },
+  {
+   "id": "blooming",
+   "label": "blooming",
+   "type": "concept",
+   "description": "the expansion of coffee grounds during brewing due to gas release",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 5613,
+     "end": 6235
+    }
+   ],
+   "community": 40,
+   "degree": 0
+  },
+  {
+   "id": "oxygen",
+   "label": "oxygen",
+   "type": "material",
+   "description": "a gas that is harmful to roasted coffee",
+   "docs": [
+    "coffee",
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    },
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    }
+   ],
+   "community": 9,
+   "degree": 1
+  },
+  {
+   "id": "light",
+   "label": "light",
+   "type": "material",
+   "description": "illumination that can degrade roasted coffee",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    }
+   ],
+   "community": 9,
+   "degree": 1
+  },
+  {
+   "id": "one-way valve bag",
+   "label": "one-way valve bag",
+   "type": "equipment",
+   "description": "a bag that allows carbon dioxide to vent and blocks oxygen",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    }
+   ],
+   "community": 9,
+   "degree": 1
+  },
+  {
+   "id": "airtight containers",
+   "label": "airtight containers",
+   "type": "equipment",
+   "description": "containers that prevent air from entering",
+   "docs": [
+    "coffee"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    }
+   ],
+   "community": 9,
+   "degree": 1
+  },
+  {
+   "id": "grinding",
+   "label": "grinding",
+   "type": "process",
+   "description": "the act of breaking down coffee into smaller particles",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "coffee",
+     "start": 6237,
+     "end": 6893
+    },
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 3
+  },
+  {
+   "id": "honeybee colony",
+   "label": "honeybee colony",
+   "type": "organism",
+   "description": "A collective of honeybees functioning as a single organism.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 28,
+     "end": 534
+    }
+   ],
+   "community": 5,
+   "degree": 2
+  },
+  {
+   "id": "western honeybee",
+   "label": "western honeybee",
+   "type": "organism",
+   "description": "A species of honeybee, scientifically known as Apis mellifera.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 28,
+     "end": 534
+    }
+   ],
+   "community": 15,
+   "degree": 1
+  },
+  {
+   "id": "apis mellifera",
+   "label": "Apis mellifera",
+   "type": "organism",
+   "description": "The scientific name for the western honeybee.",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 28,
+     "end": 534
+    },
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 15,
+   "degree": 2
+  },
+  {
+   "id": "queen",
+   "label": "queen",
+   "type": "organism",
+   "description": "The reproductive female in a honeybee colony.",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 28,
+     "end": 534
+    },
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    },
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    },
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    },
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    },
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 5,
+   "degree": 9
+  },
+  {
+   "id": "individual bee",
+   "label": "individual bee",
+   "type": "organism",
+   "description": "A single bee that is part of the colony.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 28,
+     "end": 534
+    }
+   ],
+   "community": 5,
+   "degree": 1
+  },
+  {
+   "id": "bees",
+   "label": "bees",
+   "type": "organism",
+   "description": "Insect species that form colonies.",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    },
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 4,
+   "degree": 5
+  },
+  {
+   "id": "female workers",
+   "label": "female workers",
+   "type": "organism",
+   "description": "Sterile females that perform various tasks in the colony.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    }
+   ],
+   "community": 4,
+   "degree": 1
+  },
+  {
+   "id": "male drones",
+   "label": "male drones",
+   "type": "organism",
+   "description": "Males that exist for mating during the reproductive season.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    }
+   ],
+   "community": 4,
+   "degree": 2
+  },
+  {
+   "id": "nectar flows",
+   "label": "nectar flows",
+   "type": "concept",
+   "description": "Seasonal availability of nectar for bees.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    }
+   ],
+   "community": 4,
+   "degree": 1
+  },
+  {
+   "id": "autumn",
+   "label": "autumn",
+   "type": "concept",
+   "description": "Season when bee population decreases.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    }
+   ],
+   "community": 4,
+   "degree": 2
+  },
+  {
+   "id": "summer",
+   "label": "summer",
+   "type": "concept",
+   "description": "Season when bee population is at its peak.",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    },
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 4,
+   "degree": 2
+  },
+  {
+   "id": "colony",
+   "label": "colony",
+   "type": "concept",
+   "description": "The community of bees living together.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 536,
+     "end": 1028
+    }
+   ],
+   "community": 4,
+   "degree": 6
+  },
+  {
+   "id": "sperm",
+   "label": "sperm",
+   "type": "material",
+   "description": "male reproductive cells stored by the queen",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    }
+   ],
+   "community": 5,
+   "degree": 3
+  },
+  {
+   "id": "drones",
+   "label": "drones",
+   "type": "organism",
+   "description": "male bees that mate with the queen",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    }
+   ],
+   "community": 5,
+   "degree": 2
+  },
+  {
+   "id": "spermatheca",
+   "label": "spermatheca",
+   "type": "organism",
+   "description": "organ where the queen stores sperm",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    }
+   ],
+   "community": 5,
+   "degree": 1
+  },
+  {
+   "id": "eggs",
+   "label": "eggs",
+   "type": "material",
+   "description": "reproductive cells laid by the queen",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    },
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 5,
+   "degree": 4
+  },
+  {
+   "id": "workers",
+   "label": "workers",
+   "type": "organism",
+   "description": "female bees that are not queens",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    },
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    }
+   ],
+   "community": 13,
+   "degree": 5
+  },
+  {
+   "id": "fertilized eggs",
+   "label": "fertilized eggs",
+   "type": "material",
+   "description": "eggs that develop into diploid females",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    }
+   ],
+   "community": 5,
+   "degree": 1
+  },
+  {
+   "id": "unfertilized eggs",
+   "label": "unfertilized eggs",
+   "type": "material",
+   "description": "eggs that develop into haploid drones",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1030,
+     "end": 1641
+    }
+   ],
+   "community": 5,
+   "degree": 1
+  },
+  {
+   "id": "worker",
+   "label": "worker",
+   "type": "organism",
+   "description": "female bee that performs tasks but does not reproduce",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    },
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 7,
+   "degree": 8
+  },
+  {
+   "id": "drone",
+   "label": "drone",
+   "type": "organism",
+   "description": "male bee that mates with the queen",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    }
+   ],
+   "community": 16,
+   "degree": 1
+  },
+  {
+   "id": "royal jelly",
+   "label": "royal jelly",
+   "type": "material",
+   "description": "nutritional substance fed to bee larvae",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    }
+   ],
+   "community": 16,
+   "degree": 3
+  },
+  {
+   "id": "pollen",
+   "label": "pollen",
+   "type": "material",
+   "description": "protein-rich substance collected by bees",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    },
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    }
+   ],
+   "community": 7,
+   "degree": 1
+  },
+  {
+   "id": "honey",
+   "label": "honey",
+   "type": "material",
+   "description": "sweet substance produced by bees",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    },
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    },
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    },
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 4,
+   "degree": 3
+  },
+  {
+   "id": "larvae",
+   "label": "larvae",
+   "type": "organism",
+   "description": "immature form of bees",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    }
+   ],
+   "community": 16,
+   "degree": 2
+  },
+  {
+   "id": "beekeepers",
+   "label": "beekeepers",
+   "type": "person",
+   "description": "individuals who maintain bee colonies",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 1643,
+     "end": 2154
+    }
+   ],
+   "community": 16,
+   "degree": 1
+  },
+  {
+   "id": "temporal polyethism",
+   "label": "temporal polyethism",
+   "type": "concept",
+   "description": "a pattern of job progression tied to age in a worker's life",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    }
+   ],
+   "community": 7,
+   "degree": 1
+  },
+  {
+   "id": "nurse bee",
+   "label": "nurse bee",
+   "type": "process",
+   "description": "a role in which a bee feeds larvae",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    }
+   ],
+   "community": 7,
+   "degree": 2
+  },
+  {
+   "id": "hypopharyngeal glands",
+   "label": "hypopharyngeal glands",
+   "type": "organism",
+   "description": "glands in a bee that produce food for larvae",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    }
+   ],
+   "community": 7,
+   "degree": 1
+  },
+  {
+   "id": "wax",
+   "label": "wax",
+   "type": "material",
+   "description": "substance secreted by bees to build comb",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    },
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    }
+   ],
+   "community": 7,
+   "degree": 1
+  },
+  {
+   "id": "guard duty",
+   "label": "guard duty",
+   "type": "process",
+   "description": "a role in which a bee protects the entrance",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    }
+   ],
+   "community": 7,
+   "degree": 1
+  },
+  {
+   "id": "forager",
+   "label": "forager",
+   "type": "process",
+   "description": "a role in which a bee collects food",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    }
+   ],
+   "community": 7,
+   "degree": 2
+  },
+  {
+   "id": "summer worker",
+   "label": "summer worker",
+   "type": "organism",
+   "description": "a type of bee that lives about six weeks",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2156,
+     "end": 2953
+    }
+   ],
+   "community": 66,
+   "degree": 0
+  },
+  {
+   "id": "nectar",
+   "label": "nectar",
+   "type": "material",
+   "description": "a sugary fluid produced by flowers",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    },
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    }
+   ],
+   "community": 27,
+   "degree": 1
+  },
+  {
+   "id": "honeybee",
+   "label": "honeybee",
+   "type": "organism",
+   "description": "a type of bee known for producing honey and pollinating flowers",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    }
+   ],
+   "community": 27,
+   "degree": 2
+  },
+  {
+   "id": "flower",
+   "label": "flower",
+   "type": "organism",
+   "description": "the reproductive structure of flowering plants",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    }
+   ],
+   "community": 27,
+   "degree": 1
+  },
+  {
+   "id": "foraging",
+   "label": "foraging",
+   "type": "process",
+   "description": "the act of searching for and gathering food",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    }
+   ],
+   "community": 50,
+   "degree": 0
+  },
+  {
+   "id": "body weight",
+   "label": "body weight",
+   "type": "measurement",
+   "description": "the weight of an organism's body",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    }
+   ],
+   "community": 41,
+   "degree": 0
+  },
+  {
+   "id": "two million flowers",
+   "label": "two million flowers",
+   "type": "measurement",
+   "description": "the estimated number of flowers visited to produce one pound of honey",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    }
+   ],
+   "community": 69,
+   "degree": 0
+  },
+  {
+   "id": "cumulative distance",
+   "label": "cumulative distance",
+   "type": "measurement",
+   "description": "the total distance traveled by the forager",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 2955,
+     "end": 3505
+    }
+   ],
+   "community": 46,
+   "degree": 0
+  },
+  {
+   "id": "waggle dance",
+   "label": "waggle dance",
+   "type": "technique",
+   "description": "a dance performed by foragers to communicate location information",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 3507,
+     "end": 4012
+    }
+   ],
+   "community": 18,
+   "degree": 4
+  },
+  {
+   "id": "karl von frisch",
+   "label": "Karl von Frisch",
+   "type": "person",
+   "description": "a scientist who decoded the waggle dance and received a Nobel Prize",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 3507,
+     "end": 4012
+    }
+   ],
+   "community": 30,
+   "degree": 1
+  },
+  {
+   "id": "nobel prize",
+   "label": "Nobel Prize",
+   "type": "measurement",
+   "description": "an award received by Karl von Frisch for his work",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 3507,
+     "end": 4012
+    }
+   ],
+   "community": 30,
+   "degree": 1
+  },
+  {
+   "id": "hive",
+   "label": "hive",
+   "type": "equipment",
+   "description": "the structure where foragers perform the waggle dance",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 3507,
+     "end": 4012
+    },
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 18,
+   "degree": 2
+  },
+  {
+   "id": "comb",
+   "label": "comb",
+   "type": "equipment",
+   "description": "the part of the hive where the waggle dance is performed",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 3507,
+     "end": 4012
+    }
+   ],
+   "community": 18,
+   "degree": 1
+  },
+  {
+   "id": "abdomen",
+   "label": "abdomen",
+   "type": "organism",
+   "description": "the body part of the forager that vibrates during the dance",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 3507,
+     "end": 4012
+    }
+   ],
+   "community": 36,
+   "degree": 0
+  },
+  {
+   "id": "figure eight",
+   "label": "figure eight",
+   "type": "concept",
+   "description": "the shape traced by the forager during the waggle dance",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 3507,
+     "end": 4012
+    }
+   ],
+   "community": 18,
+   "degree": 1
+  },
+  {
+   "id": "waggle run",
+   "label": "waggle run",
+   "type": "process",
+   "description": "a specific movement pattern used by bees to communicate",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 14,
+   "degree": 3
+  },
+  {
+   "id": "food source",
+   "label": "food source",
+   "type": "concept",
+   "description": "the target of the bees' foraging efforts",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 14,
+   "degree": 1
+  },
+  {
+   "id": "sun",
+   "label": "sun",
+   "type": "concept",
+   "description": "the star around which the Earth orbits, used as a reference point by bees",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 14,
+   "degree": 2
+  },
+  {
+   "id": "angle",
+   "label": "angle",
+   "type": "measurement",
+   "description": "the degree of deviation from vertical in the waggle run",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 14,
+   "degree": 1
+  },
+  {
+   "id": "duration",
+   "label": "duration",
+   "type": "measurement",
+   "description": "the length of time the waggle portion lasts",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 25,
+   "degree": 2
+  },
+  {
+   "id": "kilometer",
+   "label": "kilometer",
+   "type": "measurement",
+   "description": "a unit of distance corresponding to the distance encoded in the waggle dance",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 25,
+   "degree": 1
+  },
+  {
+   "id": "subspecies",
+   "label": "subspecies",
+   "type": "organism",
+   "description": "different varieties of bees that may have varying calibration for the dance",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4014,
+     "end": 4785
+    }
+   ],
+   "community": 25,
+   "degree": 1
+  },
+  {
+   "id": "brood nest",
+   "label": "brood nest",
+   "type": "concept",
+   "description": "the area where bee larvae are reared",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    }
+   ],
+   "community": 12,
+   "degree": 3
+  },
+  {
+   "id": "34 degrees celsius",
+   "label": "34 degrees Celsius",
+   "type": "measurement",
+   "description": "the target temperature for the brood nest",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    }
+   ],
+   "community": 12,
+   "degree": 1
+  },
+  {
+   "id": "35 degrees celsius",
+   "label": "35 degrees Celsius",
+   "type": "measurement",
+   "description": "the upper limit of the target temperature for the brood nest",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    }
+   ],
+   "community": 12,
+   "degree": 1
+  },
+  {
+   "id": "20 degrees celsius",
+   "label": "20 degrees Celsius",
+   "type": "measurement",
+   "description": "the target temperature for the colony's core in winter",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    }
+   ],
+   "community": 12,
+   "degree": 1
+  },
+  {
+   "id": "metabolic heat",
+   "label": "metabolic heat",
+   "type": "concept",
+   "description": "heat generated by the bees' metabolism",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    }
+   ],
+   "community": 13,
+   "degree": 1
+  },
+  {
+   "id": "airflow",
+   "label": "airflow",
+   "type": "concept",
+   "description": "the movement of air to regulate temperature",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 4787,
+     "end": 5598
+    }
+   ],
+   "community": 13,
+   "degree": 1
+  },
+  {
+   "id": "invertase",
+   "label": "invertase",
+   "type": "technique",
+   "description": "an enzyme that splits sucrose into glucose and fructose",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    }
+   ],
+   "community": 55,
+   "degree": 0
+  },
+  {
+   "id": "glucose oxidase",
+   "label": "glucose oxidase",
+   "type": "technique",
+   "description": "an enzyme that generates hydrogen peroxide",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    }
+   ],
+   "community": 53,
+   "degree": 0
+  },
+  {
+   "id": "hydrogen peroxide",
+   "label": "hydrogen peroxide",
+   "type": "material",
+   "description": "a byproduct generated during honey production",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    }
+   ],
+   "community": 54,
+   "degree": 0
+  },
+  {
+   "id": "yeasts",
+   "label": "yeasts",
+   "type": "organism",
+   "description": "microorganisms that thrive in high water concentrations",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    }
+   ],
+   "community": 71,
+   "degree": 0
+  },
+  {
+   "id": "bacteria",
+   "label": "bacteria",
+   "type": "organism",
+   "description": "microorganisms that thrive in high water concentrations",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 5600,
+     "end": 6345
+    }
+   ],
+   "community": 37,
+   "degree": 0
+  },
+  {
+   "id": "swarming",
+   "label": "swarming",
+   "type": "process",
+   "description": "Reproduction at the colony level through the departure of the old queen and workers.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 4,
+   "degree": 1
+  },
+  {
+   "id": "queen cups",
+   "label": "queen cups",
+   "type": "equipment",
+   "description": "Structures constructed by workers for new queens.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 13,
+   "degree": 1
+  },
+  {
+   "id": "old queen",
+   "label": "old queen",
+   "type": "organism",
+   "description": "The previous queen that departs with part of the workforce.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 57,
+   "degree": 0
+  },
+  {
+   "id": "daughter",
+   "label": "daughter",
+   "type": "organism",
+   "description": "The developing new queen left behind.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 48,
+   "degree": 0
+  },
+  {
+   "id": "scout bees",
+   "label": "scout bees",
+   "type": "organism",
+   "description": "Bees that inspect potential cavities for the swarm.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 31,
+   "degree": 1
+  },
+  {
+   "id": "waggle dances",
+   "label": "waggle dances",
+   "type": "technique",
+   "description": "Behavior used by scout bees to communicate findings.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 31,
+   "degree": 1
+  },
+  {
+   "id": "quorum",
+   "label": "quorum",
+   "type": "measurement",
+   "description": "The number of committed scouts needed to reach a decision.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 59,
+   "degree": 0
+  },
+  {
+   "id": "temporary cluster",
+   "label": "temporary cluster",
+   "type": "concept",
+   "description": "The initial gathering of the swarm before finding a new home.",
+   "docs": [
+    "bees"
+   ],
+   "mentions": [
+    {
+     "docId": "bees",
+     "start": 6347,
+     "end": 7003
+    }
+   ],
+   "community": 67,
+   "degree": 0
+  },
+  {
+   "id": "potter",
+   "label": "potter",
+   "type": "person",
+   "description": "A person who makes pottery.",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 47,
+     "end": 397
+    }
+   ],
+   "community": 3,
+   "degree": 1
+  },
+  {
+   "id": "wheel",
+   "label": "wheel",
+   "type": "equipment",
+   "description": "A tool used by potters to shape clay.",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 47,
+     "end": 397
+    }
+   ],
+   "community": 3,
+   "degree": 2
+  },
+  {
+   "id": "firing",
+   "label": "firing",
+   "type": "process",
+   "description": "The process of heating clay to convert it into ceramic.",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 47,
+     "end": 397
+    }
+   ],
+   "community": 3,
+   "degree": 3
+  },
+  {
+   "id": "clay body",
+   "label": "clay body",
+   "type": "material",
+   "description": "A mixture of clay used to create pottery.",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 47,
+     "end": 397
+    },
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    }
+   ],
+   "community": 3,
+   "degree": 4
+  },
+  {
+   "id": "ceramic material",
+   "label": "ceramic material",
+   "type": "material",
+   "description": "The final product after firing clay.",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 47,
+     "end": 397
+    }
+   ],
+   "community": 3,
+   "degree": 1
+  },
+  {
+   "id": "temperature curve",
+   "label": "temperature curve",
+   "type": "concept",
+   "description": "A graphical representation of temperature changes during firing.",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 47,
+     "end": 397
+    }
+   ],
+   "community": 3,
+   "degree": 1
+  },
+  {
+   "id": "kiln",
+   "label": "kiln",
+   "type": "equipment",
+   "description": "a furnace for firing ceramics",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    },
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    },
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    },
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    },
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    },
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    },
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 1,
+   "degree": 11
+  },
+  {
+   "id": "bisque firing",
+   "label": "bisque firing",
+   "type": "process",
+   "description": "the first firing of clay to drive off water and organic material",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    }
+   ],
+   "community": 1,
+   "degree": 5
+  },
+  {
+   "id": "raw clay",
+   "label": "raw clay",
+   "type": "material",
+   "description": "unfired clay before any processing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "orton cone 06",
+   "label": "Orton cone 06",
+   "type": "measurement",
+   "description": "a temperature measurement for firing ceramics",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    }
+   ],
+   "community": 1,
+   "degree": 2
+  },
+  {
+   "id": "orton cone 04",
+   "label": "Orton cone 04",
+   "type": "measurement",
+   "description": "a temperature measurement for firing ceramics",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    }
+   ],
+   "community": 1,
+   "degree": 2
+  },
+  {
+   "id": "999 degrees celsius",
+   "label": "999 degrees Celsius",
+   "type": "measurement",
+   "description": "a temperature corresponding to Orton cone 06",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "1063 degrees celsius",
+   "label": "1063 degrees Celsius",
+   "type": "measurement",
+   "description": "a temperature corresponding to Orton cone 04",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "glaze slurry",
+   "label": "glaze slurry",
+   "type": "material",
+   "description": "a mixture of glaze and water used for coating ceramics",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 399,
+     "end": 935
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "cone 6",
+   "label": "cone 6",
+   "type": "measurement",
+   "description": "a temperature measurement for mid-range studio work firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    }
+   ],
+   "community": 3,
+   "degree": 2
+  },
+  {
+   "id": "cone 10",
+   "label": "cone 10",
+   "type": "measurement",
+   "description": "a temperature measurement for high-fire stoneware and porcelain firing",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    },
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    },
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 3,
+   "degree": 4
+  },
+  {
+   "id": "1222 degrees celsius",
+   "label": "1222 degrees Celsius",
+   "type": "measurement",
+   "description": "temperature for firing to cone 6",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    }
+   ],
+   "community": 3,
+   "degree": 1
+  },
+  {
+   "id": "1285 degrees celsius",
+   "label": "1285 degrees Celsius",
+   "type": "measurement",
+   "description": "temperature for firing to cone 10",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    }
+   ],
+   "community": 3,
+   "degree": 1
+  },
+  {
+   "id": "fluxes",
+   "label": "fluxes",
+   "type": "material",
+   "description": "materials that melt and form a glassy phase in the clay body",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    }
+   ],
+   "community": 3,
+   "degree": 1
+  },
+  {
+   "id": "porcelain",
+   "label": "porcelain",
+   "type": "material",
+   "description": "a type of ceramic that can be fired to cone 10",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    }
+   ],
+   "community": 3,
+   "degree": 2
+  },
+  {
+   "id": "water absorption",
+   "label": "water absorption",
+   "type": "measurement",
+   "description": "the amount of water a material can absorb, relevant for porcelain",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 937,
+     "end": 1491
+    }
+   ],
+   "community": 3,
+   "degree": 1
+  },
+  {
+   "id": "cone",
+   "label": "cone",
+   "type": "concept",
+   "description": "a term used to describe pyrometric cones that measure heat work",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    }
+   ],
+   "community": 44,
+   "degree": 0
+  },
+  {
+   "id": "orton pyrometric cones",
+   "label": "orton pyrometric cones",
+   "type": "equipment",
+   "description": "small pyramids formulated to soften and bend at specific points",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "heat work",
+   "label": "heat work",
+   "type": "concept",
+   "description": "a measure that integrates temperature and time",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    }
+   ],
+   "community": 1,
+   "degree": 2
+  },
+  {
+   "id": "pyrometer",
+   "label": "pyrometer",
+   "type": "equipment",
+   "description": "a device that measures temperature in a kiln",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "cone 06",
+   "label": "cone 06",
+   "type": "measurement",
+   "description": "a specific pyrometric cone number that runs cooler",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    }
+   ],
+   "community": 29,
+   "degree": 1
+  },
+  {
+   "id": "cone 04",
+   "label": "cone 04",
+   "type": "measurement",
+   "description": "a specific pyrometric cone number that runs hotter than cone 06",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 1493,
+     "end": 2346
+    }
+   ],
+   "community": 29,
+   "degree": 1
+  },
+  {
+   "id": "water smoking",
+   "label": "water smoking",
+   "type": "process",
+   "description": "the stage where residual atmospheric water leaves the clay",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "200 degrees celsius",
+   "label": "200 degrees Celsius",
+   "type": "measurement",
+   "description": "temperature at which water smoking occurs",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    },
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    }
+   ],
+   "community": 1,
+   "degree": 2
+  },
+  {
+   "id": "300 degrees celsius",
+   "label": "300 degrees Celsius",
+   "type": "measurement",
+   "description": "lower temperature limit for burning out organic matter and carbon",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    }
+   ],
+   "community": 33,
+   "degree": 0
+  },
+  {
+   "id": "800 degrees celsius",
+   "label": "800 degrees Celsius",
+   "type": "measurement",
+   "description": "upper temperature limit for burning out organic matter and carbon",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    }
+   ],
+   "community": 35,
+   "degree": 0
+  },
+  {
+   "id": "ventilation",
+   "label": "ventilation",
+   "type": "technique",
+   "description": "method needed to ensure adequate airflow during firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    }
+   ],
+   "community": 70,
+   "degree": 0
+  },
+  {
+   "id": "black coring",
+   "label": "black coring",
+   "type": "concept",
+   "description": "defect caused by trapped carbon during firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    }
+   ],
+   "community": 38,
+   "degree": 0
+  },
+  {
+   "id": "bloating",
+   "label": "bloating",
+   "type": "concept",
+   "description": "defect that can occur if carbon is trapped during firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2348,
+     "end": 2946
+    }
+   ],
+   "community": 39,
+   "degree": 0
+  },
+  {
+   "id": "quartz",
+   "label": "quartz",
+   "type": "material",
+   "description": "a mineral that changes crystal structure during firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    }
+   ],
+   "community": 22,
+   "degree": 1
+  },
+  {
+   "id": "alpha quartz",
+   "label": "alpha quartz",
+   "type": "material",
+   "description": "the low-temperature form of quartz",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    }
+   ],
+   "community": 22,
+   "degree": 2
+  },
+  {
+   "id": "beta quartz",
+   "label": "beta quartz",
+   "type": "material",
+   "description": "the high-temperature form of quartz",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    }
+   ],
+   "community": 22,
+   "degree": 1
+  },
+  {
+   "id": "dunting",
+   "label": "dunting",
+   "type": "technique",
+   "description": "a clean crack that occurs due to rapid cooling",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    }
+   ],
+   "community": 49,
+   "degree": 0
+  },
+  {
+   "id": "cristobalite",
+   "label": "cristobalite",
+   "type": "material",
+   "description": "a high-temperature form of silica",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    }
+   ],
+   "community": 45,
+   "degree": 0
+  },
+  {
+   "id": "573 degrees celsius",
+   "label": "573 degrees Celsius",
+   "type": "measurement",
+   "description": "the temperature of quartz inversion",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    }
+   ],
+   "community": 34,
+   "degree": 0
+  },
+  {
+   "id": "226 degrees celsius",
+   "label": "226 degrees Celsius",
+   "type": "measurement",
+   "description": "the temperature of cristobalite inversion",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 2948,
+     "end": 3725
+    }
+   ],
+   "community": 32,
+   "degree": 0
+  },
+  {
+   "id": "electric kiln",
+   "label": "electric kiln",
+   "type": "equipment",
+   "description": "a kiln that heats by resistance elements",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    },
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 10,
+   "degree": 3
+  },
+  {
+   "id": "gas kiln",
+   "label": "gas kiln",
+   "type": "equipment",
+   "description": "a kiln that uses gas as fuel",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    },
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 10,
+   "degree": 2
+  },
+  {
+   "id": "wood kiln",
+   "label": "wood kiln",
+   "type": "equipment",
+   "description": "a kiln that uses wood as fuel",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    }
+   ],
+   "community": 17,
+   "degree": 1
+  },
+  {
+   "id": "oil kiln",
+   "label": "oil kiln",
+   "type": "equipment",
+   "description": "a kiln that uses oil as fuel",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    }
+   ],
+   "community": 17,
+   "degree": 1
+  },
+  {
+   "id": "oxidation atmosphere",
+   "label": "oxidation atmosphere",
+   "type": "concept",
+   "description": "an atmosphere where metal oxides remain fully oxidized",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    }
+   ],
+   "community": 10,
+   "degree": 1
+  },
+  {
+   "id": "reduction atmosphere",
+   "label": "reduction atmosphere",
+   "type": "concept",
+   "description": "an atmosphere rich in carbon monoxide that strips oxygen from metal oxides",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    }
+   ],
+   "community": 17,
+   "degree": 4
+  },
+  {
+   "id": "ambient air",
+   "label": "ambient air",
+   "type": "material",
+   "description": "the surrounding air that is admitted into the electric kiln",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    }
+   ],
+   "community": 10,
+   "degree": 1
+  },
+  {
+   "id": "carbon monoxide",
+   "label": "carbon monoxide",
+   "type": "material",
+   "description": "a gas that is rich in a reduction atmosphere",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 3727,
+     "end": 4306
+    }
+   ],
+   "community": 17,
+   "degree": 1
+  },
+  {
+   "id": "iron",
+   "label": "iron",
+   "type": "material",
+   "description": "a metal used in glazes",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    }
+   ],
+   "community": 11,
+   "degree": 2
+  },
+  {
+   "id": "copper",
+   "label": "copper",
+   "type": "material",
+   "description": "a metal used in glazes",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    }
+   ],
+   "community": 11,
+   "degree": 2
+  },
+  {
+   "id": "celadon glaze",
+   "label": "celadon glaze",
+   "type": "technique",
+   "description": "a type of glaze that produces blue-greens",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    }
+   ],
+   "community": 11,
+   "degree": 1
+  },
+  {
+   "id": "sang de boeuf",
+   "label": "sang de boeuf",
+   "type": "technique",
+   "description": "a glaze producing deep copper reds",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    }
+   ],
+   "community": 11,
+   "degree": 1
+  },
+  {
+   "id": "oxidation",
+   "label": "oxidation",
+   "type": "process",
+   "description": "a firing atmosphere that affects glaze color",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    }
+   ],
+   "community": 11,
+   "degree": 2
+  },
+  {
+   "id": "reduction",
+   "label": "reduction",
+   "type": "process",
+   "description": "a firing atmosphere that affects glaze color",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    }
+   ],
+   "community": 60,
+   "degree": 0
+  },
+  {
+   "id": "stoneware",
+   "label": "stoneware",
+   "type": "material",
+   "description": "a type of clay body used in pottery",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    },
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 65,
+   "degree": 0
+  },
+  {
+   "id": "song dynasty potters",
+   "label": "Song dynasty potters",
+   "type": "person",
+   "description": "potters known for refining glazes",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 4308,
+     "end": 5021
+    }
+   ],
+   "community": 63,
+   "degree": 0
+  },
+  {
+   "id": "sodium chloride",
+   "label": "sodium chloride",
+   "type": "material",
+   "description": "a chemical compound used in salt firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    }
+   ],
+   "community": 20,
+   "degree": 1
+  },
+  {
+   "id": "sodium carbonate",
+   "label": "sodium carbonate",
+   "type": "material",
+   "description": "a chemical compound used in soda firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    }
+   ],
+   "community": 20,
+   "degree": 1
+  },
+  {
+   "id": "silica",
+   "label": "silica",
+   "type": "material",
+   "description": "a component of clay that combines with sodium compounds",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    },
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    }
+   ],
+   "community": 19,
+   "degree": 1
+  },
+  {
+   "id": "sodium-alumino-silicate glaze",
+   "label": "sodium-alumino-silicate glaze",
+   "type": "material",
+   "description": "a type of glaze formed during salt and soda firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    }
+   ],
+   "community": 20,
+   "degree": 3
+  },
+  {
+   "id": "orange-peel texture",
+   "label": "orange-peel texture",
+   "type": "concept",
+   "description": "a characteristic texture of the glaze",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    }
+   ],
+   "community": 20,
+   "degree": 1
+  },
+  {
+   "id": "anagama kiln",
+   "label": "anagama kiln",
+   "type": "equipment",
+   "description": "a type of kiln used for wood firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    }
+   ],
+   "community": 23,
+   "degree": 2
+  },
+  {
+   "id": "flying ash",
+   "label": "flying ash",
+   "type": "material",
+   "description": "ash that settles on pots during wood firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    }
+   ],
+   "community": 23,
+   "degree": 2
+  },
+  {
+   "id": "natural ash glaze",
+   "label": "natural ash glaze",
+   "type": "material",
+   "description": "a glaze formed from melted ash during wood firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5023,
+     "end": 5778
+    }
+   ],
+   "community": 23,
+   "degree": 2
+  },
+  {
+   "id": "raku",
+   "label": "raku",
+   "type": "technique",
+   "description": "a type of pottery firing technique",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "sawdust",
+   "label": "sawdust",
+   "type": "material",
+   "description": "a combustible material used in raku firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    }
+   ],
+   "community": 1,
+   "degree": 2
+  },
+  {
+   "id": "newspaper",
+   "label": "newspaper",
+   "type": "material",
+   "description": "a combustible material used in raku firing",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    }
+   ],
+   "community": 1,
+   "degree": 2
+  },
+  {
+   "id": "glaze",
+   "label": "glaze",
+   "type": "material",
+   "description": "a glass-like coating applied to ceramics",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    }
+   ],
+   "community": 1,
+   "degree": 3
+  },
+  {
+   "id": "carbon black",
+   "label": "carbon black",
+   "type": "material",
+   "description": "a deep black color produced in unglazed areas",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    }
+   ],
+   "community": 42,
+   "degree": 0
+  },
+  {
+   "id": "metallic lusters",
+   "label": "metallic lusters",
+   "type": "material",
+   "description": "shiny surface effects produced on the glaze",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "thermal shock",
+   "label": "thermal shock",
+   "type": "process",
+   "description": "the rapid temperature change experienced by the ceramics",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 5780,
+     "end": 6462
+    },
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    }
+   ],
+   "community": 68,
+   "degree": 0
+  },
+  {
+   "id": "cooling",
+   "label": "cooling",
+   "type": "process",
+   "description": "the process of reducing temperature in firing",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    },
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    }
+   ],
+   "community": 1,
+   "degree": 5
+  },
+  {
+   "id": "crystalline glazes",
+   "label": "crystalline glazes",
+   "type": "material",
+   "description": "glazes that contain crystals for surface effects",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "matte glazes",
+   "label": "matte glazes",
+   "type": "material",
+   "description": "glazes with a non-reflective surface finish",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "glossy glazes",
+   "label": "glossy glazes",
+   "type": "material",
+   "description": "glazes that have a shiny surface finish",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    }
+   ],
+   "community": 52,
+   "degree": 0
+  },
+  {
+   "id": "100 degrees celsius",
+   "label": "100 degrees Celsius",
+   "type": "measurement",
+   "description": "preferred temperature for opening the kiln",
+   "docs": [
+    "kilns"
+   ],
+   "mentions": [
+    {
+     "docId": "kilns",
+     "start": 6464,
+     "end": 7162
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "marta",
+   "label": "Marta",
+   "type": "person",
+   "description": "a craftsperson who runs a workshop",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 365,
+     "end": 610
+    }
+   ],
+   "community": 28,
+   "degree": 1
+  },
+  {
+   "id": "workshop",
+   "label": "workshop",
+   "type": "equipment",
+   "description": "a space where crafts are practiced",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 365,
+     "end": 610
+    }
+   ],
+   "community": 28,
+   "degree": 4
+  },
+  {
+   "id": "living material",
+   "label": "living material",
+   "type": "material",
+   "description": "the primary substance used in the crafts",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 365,
+     "end": 610
+    }
+   ],
+   "community": 28,
+   "degree": 1
+  },
+  {
+   "id": "kick wheel",
+   "label": "kick wheel",
+   "type": "equipment",
+   "description": "a manually operated pottery wheel",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 56,
+   "degree": 0
+  },
+  {
+   "id": "hillside ox",
+   "label": "Hillside Ox",
+   "type": "technique",
+   "description": "a copper glaze known for its deep red color",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 10,
+   "degree": 2
+  },
+  {
+   "id": "salt",
+   "label": "salt",
+   "type": "material",
+   "description": "a material used in some pottery firing techniques",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 61,
+   "degree": 0
+  },
+  {
+   "id": "soda",
+   "label": "soda",
+   "type": "material",
+   "description": "a material used in some pottery firing techniques",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 612,
+     "end": 1386
+    }
+   ],
+   "community": 62,
+   "degree": 0
+  },
+  {
+   "id": "foot ring",
+   "label": "foot ring",
+   "type": "material",
+   "description": "the base of a pottery piece",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    }
+   ],
+   "community": 19,
+   "degree": 1
+  },
+  {
+   "id": "crystalline range",
+   "label": "crystalline range",
+   "type": "concept",
+   "description": "a temperature range where crystalline structures form in materials",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    }
+   ],
+   "community": 1,
+   "degree": 1
+  },
+  {
+   "id": "matte surfaces",
+   "label": "matte surfaces",
+   "type": "material",
+   "description": "a non-reflective surface finish on pottery",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    }
+   ],
+   "community": 1,
+   "degree": 2
+  },
+  {
+   "id": "shelf",
+   "label": "shelf",
+   "type": "equipment",
+   "description": "a flat surface used to hold pottery during firing",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    }
+   ],
+   "community": 19,
+   "degree": 1
+  },
+  {
+   "id": "fracture",
+   "label": "fracture",
+   "type": "process",
+   "description": "the breaking of a material",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1388,
+     "end": 1940
+    }
+   ],
+   "community": 19,
+   "degree": 3
+  },
+  {
+   "id": "nectar flow",
+   "label": "nectar flow",
+   "type": "concept",
+   "description": "period when flowers produce nectar",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 15,
+   "degree": 1
+  },
+  {
+   "id": "larva",
+   "label": "larva",
+   "type": "organism",
+   "description": "young form of a bee",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 5,
+   "degree": 1
+  },
+  {
+   "id": "hives",
+   "label": "hives",
+   "type": "equipment",
+   "description": "structures for bee colonies",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 1942,
+     "end": 2609
+    }
+   ],
+   "community": 15,
+   "degree": 3
+  },
+  {
+   "id": "green beans",
+   "label": "green beans",
+   "type": "material",
+   "description": "unroasted coffee beans",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 26,
+   "degree": 1
+  },
+  {
+   "id": "one-kilo drum roaster",
+   "label": "one-kilo drum roaster",
+   "type": "equipment",
+   "description": "a roasting machine that holds one kilogram of coffee",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 26,
+   "degree": 3
+  },
+  {
+   "id": "light-roast",
+   "label": "light-roast",
+   "type": "technique",
+   "description": "a roasting style that results in a lighter flavor profile",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 0,
+   "degree": 3
+  },
+  {
+   "id": "weight loss",
+   "label": "weight loss",
+   "type": "measurement",
+   "description": "the reduction in weight of coffee beans during roasting",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "eleven minutes",
+   "label": "eleven minutes",
+   "type": "measurement",
+   "description": "the time taken to roast a batch of coffee",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 26,
+   "degree": 1
+  },
+  {
+   "id": "ninety seconds",
+   "label": "ninety seconds",
+   "type": "measurement",
+   "description": "the time taken to drop the beans after first crack",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 2611,
+     "end": 3298
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "workshop machine",
+   "label": "workshop machine",
+   "type": "equipment",
+   "description": "a machine used for brewing espresso",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "valved bags",
+   "label": "valved bags",
+   "type": "material",
+   "description": "bags that allow gases to escape while keeping air out",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "pressure",
+   "label": "pressure",
+   "type": "measurement",
+   "description": "the force applied during espresso brewing",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 2
+  },
+  {
+   "id": "brewing",
+   "label": "brewing",
+   "type": "process",
+   "description": "the act of making coffee",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 3300,
+     "end": 3784
+    }
+   ],
+   "community": 0,
+   "degree": 2
+  },
+  {
+   "id": "roaster",
+   "label": "roaster",
+   "type": "equipment",
+   "description": "a device for roasting materials",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 0,
+   "degree": 1
+  },
+  {
+   "id": "pot",
+   "label": "pot",
+   "type": "material",
+   "description": "a container made from clay",
+   "docs": [
+    "marta"
+   ],
+   "mentions": [
+    {
+     "docId": "marta",
+     "start": 3786,
+     "end": 4462
+    }
+   ],
+   "community": 4,
+   "degree": 1
+  }
+ ],
+ "edges": [
+  {
+   "s": "green coffee",
+   "t": "moisture",
+   "relation": "carries",
+   "docId": "coffee",
+   "start": 44,
+   "end": 484
+  },
+  {
+   "s": "roasting",
+   "t": "chemical reactions",
+   "relation": "driven by",
+   "docId": "coffee",
+   "start": 44,
+   "end": 484
+  },
+  {
+   "s": "roasting",
+   "t": "heat",
+   "relation": "requires",
+   "docId": "coffee",
+   "start": 44,
+   "end": 484
+  },
+  {
+   "s": "roasting",
+   "t": "time",
+   "relation": "requires",
+   "docId": "coffee",
+   "start": 44,
+   "end": 484
+  },
+  {
+   "s": "drum",
+   "t": "180 degrees celsius",
+   "relation": "is preheated to",
+   "docId": "coffee",
+   "start": 486,
+   "end": 1074
+  },
+  {
+   "s": "drum",
+   "t": "220 degrees celsius",
+   "relation": "is preheated to",
+   "docId": "coffee",
+   "start": 486,
+   "end": 1074
+  },
+  {
+   "s": "charge",
+   "t": "green coffee",
+   "relation": "drops in",
+   "docId": "coffee",
+   "start": 486,
+   "end": 1074
+  },
+  {
+   "s": "green coffee",
+   "t": "temperature probe",
+   "relation": "pulls heat out of",
+   "docId": "coffee",
+   "start": 486,
+   "end": 1074
+  },
+  {
+   "s": "temperature probe",
+   "t": "turnaround point",
+   "relation": "measures",
+   "docId": "coffee",
+   "start": 486,
+   "end": 1074
+  },
+  {
+   "s": "turnaround point",
+   "t": "eight to fourteen minutes",
+   "relation": "occurs after",
+   "docId": "coffee",
+   "start": 486,
+   "end": 1074
+  },
+  {
+   "s": "charge",
+   "t": "turnaround point",
+   "relation": "arrives after",
+   "docId": "coffee",
+   "start": 486,
+   "end": 1074
+  },
+  {
+   "s": "bean",
+   "t": "water",
+   "relation": "must leave",
+   "docId": "coffee",
+   "start": 1076,
+   "end": 1567
+  },
+  {
+   "s": "drying phase",
+   "t": "150 degrees celsius",
+   "relation": "ends near",
+   "docId": "coffee",
+   "start": 1076,
+   "end": 1567
+  },
+  {
+   "s": "drying phase",
+   "t": "bean",
+   "relation": "occurs with",
+   "docId": "coffee",
+   "start": 1076,
+   "end": 1567
+  },
+  {
+   "s": "drying phase",
+   "t": "toasted grain",
+   "relation": "produces smell like",
+   "docId": "coffee",
+   "start": 1076,
+   "end": 1567
+  },
+  {
+   "s": "drying phase",
+   "t": "basmati rice",
+   "relation": "produces smell like",
+   "docId": "coffee",
+   "start": 1076,
+   "end": 1567
+  },
+  {
+   "s": "maillard reaction",
+   "t": "volatile aromatic compounds",
+   "relation": "generates",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "maillard reaction",
+   "t": "melanoidin pigments",
+   "relation": "generates",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "caramelization",
+   "t": "reducing sugars",
+   "relation": "breaks down",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "amino acids",
+   "t": "maillard reaction",
+   "relation": "couples with",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "reducing sugars",
+   "t": "maillard reaction",
+   "relation": "couples with",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "time",
+   "t": "maillard reaction",
+   "relation": "is dependent on",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "temperature",
+   "t": "maillard reaction",
+   "relation": "is dependent on",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "time",
+   "t": "caramelization",
+   "relation": "is dependent on",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "temperature",
+   "t": "caramelization",
+   "relation": "is dependent on",
+   "docId": "coffee",
+   "start": 1569,
+   "end": 2230
+  },
+  {
+   "s": "bean",
+   "t": "first crack",
+   "relation": "reaches",
+   "docId": "coffee",
+   "start": 2232,
+   "end": 2689
+  },
+  {
+   "s": "bean",
+   "t": "steam",
+   "relation": "generates",
+   "docId": "coffee",
+   "start": 2232,
+   "end": 2689
+  },
+  {
+   "s": "bean",
+   "t": "carbon dioxide",
+   "relation": "generates",
+   "docId": "coffee",
+   "start": 2232,
+   "end": 2689
+  },
+  {
+   "s": "first crack",
+   "t": "volume",
+   "relation": "doubles",
+   "docId": "coffee",
+   "start": 2232,
+   "end": 2689
+  },
+  {
+   "s": "bean",
+   "t": "silverskin",
+   "relation": "sloughs off",
+   "docId": "coffee",
+   "start": 2232,
+   "end": 2689
+  },
+  {
+   "s": "silverskin",
+   "t": "roaster's cyclone",
+   "relation": "is drawn away by",
+   "docId": "coffee",
+   "start": 2232,
+   "end": 2689
+  },
+  {
+   "s": "first crack",
+   "t": "development time",
+   "relation": "occurs before",
+   "docId": "coffee",
+   "start": 2691,
+   "end": 3239
+  },
+  {
+   "s": "development time",
+   "t": "development time ratio",
+   "relation": "is expressed as",
+   "docId": "coffee",
+   "start": 2691,
+   "end": 3239
+  },
+  {
+   "s": "development time ratio",
+   "t": "fifteen percent",
+   "relation": "is commonly between",
+   "docId": "coffee",
+   "start": 2691,
+   "end": 3239
+  },
+  {
+   "s": "development time ratio",
+   "t": "twenty-five percent",
+   "relation": "is commonly between",
+   "docId": "coffee",
+   "start": 2691,
+   "end": 3239
+  },
+  {
+   "s": "coffee",
+   "t": "second crack",
+   "relation": "reaches",
+   "docId": "coffee",
+   "start": 3241,
+   "end": 3814
+  },
+  {
+   "s": "second crack",
+   "t": "224 degrees celsius",
+   "relation": "occurs at",
+   "docId": "coffee",
+   "start": 3241,
+   "end": 3814
+  },
+  {
+   "s": "second crack",
+   "t": "first crack",
+   "relation": "follows",
+   "docId": "coffee",
+   "start": 3241,
+   "end": 3814
+  },
+  {
+   "s": "second crack",
+   "t": "espresso blends",
+   "relation": "develops profile associated with",
+   "docId": "coffee",
+   "start": 3241,
+   "end": 3814
+  },
+  {
+   "s": "second crack",
+   "t": "french roasts",
+   "relation": "develops profile associated with",
+   "docId": "coffee",
+   "start": 3241,
+   "end": 3814
+  },
+  {
+   "s": "second crack",
+   "t": "drum fire",
+   "relation": "increases risk of",
+   "docId": "coffee",
+   "start": 3241,
+   "end": 3814
+  },
+  {
+   "s": "224 degrees celsius",
+   "t": "435 degrees fahrenheit",
+   "relation": "is equivalent to",
+   "docId": "coffee",
+   "start": 3241,
+   "end": 3814
+  },
+  {
+   "s": "light roast",
+   "t": "green coffee",
+   "relation": "loses",
+   "docId": "coffee",
+   "start": 3816,
+   "end": 4355
+  },
+  {
+   "s": "medium roast",
+   "t": "green coffee",
+   "relation": "loses",
+   "docId": "coffee",
+   "start": 3816,
+   "end": 4355
+  },
+  {
+   "s": "dark roast",
+   "t": "green coffee",
+   "relation": "loses",
+   "docId": "coffee",
+   "start": 3816,
+   "end": 4355
+  },
+  {
+   "s": "roasted coffee",
+   "t": "green coffee",
+   "relation": "is less dense than",
+   "docId": "coffee",
+   "start": 3816,
+   "end": 4355
+  },
+  {
+   "s": "weight",
+   "t": "roasted coffee",
+   "relation": "is used by",
+   "docId": "coffee",
+   "start": 3816,
+   "end": 4355
+  },
+  {
+   "s": "weight",
+   "t": "green coffee",
+   "relation": "is used by",
+   "docId": "coffee",
+   "start": 3816,
+   "end": 4355
+  },
+  {
+   "s": "volumetric dosing",
+   "t": "roasted coffee",
+   "relation": "is unreliable for",
+   "docId": "coffee",
+   "start": 3816,
+   "end": 4355
+  },
+  {
+   "s": "dark roast",
+   "t": "caffeine",
+   "relation": "contains less than",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "light roast",
+   "t": "caffeine",
+   "relation": "contains more than",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "dark roast",
+   "t": "bean",
+   "relation": "is made from",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "light roast",
+   "t": "bean",
+   "relation": "is made from",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "chlorogenic acid",
+   "t": "heat",
+   "relation": "degrades with",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "dark roast",
+   "t": "density",
+   "relation": "is less than",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "light roast",
+   "t": "density",
+   "relation": "is more than",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "bean",
+   "t": "mass",
+   "relation": "loses during",
+   "docId": "coffee",
+   "start": 4357,
+   "end": 4983
+  },
+  {
+   "s": "arabica",
+   "t": "caffeine",
+   "relation": "contains less",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "robusta",
+   "t": "caffeine",
+   "relation": "contains more",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "robusta",
+   "t": "chlorogenic acid",
+   "relation": "contains more",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "arabica",
+   "t": "crema",
+   "relation": "produces less",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "high-grown beans",
+   "t": "elevation",
+   "relation": "are grown at",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "low-grown beans",
+   "t": "elevation",
+   "relation": "are grown at",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "high-grown beans",
+   "t": "density",
+   "relation": "are harder and denser than",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "low-grown beans",
+   "t": "density",
+   "relation": "are softer and less dense than",
+   "docId": "coffee",
+   "start": 4985,
+   "end": 5611
+  },
+  {
+   "s": "coffee",
+   "t": "carbon dioxide",
+   "relation": "is saturated with",
+   "docId": "coffee",
+   "start": 5613,
+   "end": 6235
+  },
+  {
+   "s": "coffee",
+   "t": "degassing",
+   "relation": "requires",
+   "docId": "coffee",
+   "start": 5613,
+   "end": 6235
+  },
+  {
+   "s": "roasted coffee",
+   "t": "oxygen",
+   "relation": "is harmed by",
+   "docId": "coffee",
+   "start": 6237,
+   "end": 6893
+  },
+  {
+   "s": "roasted coffee",
+   "t": "moisture",
+   "relation": "is harmed by",
+   "docId": "coffee",
+   "start": 6237,
+   "end": 6893
+  },
+  {
+   "s": "roasted coffee",
+   "t": "heat",
+   "relation": "is harmed by",
+   "docId": "coffee",
+   "start": 6237,
+   "end": 6893
+  },
+  {
+   "s": "roasted coffee",
+   "t": "light",
+   "relation": "is harmed by",
+   "docId": "coffee",
+   "start": 6237,
+   "end": 6893
+  },
+  {
+   "s": "one-way valve bag",
+   "t": "roasted coffee",
+   "relation": "is used by quality roasters to preserve",
+   "docId": "coffee",
+   "start": 6237,
+   "end": 6893
+  },
+  {
+   "s": "airtight containers",
+   "t": "roasted coffee",
+   "relation": "preserve",
+   "docId": "coffee",
+   "start": 6237,
+   "end": 6893
+  },
+  {
+   "s": "grinding",
+   "t": "roasted coffee",
+   "relation": "accelerates staling",
+   "docId": "coffee",
+   "start": 6237,
+   "end": 6893
+  },
+  {
+   "s": "honeybee colony",
+   "t": "individual bee",
+   "relation": "is composed of",
+   "docId": "bees",
+   "start": 28,
+   "end": 534
+  },
+  {
+   "s": "western honeybee",
+   "t": "apis mellifera",
+   "relation": "is a kind of",
+   "docId": "bees",
+   "start": 28,
+   "end": 534
+  },
+  {
+   "s": "individual bee",
+   "t": "honeybee colony",
+   "relation": "does not survive as",
+   "docId": "bees",
+   "start": 28,
+   "end": 534
+  },
+  {
+   "s": "queen",
+   "t": "honeybee colony",
+   "relation": "issues no orders",
+   "docId": "bees",
+   "start": 28,
+   "end": 534
+  },
+  {
+   "s": "colony",
+   "t": "bees",
+   "relation": "contains",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "queen",
+   "t": "colony",
+   "relation": "handles reproduction",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "female workers",
+   "t": "colony",
+   "relation": "perform tasks",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "male drones",
+   "t": "colony",
+   "relation": "exist during reproductive season",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "male drones",
+   "t": "nectar flows",
+   "relation": "are expelled when end",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "bees",
+   "t": "autumn",
+   "relation": "collapses in",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "bees",
+   "t": "summer",
+   "relation": "is healthy at",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "colony",
+   "t": "autumn",
+   "relation": "conserves resources for",
+   "docId": "bees",
+   "start": 536,
+   "end": 1028
+  },
+  {
+   "s": "queen",
+   "t": "sperm",
+   "relation": "stores",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "queen",
+   "t": "eggs",
+   "relation": "lays",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "spermatheca",
+   "t": "sperm",
+   "relation": "contains",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "eggs",
+   "t": "workers",
+   "relation": "become",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "eggs",
+   "t": "unfertilized eggs",
+   "relation": "develop into",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "eggs",
+   "t": "fertilized eggs",
+   "relation": "develop into",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "drones",
+   "t": "sperm",
+   "relation": "produces",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "queen",
+   "t": "drones",
+   "relation": "mates with",
+   "docId": "bees",
+   "start": 1030,
+   "end": 1641
+  },
+  {
+   "s": "queen",
+   "t": "royal jelly",
+   "relation": "is fed",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "worker",
+   "t": "pollen",
+   "relation": "is fed",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "worker",
+   "t": "honey",
+   "relation": "is fed",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "drone",
+   "t": "royal jelly",
+   "relation": "is fed",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "larvae",
+   "t": "royal jelly",
+   "relation": "are fed",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "queen",
+   "t": "worker",
+   "relation": "is a kind of female larva",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "worker",
+   "t": "queen",
+   "relation": "is a kind of female larva",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "beekeepers",
+   "t": "larvae",
+   "relation": "inspect",
+   "docId": "bees",
+   "start": 1643,
+   "end": 2154
+  },
+  {
+   "s": "worker",
+   "t": "temporal polyethism",
+   "relation": "exhibits",
+   "docId": "bees",
+   "start": 2156,
+   "end": 2953
+  },
+  {
+   "s": "worker",
+   "t": "nurse bee",
+   "relation": "serves as",
+   "docId": "bees",
+   "start": 2156,
+   "end": 2953
+  },
+  {
+   "s": "nurse bee",
+   "t": "hypopharyngeal glands",
+   "relation": "feeds from",
+   "docId": "bees",
+   "start": 2156,
+   "end": 2953
+  },
+  {
+   "s": "worker",
+   "t": "wax",
+   "relation": "builds with",
+   "docId": "bees",
+   "start": 2156,
+   "end": 2953
+  },
+  {
+   "s": "worker",
+   "t": "pollen",
+   "relation": "stores and packs",
+   "docId": "bees",
+   "start": 2156,
+   "end": 2953
+  },
+  {
+   "s": "worker",
+   "t": "guard duty",
+   "relation": "takes up",
+   "docId": "bees",
+   "start": 2156,
+   "end": 2953
+  },
+  {
+   "s": "worker",
+   "t": "forager",
+   "relation": "becomes a",
+   "docId": "bees",
+   "start": 2156,
+   "end": 2953
+  },
+  {
+   "s": "honeybee",
+   "t": "nectar",
+   "relation": "collects",
+   "docId": "bees",
+   "start": 2955,
+   "end": 3505
+  },
+  {
+   "s": "honeybee",
+   "t": "flower",
+   "relation": "visits",
+   "docId": "bees",
+   "start": 2955,
+   "end": 3505
+  },
+  {
+   "s": "forager",
+   "t": "waggle dance",
+   "relation": "performs",
+   "docId": "bees",
+   "start": 3507,
+   "end": 4012
+  },
+  {
+   "s": "waggle dance",
+   "t": "hive",
+   "relation": "is performed in",
+   "docId": "bees",
+   "start": 3507,
+   "end": 4012
+  },
+  {
+   "s": "waggle dance",
+   "t": "comb",
+   "relation": "is performed on",
+   "docId": "bees",
+   "start": 3507,
+   "end": 4012
+  },
+  {
+   "s": "karl von frisch",
+   "t": "nobel prize",
+   "relation": "received",
+   "docId": "bees",
+   "start": 3507,
+   "end": 4012
+  },
+  {
+   "s": "waggle dance",
+   "t": "figure eight",
+   "relation": "traces",
+   "docId": "bees",
+   "start": 3507,
+   "end": 4012
+  },
+  {
+   "s": "waggle run",
+   "t": "food source",
+   "relation": "corresponds to",
+   "docId": "bees",
+   "start": 4014,
+   "end": 4785
+  },
+  {
+   "s": "waggle run",
+   "t": "sun",
+   "relation": "is relative to",
+   "docId": "bees",
+   "start": 4014,
+   "end": 4785
+  },
+  {
+   "s": "duration",
+   "t": "kilometer",
+   "relation": "encodes",
+   "docId": "bees",
+   "start": 4014,
+   "end": 4785
+  },
+  {
+   "s": "sun",
+   "t": "angle",
+   "relation": "is a reference for",
+   "docId": "bees",
+   "start": 4014,
+   "end": 4785
+  },
+  {
+   "s": "subspecies",
+   "t": "duration",
+   "relation": "varies in calibration for",
+   "docId": "bees",
+   "start": 4014,
+   "end": 4785
+  },
+  {
+   "s": "hive",
+   "t": "waggle run",
+   "relation": "is where performed",
+   "docId": "bees",
+   "start": 4014,
+   "end": 4785
+  },
+  {
+   "s": "brood nest",
+   "t": "34 degrees celsius",
+   "relation": "is held between",
+   "docId": "bees",
+   "start": 4787,
+   "end": 5598
+  },
+  {
+   "s": "brood nest",
+   "t": "35 degrees celsius",
+   "relation": "is held between",
+   "docId": "bees",
+   "start": 4787,
+   "end": 5598
+  },
+  {
+   "s": "brood nest",
+   "t": "20 degrees celsius",
+   "relation": "is kept near in winter",
+   "docId": "bees",
+   "start": 4787,
+   "end": 5598
+  },
+  {
+   "s": "workers",
+   "t": "metabolic heat",
+   "relation": "generates when too cool",
+   "docId": "bees",
+   "start": 4787,
+   "end": 5598
+  },
+  {
+   "s": "workers",
+   "t": "airflow",
+   "relation": "drives when too hot",
+   "docId": "bees",
+   "start": 4787,
+   "end": 5598
+  },
+  {
+   "s": "workers",
+   "t": "queen",
+   "relation": "cluster around in winter",
+   "docId": "bees",
+   "start": 4787,
+   "end": 5598
+  },
+  {
+   "s": "colony",
+   "t": "swarming",
+   "relation": "occurs through",
+   "docId": "bees",
+   "start": 6347,
+   "end": 7003
+  },
+  {
+   "s": "workers",
+   "t": "queen cups",
+   "relation": "construct",
+   "docId": "bees",
+   "start": 6347,
+   "end": 7003
+  },
+  {
+   "s": "scout bees",
+   "t": "waggle dances",
+   "relation": "advertise findings with",
+   "docId": "bees",
+   "start": 6347,
+   "end": 7003
+  },
+  {
+   "s": "potter",
+   "t": "wheel",
+   "relation": "uses",
+   "docId": "kilns",
+   "start": 47,
+   "end": 397
+  },
+  {
+   "s": "wheel",
+   "t": "clay body",
+   "relation": "shapes",
+   "docId": "kilns",
+   "start": 47,
+   "end": 397
+  },
+  {
+   "s": "clay body",
+   "t": "firing",
+   "relation": "requires",
+   "docId": "kilns",
+   "start": 47,
+   "end": 397
+  },
+  {
+   "s": "firing",
+   "t": "ceramic material",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 47,
+   "end": 397
+  },
+  {
+   "s": "firing",
+   "t": "temperature curve",
+   "relation": "is governed by",
+   "docId": "kilns",
+   "start": 47,
+   "end": 397
+  },
+  {
+   "s": "raw clay",
+   "t": "bisque firing",
+   "relation": "is fired in",
+   "docId": "kilns",
+   "start": 399,
+   "end": 935
+  },
+  {
+   "s": "bisque firing",
+   "t": "kiln",
+   "relation": "occurs at",
+   "docId": "kilns",
+   "start": 399,
+   "end": 935
+  },
+  {
+   "s": "bisque firing",
+   "t": "orton cone 06",
+   "relation": "is fired to",
+   "docId": "kilns",
+   "start": 399,
+   "end": 935
+  },
+  {
+   "s": "bisque firing",
+   "t": "orton cone 04",
+   "relation": "is fired to",
+   "docId": "kilns",
+   "start": 399,
+   "end": 935
+  },
+  {
+   "s": "orton cone 06",
+   "t": "999 degrees celsius",
+   "relation": "corresponds to",
+   "docId": "kilns",
+   "start": 399,
+   "end": 935
+  },
+  {
+   "s": "orton cone 04",
+   "t": "1063 degrees celsius",
+   "relation": "corresponds to",
+   "docId": "kilns",
+   "start": 399,
+   "end": 935
+  },
+  {
+   "s": "bisque firing",
+   "t": "glaze slurry",
+   "relation": "allows absorption of",
+   "docId": "kilns",
+   "start": 399,
+   "end": 935
+  },
+  {
+   "s": "cone 6",
+   "t": "1222 degrees celsius",
+   "relation": "is fired at",
+   "docId": "kilns",
+   "start": 937,
+   "end": 1491
+  },
+  {
+   "s": "cone 10",
+   "t": "1285 degrees celsius",
+   "relation": "is fired at",
+   "docId": "kilns",
+   "start": 937,
+   "end": 1491
+  },
+  {
+   "s": "clay body",
+   "t": "cone 10",
+   "relation": "vitrifies at",
+   "docId": "kilns",
+   "start": 937,
+   "end": 1491
+  },
+  {
+   "s": "fluxes",
+   "t": "clay body",
+   "relation": "melts in",
+   "docId": "kilns",
+   "start": 937,
+   "end": 1491
+  },
+  {
+   "s": "porcelain",
+   "t": "cone 10",
+   "relation": "is fired to",
+   "docId": "kilns",
+   "start": 937,
+   "end": 1491
+  },
+  {
+   "s": "porcelain",
+   "t": "water absorption",
+   "relation": "has",
+   "docId": "kilns",
+   "start": 937,
+   "end": 1491
+  },
+  {
+   "s": "orton pyrometric cones",
+   "t": "heat work",
+   "relation": "measures",
+   "docId": "kilns",
+   "start": 1493,
+   "end": 2346
+  },
+  {
+   "s": "kiln",
+   "t": "heat work",
+   "relation": "affects",
+   "docId": "kilns",
+   "start": 1493,
+   "end": 2346
+  },
+  {
+   "s": "kiln",
+   "t": "pyrometer",
+   "relation": "is measured by",
+   "docId": "kilns",
+   "start": 1493,
+   "end": 2346
+  },
+  {
+   "s": "cone 06",
+   "t": "cone 04",
+   "relation": "is cooler than",
+   "docId": "kilns",
+   "start": 1493,
+   "end": 2346
+  },
+  {
+   "s": "cone 10",
+   "t": "cone 6",
+   "relation": "is hotter than",
+   "docId": "kilns",
+   "start": 1493,
+   "end": 2346
+  },
+  {
+   "s": "water smoking",
+   "t": "200 degrees celsius",
+   "relation": "occurs at",
+   "docId": "kilns",
+   "start": 2348,
+   "end": 2946
+  },
+  {
+   "s": "quartz",
+   "t": "alpha quartz",
+   "relation": "changes to",
+   "docId": "kilns",
+   "start": 2948,
+   "end": 3725
+  },
+  {
+   "s": "alpha quartz",
+   "t": "beta quartz",
+   "relation": "changes to",
+   "docId": "kilns",
+   "start": 2948,
+   "end": 3725
+  },
+  {
+   "s": "electric kiln",
+   "t": "oxidation atmosphere",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 3727,
+   "end": 4306
+  },
+  {
+   "s": "gas kiln",
+   "t": "reduction atmosphere",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 3727,
+   "end": 4306
+  },
+  {
+   "s": "wood kiln",
+   "t": "reduction atmosphere",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 3727,
+   "end": 4306
+  },
+  {
+   "s": "oil kiln",
+   "t": "reduction atmosphere",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 3727,
+   "end": 4306
+  },
+  {
+   "s": "electric kiln",
+   "t": "ambient air",
+   "relation": "admits",
+   "docId": "kilns",
+   "start": 3727,
+   "end": 4306
+  },
+  {
+   "s": "reduction atmosphere",
+   "t": "carbon monoxide",
+   "relation": "is rich in",
+   "docId": "kilns",
+   "start": 3727,
+   "end": 4306
+  },
+  {
+   "s": "iron",
+   "t": "oxidation",
+   "relation": "is used in",
+   "docId": "kilns",
+   "start": 4308,
+   "end": 5021
+  },
+  {
+   "s": "iron",
+   "t": "celadon glaze",
+   "relation": "is used in",
+   "docId": "kilns",
+   "start": 4308,
+   "end": 5021
+  },
+  {
+   "s": "copper",
+   "t": "oxidation",
+   "relation": "is used in",
+   "docId": "kilns",
+   "start": 4308,
+   "end": 5021
+  },
+  {
+   "s": "copper",
+   "t": "sang de boeuf",
+   "relation": "is used in",
+   "docId": "kilns",
+   "start": 4308,
+   "end": 5021
+  },
+  {
+   "s": "sodium chloride",
+   "t": "sodium-alumino-silicate glaze",
+   "relation": "combines with",
+   "docId": "kilns",
+   "start": 5023,
+   "end": 5778
+  },
+  {
+   "s": "sodium carbonate",
+   "t": "sodium-alumino-silicate glaze",
+   "relation": "combines with",
+   "docId": "kilns",
+   "start": 5023,
+   "end": 5778
+  },
+  {
+   "s": "sodium-alumino-silicate glaze",
+   "t": "orange-peel texture",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 5023,
+   "end": 5778
+  },
+  {
+   "s": "anagama kiln",
+   "t": "flying ash",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 5023,
+   "end": 5778
+  },
+  {
+   "s": "flying ash",
+   "t": "natural ash glaze",
+   "relation": "melts into",
+   "docId": "kilns",
+   "start": 5023,
+   "end": 5778
+  },
+  {
+   "s": "anagama kiln",
+   "t": "natural ash glaze",
+   "relation": "is fired in",
+   "docId": "kilns",
+   "start": 5023,
+   "end": 5778
+  },
+  {
+   "s": "raku",
+   "t": "kiln",
+   "relation": "is fired in",
+   "docId": "kilns",
+   "start": 5780,
+   "end": 6462
+  },
+  {
+   "s": "kiln",
+   "t": "sawdust",
+   "relation": "uses",
+   "docId": "kilns",
+   "start": 5780,
+   "end": 6462
+  },
+  {
+   "s": "kiln",
+   "t": "newspaper",
+   "relation": "uses",
+   "docId": "kilns",
+   "start": 5780,
+   "end": 6462
+  },
+  {
+   "s": "sawdust",
+   "t": "glaze",
+   "relation": "creates",
+   "docId": "kilns",
+   "start": 5780,
+   "end": 6462
+  },
+  {
+   "s": "newspaper",
+   "t": "glaze",
+   "relation": "creates",
+   "docId": "kilns",
+   "start": 5780,
+   "end": 6462
+  },
+  {
+   "s": "glaze",
+   "t": "metallic lusters",
+   "relation": "produces",
+   "docId": "kilns",
+   "start": 5780,
+   "end": 6462
+  },
+  {
+   "s": "cooling",
+   "t": "crystalline glazes",
+   "relation": "requires",
+   "docId": "kilns",
+   "start": 6464,
+   "end": 7162
+  },
+  {
+   "s": "cooling",
+   "t": "matte glazes",
+   "relation": "requires",
+   "docId": "kilns",
+   "start": 6464,
+   "end": 7162
+  },
+  {
+   "s": "cooling",
+   "t": "kiln",
+   "relation": "occurs in",
+   "docId": "kilns",
+   "start": 6464,
+   "end": 7162
+  },
+  {
+   "s": "kiln",
+   "t": "200 degrees celsius",
+   "relation": "should not be opened until",
+   "docId": "kilns",
+   "start": 6464,
+   "end": 7162
+  },
+  {
+   "s": "kiln",
+   "t": "100 degrees celsius",
+   "relation": "preferably closer to",
+   "docId": "kilns",
+   "start": 6464,
+   "end": 7162
+  },
+  {
+   "s": "marta",
+   "t": "workshop",
+   "relation": "runs",
+   "docId": "marta",
+   "start": 365,
+   "end": 610
+  },
+  {
+   "s": "workshop",
+   "t": "heat",
+   "relation": "manages",
+   "docId": "marta",
+   "start": 365,
+   "end": 610
+  },
+  {
+   "s": "workshop",
+   "t": "time",
+   "relation": "manages",
+   "docId": "marta",
+   "start": 365,
+   "end": 610
+  },
+  {
+   "s": "workshop",
+   "t": "living material",
+   "relation": "uses",
+   "docId": "marta",
+   "start": 365,
+   "end": 610
+  },
+  {
+   "s": "hillside ox",
+   "t": "gas kiln",
+   "relation": "develops under",
+   "docId": "marta",
+   "start": 612,
+   "end": 1386
+  },
+  {
+   "s": "hillside ox",
+   "t": "electric kiln",
+   "relation": "comes out flat in",
+   "docId": "marta",
+   "start": 612,
+   "end": 1386
+  },
+  {
+   "s": "kiln",
+   "t": "cooling",
+   "relation": "is used in",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "cooling",
+   "t": "matte surfaces",
+   "relation": "produces",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "silica",
+   "t": "fracture",
+   "relation": "causes",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "fracture",
+   "t": "foot ring",
+   "relation": "occurs in",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "shelf",
+   "t": "fracture",
+   "relation": "is affected by",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "cooling",
+   "t": "crystalline range",
+   "relation": "occurs through",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "cooling",
+   "t": "kiln",
+   "relation": "requires",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "matte surfaces",
+   "t": "kiln",
+   "relation": "is desired in",
+   "docId": "marta",
+   "start": 1388,
+   "end": 1940
+  },
+  {
+   "s": "apis mellifera",
+   "t": "hives",
+   "relation": "is kept in",
+   "docId": "marta",
+   "start": 1942,
+   "end": 2609
+  },
+  {
+   "s": "worker",
+   "t": "queen",
+   "relation": "is separated from by",
+   "docId": "marta",
+   "start": 1942,
+   "end": 2609
+  },
+  {
+   "s": "larva",
+   "t": "queen",
+   "relation": "is fed by",
+   "docId": "marta",
+   "start": 1942,
+   "end": 2609
+  },
+  {
+   "s": "nectar flow",
+   "t": "hives",
+   "relation": "is indicated by",
+   "docId": "marta",
+   "start": 1942,
+   "end": 2609
+  },
+  {
+   "s": "summer",
+   "t": "hives",
+   "relation": "requires no intervention in",
+   "docId": "marta",
+   "start": 1942,
+   "end": 2609
+  },
+  {
+   "s": "green beans",
+   "t": "one-kilo drum roaster",
+   "relation": "is roasted in",
+   "docId": "marta",
+   "start": 2611,
+   "end": 3298
+  },
+  {
+   "s": "one-kilo drum roaster",
+   "t": "first crack",
+   "relation": "produces",
+   "docId": "marta",
+   "start": 2611,
+   "end": 3298
+  },
+  {
+   "s": "first crack",
+   "t": "light-roast",
+   "relation": "is part of",
+   "docId": "marta",
+   "start": 2611,
+   "end": 3298
+  },
+  {
+   "s": "light-roast",
+   "t": "weight loss",
+   "relation": "results in",
+   "docId": "marta",
+   "start": 2611,
+   "end": 3298
+  },
+  {
+   "s": "eleven minutes",
+   "t": "one-kilo drum roaster",
+   "relation": "is the roasting time for",
+   "docId": "marta",
+   "start": 2611,
+   "end": 3298
+  },
+  {
+   "s": "ninety seconds",
+   "t": "first crack",
+   "relation": "is the time to drop after",
+   "docId": "marta",
+   "start": 2611,
+   "end": 3298
+  },
+  {
+   "s": "second crack",
+   "t": "light-roast",
+   "relation": "is not reached in",
+   "docId": "marta",
+   "start": 2611,
+   "end": 3298
+  },
+  {
+   "s": "espresso",
+   "t": "workshop machine",
+   "relation": "is brewed on",
+   "docId": "marta",
+   "start": 3300,
+   "end": 3784
+  },
+  {
+   "s": "filter coffee",
+   "t": "brewing",
+   "relation": "is a kind of",
+   "docId": "marta",
+   "start": 3300,
+   "end": 3784
+  },
+  {
+   "s": "coffee",
+   "t": "valved bags",
+   "relation": "is stored in",
+   "docId": "marta",
+   "start": 3300,
+   "end": 3784
+  },
+  {
+   "s": "grinding",
+   "t": "brewing",
+   "relation": "occurs before",
+   "docId": "marta",
+   "start": 3300,
+   "end": 3784
+  },
+  {
+   "s": "espresso",
+   "t": "pressure",
+   "relation": "requires",
+   "docId": "marta",
+   "start": 3300,
+   "end": 3784
+  },
+  {
+   "s": "filter coffee",
+   "t": "pressure",
+   "relation": "forgives",
+   "docId": "marta",
+   "start": 3300,
+   "end": 3784
+  },
+  {
+   "s": "coffee",
+   "t": "grinding",
+   "relation": "is ground before",
+   "docId": "marta",
+   "start": 3300,
+   "end": 3784
+  },
+  {
+   "s": "kiln",
+   "t": "water",
+   "relation": "requires",
+   "docId": "marta",
+   "start": 3786,
+   "end": 4462
+  },
+  {
+   "s": "roaster",
+   "t": "water",
+   "relation": "requires",
+   "docId": "marta",
+   "start": 3786,
+   "end": 4462
+  },
+  {
+   "s": "honey",
+   "t": "bees",
+   "relation": "produces",
+   "docId": "marta",
+   "start": 3786,
+   "end": 4462
+  },
+  {
+   "s": "bees",
+   "t": "moisture",
+   "relation": "manages",
+   "docId": "marta",
+   "start": 3786,
+   "end": 4462
+  },
+  {
+   "s": "honey",
+   "t": "pot",
+   "relation": "outlasts",
+   "docId": "marta",
+   "start": 3786,
+   "end": 4462
+  }
+ ],
+ "communities": [
+  {
+   "id": 0,
+   "label": "Coffee Processing Techniques",
+   "summary": "This cluster focuses on the various processes and techniques involved in coffee production and brewing. It covers the stages from drying and roasting beans to brewing methods like espresso and filter coffee, highlighting key measurements and materials involved in each step.",
+   "nodes": [
+    "150 degrees celsius",
+    "basmati rice",
+    "bean",
+    "brewing",
+    "carbon dioxide",
+    "coffee",
+    "degassing",
+    "development time",
+    "drying phase",
+    "espresso",
+    "filter coffee",
+    "first crack",
+    "grinding",
+    "light-roast",
+    "mass",
+    "ninety seconds",
+    "pressure",
+    "roaster",
+    "roaster's cyclone",
+    "silverskin",
+    "steam",
+    "toasted grain",
+    "valved bags",
+    "volume",
+    "water",
+    "weight loss",
+    "workshop machine"
+   ],
+   "size": 27
+  },
+  {
+   "id": 1,
+   "label": "Ceramic Firing Processes",
+   "summary": "This cluster focuses on the various processes and measurements involved in ceramic firing, particularly bisque firing and raku techniques. It details the relationships between raw materials, such as clay and glazes, and the equipment used, including kilns and pyrometric cones, to achieve desired heat work and cooling effects.",
+   "nodes": [
+    "100 degrees celsius",
+    "1063 degrees celsius",
+    "200 degrees celsius",
+    "999 degrees celsius",
+    "bisque firing",
+    "cooling",
+    "crystalline glazes",
+    "crystalline range",
+    "glaze",
+    "glaze slurry",
+    "heat work",
+    "kiln",
+    "matte glazes",
+    "matte surfaces",
+    "metallic lusters",
+    "newspaper",
+    "orton cone 04",
+    "orton cone 06",
+    "orton pyrometric cones",
+    "pyrometer",
+    "raku",
+    "raw clay",
+    "sawdust",
+    "water smoking"
+   ],
+   "size": 24
+  },
+  {
+   "id": 2,
+   "label": "Coffee Roasting Process",
+   "summary": "This cluster focuses on the coffee roasting process, detailing the transformations that green coffee undergoes during roasting. It highlights the relationships between various factors such as moisture, heat, and chemical reactions, as well as the differences in caffeine and chlorogenic acid content between arabica and robusta beans. Additionally, it discusses the impact of roasting levels—light, medium, and dark—on the final characteristics of the coffee.",
+   "nodes": [
+    "arabica",
+    "caffeine",
+    "charge",
+    "chemical reactions",
+    "chlorogenic acid",
+    "crema",
+    "dark roast",
+    "density",
+    "eight to fourteen minutes",
+    "elevation",
+    "green coffee",
+    "heat",
+    "high-grown beans",
+    "light roast",
+    "low-grown beans",
+    "medium roast",
+    "moisture",
+    "roasting",
+    "robusta",
+    "temperature probe",
+    "turnaround point",
+    "weight"
+   ],
+   "size": 22
+  },
+  {
+   "id": 3,
+   "label": "Ceramic Firing Process",
+   "summary": "This cluster focuses on the process of firing ceramics, detailing the temperatures and materials involved. It highlights the roles of different cones, such as cone 6 and cone 10, in determining firing temperatures and the resulting properties of ceramic materials like porcelain and clay bodies. Additionally, it describes the equipment used by potters, such as wheels, and the importance of fluxes in the vitrification process.",
+   "nodes": [
+    "1222 degrees celsius",
+    "1285 degrees celsius",
+    "ceramic material",
+    "clay body",
+    "cone 10",
+    "cone 6",
+    "firing",
+    "fluxes",
+    "porcelain",
+    "potter",
+    "temperature curve",
+    "water absorption",
+    "wheel"
+   ],
+   "size": 13
+  },
+  {
+   "id": 4,
+   "label": "Bee Colony Dynamics",
+   "summary": "This cluster focuses on the life cycle and seasonal behaviors of bee colonies. It highlights the roles of different types of bees, such as female workers and male drones, and their relationship with the colony, particularly during the transitions between summer and autumn. Additionally, it discusses the production of honey and the resource conservation strategies of the colony.",
+   "nodes": [
+    "autumn",
+    "bees",
+    "colony",
+    "female workers",
+    "honey",
+    "male drones",
+    "nectar flows",
+    "pot",
+    "summer",
+    "swarming"
+   ],
+   "size": 10
+  },
+  {
+   "id": 5,
+   "label": "Honeybee Reproduction Cycle",
+   "summary": "This cluster focuses on the reproductive processes within a honeybee colony. It details the roles of the queen, drones, and various stages of egg development, including fertilized and unfertilized eggs, as well as the nurturing of larvae. The relationships illustrate how individual bees contribute to the colony and the queen's role in mating and egg-laying.",
+   "nodes": [
+    "drones",
+    "eggs",
+    "fertilized eggs",
+    "honeybee colony",
+    "individual bee",
+    "larva",
+    "queen",
+    "sperm",
+    "spermatheca",
+    "unfertilized eggs"
+   ],
+   "size": 10
+  },
+  {
+   "id": 6,
+   "label": "Food Chemistry Processes",
+   "summary": "This cluster focuses on the chemical processes involved in food preparation, specifically the Maillard reaction and caramelization. It highlights how amino acids and reducing sugars interact during these processes to generate volatile aromatic compounds and melanoidin pigments, while also emphasizing the roles of temperature and time in influencing these reactions.",
+   "nodes": [
+    "amino acids",
+    "caramelization",
+    "maillard reaction",
+    "melanoidin pigments",
+    "reducing sugars",
+    "temperature",
+    "time",
+    "volatile aromatic compounds"
+   ],
+   "size": 8
+  },
+  {
+   "id": 7,
+   "label": "Bee Worker Roles",
+   "summary": "This cluster focuses on the various roles and processes associated with worker bees in a hive. It highlights how worker bees exhibit temporal polyethism, transitioning between tasks such as nursing, foraging, and guard duty, while also detailing their interactions with materials like pollen and wax.",
+   "nodes": [
+    "forager",
+    "guard duty",
+    "hypopharyngeal glands",
+    "nurse bee",
+    "pollen",
+    "temporal polyethism",
+    "wax",
+    "worker"
+   ],
+   "size": 8
+  },
+  {
+   "id": 8,
+   "label": "Coffee Roasting Processes",
+   "summary": "This cluster focuses on the coffee roasting process, particularly the second crack, which occurs at 224 degrees Celsius. The second crack is significant as it develops flavor profiles associated with espresso blends and French roasts, while also increasing the risk of drum fire during roasting.",
+   "nodes": [
+    "224 degrees celsius",
+    "435 degrees fahrenheit",
+    "drum fire",
+    "espresso blends",
+    "french roasts",
+    "second crack"
+   ],
+   "size": 6
+  },
+  {
+   "id": 9,
+   "label": "Coffee Preservation Techniques",
+   "summary": "This cluster focuses on the methods and equipment used to preserve roasted coffee. It highlights the negative effects of oxygen and light on roasted coffee quality, and discusses the use of airtight containers and one-way valve bags by quality roasters to mitigate these issues.",
+   "nodes": [
+    "airtight containers",
+    "light",
+    "one-way valve bag",
+    "oxygen",
+    "roasted coffee",
+    "volumetric dosing"
+   ],
+   "size": 6
+  },
+  {
+   "id": 10,
+   "label": "Kiln Techniques and Atmospheres",
+   "summary": "This cluster focuses on the relationship between different types of kilns and the atmospheres they produce. The electric kiln is noted for producing an oxidation atmosphere and allowing ambient air to enter, while the Hillside Ox technique is developed in a gas kiln and results in flat outputs when processed in an electric kiln.",
+   "nodes": [
+    "ambient air",
+    "electric kiln",
+    "gas kiln",
+    "hillside ox",
+    "oxidation atmosphere"
+   ],
+   "size": 5
+  },
+  {
+   "id": 11,
+   "label": "Ceramic Glazing Techniques",
+   "summary": "This cluster focuses on various techniques and materials used in ceramic glazing, specifically celadon glaze and sang de boeuf. It highlights the role of oxidation as a process that involves both iron and copper, which are essential materials in creating these glazes.",
+   "nodes": [
+    "celadon glaze",
+    "copper",
+    "iron",
+    "oxidation",
+    "sang de boeuf"
+   ],
+   "size": 5
+  },
+  {
+   "id": 12,
+   "label": "Brood Nest Temperature",
+   "summary": "This cluster focuses on the temperature ranges associated with a brood nest. It highlights that the brood nest is maintained between 34 and 35 degrees Celsius, while in winter, it is kept near 20 degrees Celsius.",
+   "nodes": [
+    "20 degrees celsius",
+    "34 degrees celsius",
+    "35 degrees celsius",
+    "brood nest"
+   ],
+   "size": 4
+  },
+  {
+   "id": 13,
+   "label": "Bee Thermoregulation",
+   "summary": "This cluster focuses on the thermoregulation mechanisms employed by worker bees. It highlights how workers generate metabolic heat when temperatures are too cool and drive airflow when it becomes too hot, as well as their role in constructing queen cups.",
+   "nodes": [
+    "airflow",
+    "metabolic heat",
+    "queen cups",
+    "workers"
+   ],
+   "size": 4
+  },
+  {
+   "id": 14,
+   "label": "Waggle Dance Navigation",
+   "summary": "This cluster focuses on the relationship between the waggle run of bees and their navigation towards food sources. The waggle run is influenced by the position of the sun, which serves as a reference for measuring angles that guide bees to their food.",
+   "nodes": [
+    "angle",
+    "food source",
+    "sun",
+    "waggle run"
+   ],
+   "size": 4
+  },
+  {
+   "id": 15,
+   "label": "Honeybee Hives and Nectar Flow",
+   "summary": "This cluster focuses on the relationship between the western honeybee, scientifically known as Apis mellifera, and the hives in which they are kept. It also highlights how the presence and condition of hives can indicate the nectar flow, which is a crucial concept in beekeeping and honey production.",
+   "nodes": [
+    "apis mellifera",
+    "hives",
+    "nectar flow",
+    "western honeybee"
+   ],
+   "size": 4
+  },
+  {
+   "id": 16,
+   "label": "Beekeeping and Larvae Care",
+   "summary": "This cluster focuses on the relationship between beekeepers and the care of bee larvae. Beekeepers inspect the larvae, which are fed royal jelly, a substance also consumed by drones during their development.",
+   "nodes": [
+    "beekeepers",
+    "drone",
+    "larvae",
+    "royal jelly"
+   ],
+   "size": 4
+  },
+  {
+   "id": 17,
+   "label": "Reduction Atmosphere Production",
+   "summary": "This cluster focuses on the production of a reduction atmosphere, which is characterized by being rich in carbon monoxide. Both wood kilns and oil kilns are identified as equipment that produces this specific atmosphere.",
+   "nodes": [
+    "carbon monoxide",
+    "oil kiln",
+    "reduction atmosphere",
+    "wood kiln"
+   ],
+   "size": 4
+  },
+  {
+   "id": 18,
+   "label": "Bee Communication Techniques",
+   "summary": "This cluster focuses on the communication methods used by bees, specifically the waggle dance. The waggle dance is performed in a hive and on a comb, and it traces a figure eight pattern to convey information about food sources.",
+   "nodes": [
+    "comb",
+    "figure eight",
+    "hive",
+    "waggle dance"
+   ],
+   "size": 4
+  },
+  {
+   "id": 19,
+   "label": "Fracture and Materials",
+   "summary": "This cluster focuses on the relationship between silica and fractures, specifically how silica can cause fractures in foot rings. Additionally, it highlights the impact of these fractures on shelves, indicating that the integrity of the shelf is affected by the occurrence of fractures.",
+   "nodes": [
+    "foot ring",
+    "fracture",
+    "shelf",
+    "silica"
+   ],
+   "size": 4
+  },
+  {
+   "id": 20,
+   "label": "Glaze Composition and Texture",
+   "summary": "This cluster focuses on the materials involved in creating a sodium-alumino-silicate glaze and the resulting texture it produces. Sodium carbonate and sodium chloride are both materials that combine with the glaze, which ultimately leads to the formation of an orange-peel texture.",
+   "nodes": [
+    "orange-peel texture",
+    "sodium carbonate",
+    "sodium chloride",
+    "sodium-alumino-silicate glaze"
+   ],
+   "size": 4
+  },
+  {
+   "id": 21,
+   "label": "Drum Preheating Temperatures",
+   "summary": "This cluster focuses on the preheating temperatures of a drum used in various processes. It highlights that the drum can be preheated to either 180 degrees Celsius or 220 degrees Celsius.",
+   "nodes": [
+    "180 degrees celsius",
+    "220 degrees celsius",
+    "drum"
+   ],
+   "size": 3
+  },
+  {
+   "id": 22,
+   "label": "Quartz Phase Changes",
+   "summary": "This cluster focuses on the different phases of quartz, specifically the transitions between its forms. It highlights how quartz can change into alpha quartz and subsequently transform into beta quartz.",
+   "nodes": [
+    "alpha quartz",
+    "beta quartz",
+    "quartz"
+   ],
+   "size": 3
+  },
+  {
+   "id": 23,
+   "label": "Anagama Kiln Production",
+   "summary": "This cluster focuses on the anagama kiln, a type of traditional pottery kiln. It highlights the process by which the kiln produces flying ash, which then melts to form natural ash glaze, indicating the relationship between the kiln and the materials involved in the glazing process.",
+   "nodes": [
+    "anagama kiln",
+    "flying ash",
+    "natural ash glaze"
+   ],
+   "size": 3
+  },
+  {
+   "id": 24,
+   "label": "Development Time Ratios",
+   "summary": "This cluster focuses on the development time ratio, which is a measurement indicating the typical range of time allocated for development tasks. It is commonly found to be between fifteen percent and twenty-five percent.",
+   "nodes": [
+    "development time ratio",
+    "fifteen percent",
+    "twenty-five percent"
+   ],
+   "size": 3
+  },
+  {
+   "id": 25,
+   "label": "Measurement Relationships",
+   "summary": "This cluster focuses on the relationships between different types of measurements, specifically duration and kilometer. It highlights how duration can encode a kilometer measurement and how subspecies can vary in their calibration for duration.",
+   "nodes": [
+    "duration",
+    "kilometer",
+    "subspecies"
+   ],
+   "size": 3
+  },
+  {
+   "id": 26,
+   "label": "Coffee Roasting Process",
+   "summary": "This cluster focuses on the coffee roasting process, specifically involving green beans and a one-kilo drum roaster. It highlights that green beans are roasted in the one-kilo drum roaster, which has a specific roasting time of eleven minutes.",
+   "nodes": [
+    "eleven minutes",
+    "green beans",
+    "one-kilo drum roaster"
+   ],
+   "size": 3
+  },
+  {
+   "id": 27,
+   "label": "Pollination Process",
+   "summary": "This cluster focuses on the interaction between honeybees and flowers. Honeybees visit flowers to collect nectar, which is essential for their survival and plays a crucial role in the pollination of plants.",
+   "nodes": [
+    "flower",
+    "honeybee",
+    "nectar"
+   ],
+   "size": 3
+  },
+  {
+   "id": 28,
+   "label": "Marta's Workshop Operations",
+   "summary": "This cluster focuses on Marta, who runs a workshop that utilizes living material as a key component. The relationships highlight the connection between Marta's management of the workshop and the specific materials used in its operations.",
+   "nodes": [
+    "living material",
+    "marta",
+    "workshop"
+   ],
+   "size": 3
+  },
+  {
+   "id": 29,
+   "label": "Cone Temperature Comparison",
+   "summary": "This cluster focuses on the temperature measurements of two cones, cone 04 and cone 06. It highlights that cone 06 is cooler than cone 04, indicating a difference in their thermal properties.",
+   "nodes": [
+    "cone 04",
+    "cone 06"
+   ],
+   "size": 2
+  },
+  {
+   "id": 30,
+   "label": "Nobel Prize Recipient",
+   "summary": "This cluster highlights Karl von Frisch, who is recognized for his significant contributions to science. It specifically notes that he received the Nobel Prize, underscoring his achievements in the field.",
+   "nodes": [
+    "karl von frisch",
+    "nobel prize"
+   ],
+   "size": 2
+  },
+  {
+   "id": 31,
+   "label": "Bee Communication Techniques",
+   "summary": "This cluster focuses on the communication methods used by scout bees. It highlights how scout bees advertise their findings to the rest of the hive through the use of waggle dances.",
+   "nodes": [
+    "scout bees",
+    "waggle dances"
+   ],
+   "size": 2
+  }
+ ]
+}

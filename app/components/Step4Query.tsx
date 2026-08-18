@@ -19,15 +19,20 @@ export default function Step4Query({ n }: StageProps) {
     query,
     setQuery,
     runQueryEmbedding,
+    acceptQuery,
     querying,
     queryError,
     queryVector,
     embeddedQuery,
     vectors,
+    ragType,
     reachStep,
   } = useRag();
 
-  const ready = !!vectors;
+  // Graph RAG seeds its walk by matching words against entity labels, so it
+  // has no embedding stage and needs no query vector.
+  const lexicalOnly = ragType === "graph";
+  const ready = lexicalOnly || !!vectors;
   const dirty = embeddedQuery !== null && embeddedQuery !== query.trim();
 
   return (
@@ -36,7 +41,11 @@ export default function Step4Query({ n }: StageProps) {
       n={n}
       kicker={stageKicker(n)}
       title="The query"
-      lede="Your question goes through the exact same embedding model as the chunks. That is the whole trick — question and answer end up in one shared space."
+      lede={
+        lexicalOnly
+          ? "Graph retrieval starts from the entities your question names, so the question is matched against entity labels rather than embedded."
+          : "Your question goes through the exact same embedding model as the chunks. That is the whole trick — question and answer end up in one shared space."
+      }
       locked={!ready}
       lockNote="Embed the chunks first — there is nothing to compare a question against yet."
     >
@@ -46,7 +55,8 @@ export default function Step4Query({ n }: StageProps) {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                runQueryEmbedding();
+                if (lexicalOnly) acceptQuery();
+                else runQueryEmbedding();
                 reachStep(4);
               }}
             >
@@ -66,6 +76,8 @@ export default function Step4Query({ n }: StageProps) {
                     <>
                       <Spinner /> Embedding
                     </>
+                  ) : lexicalOnly ? (
+                    "Use this question"
                   ) : (
                     "Embed query"
                   )}
@@ -117,12 +129,29 @@ export default function Step4Query({ n }: StageProps) {
         </div>
 
         <div className="space-y-4">
-          <Panel title="Query in the same space" bodyClass="p-3">
-            <EmbeddingPlot height={300} />
-          </Panel>
+          {!lexicalOnly && (
+            <Panel title="Query in the same space" bodyClass="p-3">
+              <EmbeddingPlot height={300} />
+            </Panel>
+          )}
 
           <Panel title="What just happened">
-            {queryVector ? (
+            {lexicalOnly ? (
+              <div className="space-y-2 text-[12.5px] leading-relaxed text-ink-soft">
+                <Row
+                  label="Question"
+                  value={embeddedQuery ? `"${embeddedQuery}"` : "not set"}
+                  mono={false}
+                />
+                <Row label="Embedding" value="not used" />
+                <Row label="Matched against" value="entity labels" />
+                <p className="pt-1 text-[12px] text-muted">
+                  No vector, no embedding call, no cost. The next stage matches
+                  your words against the names of things in the graph, then
+                  follows the edges out from whatever it finds.
+                </p>
+              </div>
+            ) : queryVector ? (
               <div className="space-y-2 text-[12.5px] leading-relaxed text-ink-soft">
                 <Row
                   label="Question"

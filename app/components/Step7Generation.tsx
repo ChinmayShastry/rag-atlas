@@ -12,6 +12,8 @@ export default function Step7Generation({ n }: StageProps) {
   const {
     apiKey,
     canCallApi,
+    ragType,
+    graphMode,
     retrieved,
     embeddedQuery,
     answer,
@@ -46,7 +48,10 @@ export default function Step7Generation({ n }: StageProps) {
       await streamChat(
         apiKey,
         {
-          mode: "rag",
+          // Global graph search reasons over cluster summaries, so it needs a
+          // prompt that permits synthesis rather than one that forbids it.
+          mode:
+            ragType === "graph" && graphMode === "global" ? "global" : "rag",
           temperature,
           question: embeddedQuery,
           passages: toPassages(retrieved),

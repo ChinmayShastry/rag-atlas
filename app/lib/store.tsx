@@ -14,6 +14,20 @@ import { apiPost } from "./api";
 import { costOf } from "./pricing";
 import { cosine, fitProjector, project } from "./vector";
 import { bm25Scores, buildBm25, fuse } from "./bm25";
+import {
+  chunksForSpans,
+  expand,
+  rankCommunities,
+  seedNodes,
+  spansOf,
+} from "./graph";
+import type {
+  Community,
+  GraphNode,
+  KnowledgeGraph,
+  Subgraph,
+} from "./graph";
+import { estimateTokens } from "./chunking";
 import type {
   Chunk,
   Critique,
@@ -124,6 +138,11 @@ interface RagState {
   queryError: string | null;
   embeddedQuery: string | null;
   runQueryEmbedding: () => Promise<void>;
+  /**
+   * Accepts the query without embedding it. Graph RAG seeds its walk by
+   * lexical match on entity labels, so it never needs a query vector.
+   */
+  acceptQuery: () => void;
 
   topK: number;
   setTopK: (n: number) => void;
@@ -184,6 +203,18 @@ interface RagState {
   setCritique: (c: Critique | null) => void;
   /** What agentic retrieval produced before grading removed anything. */
   agenticBase: Scored[];
+
+  /* ---- Graph RAG ---- */
+  graph: KnowledgeGraph | null;
+  graphLoading: boolean;
+  graphError: string | null;
+  graphMode: "local" | "global";
+  setGraphMode: (m: "local" | "global") => void;
+  graphHops: number;
+  setGraphHops: (n: number) => void;
+  graphSeeds: { node: GraphNode; score: number }[];
+  subgraph: Subgraph | null;
+  graphCommunities: { community: Community; score: number }[];
 
   plot: { chunk: Chunk; x: number; y: number }[];
   queryPoint: { x: number; y: number } | null;
@@ -283,6 +314,12 @@ export function RagProvider({
   const [correctionStrategy, setCorrectionStrategy] = useState("");
   const [correctedHits, setCorrectedHits] = useState<Scored[] | null>(null);
   const [critique, setCritique] = useState<Critique | null>(null);
+
+  const [graph, setGraph] = useState<KnowledgeGraph | null>(null);
+  const [graphLoading, setGraphLoading] = useState(true);
+  const [graphError, setGraphError] = useState<string | null>(null);
+  const [graphMode, setGraphMode] = useState<"local" | "global">("local");
+  const [graphHops, setGraphHops] = useState(1);
 
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -535,6 +572,11 @@ export function RagProvider({
     [vectors, chunks],
   );
 
+  const acceptQuery = useCallback(() => {
+    const q = query.trim();
+    if (q) setEmbeddedQuery(q);
+  }, [query]);
+
   const ranked: Scored[] = useMemo(() => {
     if (ragType !== "advanced" || !rerankScores) return baseRanked;
     const reordered = candidates
@@ -558,6 +600,49 @@ export function RagProvider({
     [reranked, ranked, rerankScores],
   );
 
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/graph/graph.json")
+      .then((r) => {
+        if (!r.ok) throw new Error(`graph.json returned ${r.status}`);
+        return r.json();
+      })
+      .then((g: KnowledgeGraph) => {
+        if (cancelled) return;
+        setGraph(g);
+        setGraphError(null);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setGraphError(
+          `Could not load the knowledge graph (${err instanceof Error ? err.message : "network error"}). Rebuild it with: node scripts/build-graph.mjs`,
+        );
+      })
+      .finally(() => !cancelled && setGraphLoading(false));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const graphSeeds = useMemo(
+    () => (graph && embeddedQuery ? seedNodes(embeddedQuery, graph) : []),
+    [graph, embeddedQuery],
+  );
+
+  const subgraph = useMemo(() => {
+    if (!graph || graphSeeds.length === 0) return null;
+    return expand(
+      graph,
+      graphSeeds.map((s) => s.node.id),
+      graphHops,
+    );
+  }, [graph, graphSeeds, graphHops]);
+
+  const graphCommunities = useMemo(
+    () => (graph && embeddedQuery ? rankCommunities(embeddedQuery, graph) : []),
+    [graph, embeddedQuery],
+  );
+
   /** Agentic retrieval before grading prunes anything. */
   const agenticBase = useMemo(
     () =>
@@ -566,6 +651,28 @@ export function RagProvider({
   );
 
   const retrieved = useMemo(() => {
+    if (ragType === "graph") {
+      // Global mode answers from community summaries rather than passages —
+      // the whole point being that no single passage describes a theme.
+      if (graphMode === "global") {
+        return graphCommunities.map(({ community, score }) => ({
+          chunk: {
+            id: `community-${community.id}`,
+            docId: "graph",
+            docTitle: `Community · ${community.label}`,
+            index: -1,
+            localIndex: community.id,
+            text: community.summary,
+            start: 0,
+            end: community.summary.length,
+            tokens: estimateTokens(community.summary),
+          },
+          score,
+        }));
+      }
+      if (!subgraph) return [];
+      return chunksForSpans(spansOf(subgraph), chunks).slice(0, topK);
+    }
     // Agentic drops whatever the grader called irrelevant, so a bad passage
     // never reaches the generator in the first place.
     if (ragType === "agentic") {
@@ -592,6 +699,10 @@ export function RagProvider({
     return ranked.filter((r) => r.score >= minScore).slice(0, topK);
   }, [
     ragType,
+    graphMode,
+    graphCommunities,
+    subgraph,
+    chunks,
     hops,
     routeDecision,
     agenticBase,
@@ -682,6 +793,7 @@ export function RagProvider({
     queryError,
     embeddedQuery,
     runQueryEmbedding,
+    acceptQuery,
     topK,
     setTopK,
     minScore,
@@ -727,6 +839,16 @@ export function RagProvider({
     critique,
     setCritique,
     agenticBase,
+    graph,
+    graphLoading,
+    graphError,
+    graphMode,
+    setGraphMode,
+    graphHops,
+    setGraphHops,
+    graphSeeds,
+    subgraph,
+    graphCommunities,
     plot,
     queryPoint,
     hovered,

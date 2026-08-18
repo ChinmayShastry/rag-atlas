@@ -23,6 +23,9 @@ import StageRoute from "./StageRoute";
 import StageGrade from "./StageGrade";
 import StageCorrect from "./StageCorrect";
 import StageCritique from "./StageCritique";
+import StageExtract from "./StageExtract";
+import StageGraphBuild from "./StageGraphBuild";
+import StageTraverse from "./StageTraverse";
 import { RagProvider, useRag } from "../lib/store";
 import { ragTypeDef } from "../lib/ragTypes";
 import { formatUSD } from "../lib/pricing";
@@ -99,6 +102,11 @@ const STAGE_COMPONENTS: Record<
   grade: StageGrade,
   correct: StageCorrect,
   critique: StageCritique,
+
+  // Graph RAG
+  extract: StageExtract,
+  graphbuild: StageGraphBuild,
+  traverse: StageTraverse,
 };
 
 /** Renders the active architecture's stage list, numbering by position. */

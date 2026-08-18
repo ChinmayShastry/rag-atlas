@@ -9,6 +9,7 @@ import { LIMITS, validatePassages } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
 import {
   BASELINE_SYSTEM_PROMPT,
+  GLOBAL_SYSTEM_PROMPT,
   HOP_SYSTEM_PROMPT,
   HYDE_SYSTEM_PROMPT,
   SYSTEM_PROMPT,
@@ -41,10 +42,9 @@ export async function POST(req: Request) {
   }
 
   const body = await req.json().catch(() => null);
-  const mode: "rag" | "baseline" | "hyde" | "hop" =
-    body?.mode === "baseline" || body?.mode === "hyde" || body?.mode === "hop"
-      ? body.mode
-      : "rag";
+  const MODES = ["rag", "baseline", "hyde", "hop", "global"] as const;
+  type Mode = (typeof MODES)[number];
+  const mode: Mode = MODES.includes(body?.mode) ? body.mode : "rag";
   const question = typeof body?.question === "string" ? body.question.trim() : "";
 
   if (!question) {
@@ -95,7 +95,12 @@ export async function POST(req: Request) {
     messages = [
       {
         role: "system",
-        content: mode === "hop" ? HOP_SYSTEM_PROMPT : SYSTEM_PROMPT,
+        content:
+          mode === "hop"
+            ? HOP_SYSTEM_PROMPT
+            : mode === "global"
+              ? GLOBAL_SYSTEM_PROMPT
+              : SYSTEM_PROMPT,
       },
       { role: "user", content: buildUserMessage(context, question) },
     ];

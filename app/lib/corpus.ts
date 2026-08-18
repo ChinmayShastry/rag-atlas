@@ -18,6 +18,7 @@ const FILES = [
 ];
 
 let cache: string[] | null = null;
+let summaryCache: string[] | null = null;
 
 /** Collapse all whitespace so CRLF/LF differences cannot cause false rejections. */
 function normalize(s: string): string {
@@ -47,12 +48,38 @@ export function corpusAvailable(): boolean {
   return loadCorpus().length > 0;
 }
 
+/**
+ * Graph RAG's global mode retrieves community summaries rather than raw
+ * passages. Those are model-written, so they are not substrings of any source
+ * document — but they are still our own build output, generated offline and
+ * committed, so they belong on the allowlist alongside the corpus itself.
+ */
+function loadSummaries(): string[] {
+  if (summaryCache) return summaryCache;
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "public", "graph", "graph.json"),
+      "utf8",
+    );
+    const graph = JSON.parse(raw) as {
+      communities?: { summary?: string }[];
+    };
+    summaryCache = (graph.communities ?? [])
+      .map((c) => normalize(c.summary ?? ""))
+      .filter((s) => s.length > 0);
+  } catch {
+    summaryCache = [];
+  }
+  return summaryCache;
+}
+
 export function isFromCorpus(passage: string): boolean {
   const docs = loadCorpus();
   if (docs.length === 0) return true;
   const needle = normalize(passage);
   if (needle.length < 12) return false;
-  return docs.some((doc) => doc.includes(needle));
+  if (docs.some((doc) => doc.includes(needle))) return true;
+  return loadSummaries().some((s) => s.includes(needle));
 }
 
 export interface Passage {

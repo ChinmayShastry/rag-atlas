@@ -12,6 +12,23 @@ Rules:
 export const BASELINE_SYSTEM_PROMPT = `You are a helpful assistant. Answer the question from your own knowledge. Be concise: two to five sentences.`;
 
 /**
+ * Graph RAG global search. The passages here are cluster summaries, not source
+ * text, and the question is about the collection as a whole — so the strict
+ * "only state what a passage states" rule of SYSTEM_PROMPT would refuse every
+ * such question. Synthesis across summaries is the intended behaviour; drawing
+ * on anything outside them is still not.
+ */
+export const GLOBAL_SYSTEM_PROMPT = `You answer broad questions about a document collection, using summaries of the major themes found in it.
+
+Rules:
+- The numbered passages are summaries of clusters in a knowledge graph, not excerpts of the source text. They describe what areas of the collection are about.
+- Synthesising across several summaries is expected. You may state a connection that no single summary makes, provided every part of it is grounded in the summaries you were given.
+- Do not introduce facts from outside the summaries, and do not invent specific numbers, names or measurements they do not contain.
+- Cite the summary numbers you drew on, like [2].
+- If the summaries genuinely do not touch the question, say so plainly.
+- Four to eight sentences.`;
+
+/**
  * One link in a multi-hop chain. Deliberately terse: a hop that volunteers
  * facts beyond its own sub-question can accidentally answer the whole chain,
  * which hides the mechanism the stage exists to show.
