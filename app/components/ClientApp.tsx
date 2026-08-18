@@ -19,6 +19,10 @@ import StageRerank from "./StageRerank";
 import StageDecompose from "./StageDecompose";
 import StageHops from "./StageHops";
 import StageSynthesize from "./StageSynthesize";
+import StageRoute from "./StageRoute";
+import StageGrade from "./StageGrade";
+import StageCorrect from "./StageCorrect";
+import StageCritique from "./StageCritique";
 import { RagProvider, useRag } from "../lib/store";
 import { ragTypeDef } from "../lib/ragTypes";
 import { formatUSD } from "../lib/pricing";
@@ -89,6 +93,12 @@ const STAGE_COMPONENTS: Record<
   decompose: StageDecompose,
   hops: StageHops,
   synthesize: StageSynthesize,
+
+  // Agentic RAG
+  route: StageRoute,
+  grade: StageGrade,
+  correct: StageCorrect,
+  critique: StageCritique,
 };
 
 /** Renders the active architecture's stage list, numbering by position. */

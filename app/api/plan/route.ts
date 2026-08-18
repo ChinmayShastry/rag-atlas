@@ -87,6 +87,54 @@ const REWRITE_SCHEMA = {
   },
 } as const;
 
+const ROUTE_SYSTEM = `You are the router in front of a retrieval system. Decide how a question should be handled before any searching happens.
+
+Choose exactly one:
+- "retrieve": the answer depends on the indexed documents. This is the default whenever the question touches their subject matter.
+- "direct": the model can answer without the documents — greetings, arithmetic, questions about how this system itself works, or definitions of general terms that need no source.
+- "reject": the question is about something the documents do not cover and that the system should not answer from memory, because an unsourced answer would be indistinguishable from a hallucination.
+
+Prefer "retrieve" when uncertain. Routing a document question to "direct" is the expensive mistake: it produces a confident answer with no evidence behind it.
+Give a reason under 22 words.`;
+
+const ROUTE_SCHEMA = {
+  name: "route_decision",
+  strict: true,
+  schema: {
+    type: "object",
+    properties: {
+      decision: { type: "string", enum: ["retrieve", "direct", "reject"] },
+      reason: { type: "string" },
+    },
+    required: ["decision", "reason"],
+    additionalProperties: false,
+  },
+} as const;
+
+const CORRECT_SYSTEM = `Retrieval for a question returned poor results. Rewrite the search query so it has a better chance.
+
+Techniques, in rough order of usefulness:
+- Replace conversational phrasing with the vocabulary a source document would actually use.
+- Make an implicit subject explicit.
+- Split a compound question down to its most specific part.
+- Add distinguishing terms that separate this topic from near neighbours.
+
+Return only the rewritten query, and name the technique you applied in a few words.`;
+
+const CORRECT_SCHEMA = {
+  name: "corrected_query",
+  strict: true,
+  schema: {
+    type: "object",
+    properties: {
+      question: { type: "string" },
+      strategy: { type: "string" },
+    },
+    required: ["question", "strategy"],
+    additionalProperties: false,
+  },
+} as const;
+
 export async function POST(req: Request) {
   const resolved = readKey(req);
   if (!resolved) return keyMissing();
@@ -98,7 +146,9 @@ export async function POST(req: Request) {
   }
 
   const body = await req.json().catch(() => null);
-  const task = body?.task === "rewrite" ? "rewrite" : "decompose";
+  const TASKS = ["decompose", "rewrite", "route", "correct"] as const;
+  type Task = (typeof TASKS)[number];
+  const task: Task = TASKS.includes(body?.task) ? body.task : "decompose";
   const question =
     typeof body?.question === "string" ? body.question.trim() : "";
 
@@ -114,23 +164,43 @@ export async function POST(req: Request) {
 
   const findings: string =
     typeof body?.findings === "string" ? body.findings.slice(0, 2000) : "";
+  // Document titles only — used so the router knows what this corpus covers.
+  const corpusSummary: string =
+    typeof body?.corpusSummary === "string" ? body.corpusSummary.slice(0, 400) : "";
 
-  const isRewrite = task === "rewrite";
-  const userContent = isRewrite
-    ? `EARLIER FINDINGS:\n${findings}\n\nSUB-QUESTION TO REWRITE:\n${question}`
-    : question;
+  const SYSTEMS: Record<Task, string> = {
+    decompose: DECOMPOSE_SYSTEM,
+    rewrite: REWRITE_SYSTEM,
+    route: ROUTE_SYSTEM,
+    correct: CORRECT_SYSTEM,
+  };
+  const SCHEMAS = {
+    decompose: DECOMPOSE_SCHEMA,
+    rewrite: REWRITE_SCHEMA,
+    route: ROUTE_SCHEMA,
+    correct: CORRECT_SCHEMA,
+  } as const;
+
+  const userContent =
+    task === "rewrite"
+      ? `EARLIER FINDINGS:\n${findings}\n\nSUB-QUESTION TO REWRITE:\n${question}`
+      : task === "route"
+        ? `INDEXED DOCUMENTS: ${corpusSummary || "unknown"}\n\nQUESTION: ${question}`
+        : task === "correct"
+          ? `ORIGINAL QUERY: ${question}\n\nWHY IT FAILED:\n${findings || "The retrieved passages were judged irrelevant."}`
+          : question;
 
   try {
     const res = await callOpenAI("/chat/completions", key, {
       model: CHAT_MODEL,
       temperature: 0,
       messages: [
-        { role: "system", content: isRewrite ? REWRITE_SYSTEM : DECOMPOSE_SYSTEM },
+        { role: "system", content: SYSTEMS[task] },
         { role: "user", content: userContent },
       ],
       response_format: {
         type: "json_schema",
-        json_schema: isRewrite ? REWRITE_SCHEMA : DECOMPOSE_SCHEMA,
+        json_schema: SCHEMAS[task],
       },
     });
 
@@ -145,10 +215,28 @@ export async function POST(req: Request) {
       outputTokens: data.usage?.completion_tokens ?? 0,
     };
 
-    if (isRewrite) {
+    if (task === "rewrite") {
       return Response.json({
         question: String(parsed.question ?? question).slice(0, LIMITS.maxQuestionChars),
         resolved: !!parsed.resolved,
+        usage,
+      });
+    }
+
+    if (task === "route") {
+      return Response.json({
+        decision: ["retrieve", "direct", "reject"].includes(parsed.decision)
+          ? parsed.decision
+          : "retrieve",
+        reason: parsed.reason ?? "",
+        usage,
+      });
+    }
+
+    if (task === "correct") {
+      return Response.json({
+        question: String(parsed.question ?? question).slice(0, LIMITS.maxQuestionChars),
+        strategy: parsed.strategy ?? "",
         usage,
       });
     }

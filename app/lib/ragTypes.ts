@@ -130,7 +130,7 @@ export const RAG_TYPES: RagTypeDef[] = [
       "evaluation",
       "guardrails",
     ],
-    ready: false,
+    ready: true,
   },
   {
     id: "multihop",

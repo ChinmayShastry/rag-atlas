@@ -16,10 +16,13 @@ import { cosine, fitProjector, project } from "./vector";
 import { bm25Scores, buildBm25, fuse } from "./bm25";
 import type {
   Chunk,
+  Critique,
   Doc,
   EvalScores,
   GuardResult,
   Hop,
+  PassageGrade,
+  RouteDecision,
   Scored,
   Strategy,
 } from "./types";
@@ -165,6 +168,23 @@ interface RagState {
   /** Cosine-ranks all chunks against an arbitrary vector. */
   rankAgainst: (vector: number[]) => Scored[];
 
+  /* ---- Agentic RAG ---- */
+  routeDecision: RouteDecision | null;
+  setRouteDecision: (d: RouteDecision | null) => void;
+  grades: Map<string, PassageGrade> | null;
+  setGrades: (g: Map<string, PassageGrade> | null) => void;
+  correctedQuery: string | null;
+  setCorrectedQuery: (s: string | null) => void;
+  correctionStrategy: string;
+  setCorrectionStrategy: (s: string) => void;
+  /** Replaces the retrieved set after a corrective re-search. */
+  correctedHits: Scored[] | null;
+  setCorrectedHits: (s: Scored[] | null) => void;
+  critique: Critique | null;
+  setCritique: (c: Critique | null) => void;
+  /** What agentic retrieval produced before grading removed anything. */
+  agenticBase: Scored[];
+
   plot: { chunk: Chunk; x: number; y: number }[];
   queryPoint: { x: number; y: number } | null;
 
@@ -257,6 +277,12 @@ export function RagProvider({
   const [rerankFloor, setRerankFloor] = useState(0);
   const [hops, setHops] = useState<Hop[]>([]);
   const [planReasoning, setPlanReasoning] = useState("");
+  const [routeDecision, setRouteDecision] = useState<RouteDecision | null>(null);
+  const [grades, setGrades] = useState<Map<string, PassageGrade> | null>(null);
+  const [correctedQuery, setCorrectedQuery] = useState<string | null>(null);
+  const [correctionStrategy, setCorrectionStrategy] = useState("");
+  const [correctedHits, setCorrectedHits] = useState<Scored[] | null>(null);
+  const [critique, setCritique] = useState<Critique | null>(null);
 
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -532,7 +558,22 @@ export function RagProvider({
     [reranked, ranked, rerankScores],
   );
 
+  /** Agentic retrieval before grading prunes anything. */
+  const agenticBase = useMemo(
+    () =>
+      correctedHits ?? ranked.filter((r) => r.score >= minScore).slice(0, topK),
+    [correctedHits, ranked, minScore, topK],
+  );
+
   const retrieved = useMemo(() => {
+    // Agentic drops whatever the grader called irrelevant, so a bad passage
+    // never reaches the generator in the first place.
+    if (ragType === "agentic") {
+      if (routeDecision && routeDecision.decision !== "retrieve") return [];
+      return agenticBase.filter(
+        (r) => grades?.get(r.chunk.id)?.verdict !== "incorrect",
+      );
+    }
     // Multi-hop hands the generator everything its chain gathered, in hop order
     // and deduplicated — the union is the point, not any single hop's top-K.
     if (ragType === "multihop") {
@@ -549,7 +590,19 @@ export function RagProvider({
     }
     if (reranked) return rerankedPool.filter((r) => r.score >= rerankFloor).slice(0, topK);
     return ranked.filter((r) => r.score >= minScore).slice(0, topK);
-  }, [ragType, hops, reranked, rerankedPool, rerankFloor, ranked, minScore, topK]);
+  }, [
+    ragType,
+    hops,
+    routeDecision,
+    agenticBase,
+    grades,
+    reranked,
+    rerankedPool,
+    rerankFloor,
+    ranked,
+    minScore,
+    topK,
+  ]);
 
   const rerankRejected = useMemo(
     () => (reranked ? rerankedPool.filter((r) => r.score < rerankFloor) : []),
@@ -661,6 +714,19 @@ export function RagProvider({
     setPlanReasoning,
     embedOne,
     rankAgainst,
+    routeDecision,
+    setRouteDecision,
+    grades,
+    setGrades,
+    correctedQuery,
+    setCorrectedQuery,
+    correctionStrategy,
+    setCorrectionStrategy,
+    correctedHits,
+    setCorrectedHits,
+    critique,
+    setCritique,
+    agenticBase,
     plot,
     queryPoint,
     hovered,

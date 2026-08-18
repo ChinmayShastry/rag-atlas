@@ -60,6 +60,28 @@ export interface Hop {
   error?: string;
 }
 
+/* ---- Agentic RAG ---- */
+
+export type RouteChoice = "retrieve" | "direct" | "reject";
+
+export interface RouteDecision {
+  decision: RouteChoice;
+  reason: string;
+}
+
+export type GradeVerdict = "correct" | "ambiguous" | "incorrect";
+
+export interface PassageGrade {
+  verdict: GradeVerdict;
+  reason: string;
+}
+
+export interface Critique {
+  verdict: "ship" | "revise" | "withhold";
+  reason: string;
+  issues: string[];
+}
+
 export type GuardVerdict = "pass" | "warn" | "block";
 
 export interface GuardResult {
