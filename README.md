@@ -113,6 +113,7 @@ Deterministic rules run client-side on every keystroke, at no cost and no latenc
 
 - Held in React state for the life of the browser tab. Never written to `localStorage`, a cookie, a database, or a log.
 - Sent from the browser to this app's own `/api/*` routes, and from there directly to `api.openai.com`. It touches no third party.
+- The Advanced RAG reranking stage is the one exception to "nothing else is contacted": it fetches Transformers.js from jsDelivr and a ~21 MB cross-encoder from the Hugging Face CDN, then runs entirely in your browser. Static file downloads only — no key, question, or document leaves the page.
 - All OpenAI calls happen server-side, so the key never appears in the client bundle.
 - Close the tab and it is gone. There is nothing to log out of.
 

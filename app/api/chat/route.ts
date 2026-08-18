@@ -9,6 +9,7 @@ import { LIMITS, validatePassages } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
 import {
   BASELINE_SYSTEM_PROMPT,
+  HYDE_SYSTEM_PROMPT,
   SYSTEM_PROMPT,
   buildContext,
   buildUserMessage,
@@ -39,7 +40,8 @@ export async function POST(req: Request) {
   }
 
   const body = await req.json().catch(() => null);
-  const mode = body?.mode === "baseline" ? "baseline" : "rag";
+  const mode: "rag" | "baseline" | "hyde" =
+    body?.mode === "baseline" || body?.mode === "hyde" ? body.mode : "rag";
   const question = typeof body?.question === "string" ? body.question.trim() : "";
 
   if (!question) {
@@ -59,9 +61,12 @@ export async function POST(req: Request) {
 
   let messages: { role: string; content: string }[];
 
-  if (mode === "baseline") {
+  if (mode === "baseline" || mode === "hyde") {
     messages = [
-      { role: "system", content: BASELINE_SYSTEM_PROMPT },
+      {
+        role: "system",
+        content: mode === "hyde" ? HYDE_SYSTEM_PROMPT : BASELINE_SYSTEM_PROMPT,
+      },
       { role: "user", content: question },
     ];
   } else {

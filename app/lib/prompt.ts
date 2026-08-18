@@ -11,6 +11,20 @@ Rules:
 
 export const BASELINE_SYSTEM_PROMPT = `You are a helpful assistant. Answer the question from your own knowledge. Be concise: two to five sentences.`;
 
+/**
+ * HyDE: write the passage we wish we could retrieve, then search with *that*.
+ * Accuracy is explicitly not the goal — the hypothetical only has to have the
+ * shape and vocabulary of a real answer passage, because passage-to-passage
+ * similarity is a stronger signal than question-to-passage similarity.
+ */
+export const HYDE_SYSTEM_PROMPT = `Write a short passage that would plausibly answer the user's question, as though it were an excerpt from a reference document.
+
+Rules:
+- Write it as a factual, encyclopedic passage. Do not address the user, and do not write it as a reply.
+- Never hedge, never say you are uncertain, and never mention that this is hypothetical.
+- Two to four sentences.
+- It does not need to be factually correct. Its only job is to read like the kind of text that would contain the answer.`;
+
 export interface ContextPassage {
   title: string;
   text: string;

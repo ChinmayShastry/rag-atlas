@@ -19,8 +19,10 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => null);
   const texts: unknown = body?.texts;
-  // "query" is a single short piece of free text; "chunks" must be corpus text.
-  const kind = body?.kind === "query" ? "query" : "chunks";
+  // "query" and "hyde" are single short pieces of free text; "chunks" must be
+  // corpus text. HyDE gets a longer cap because the passage is model-written.
+  const kind: "query" | "hyde" | "chunks" =
+    body?.kind === "query" || body?.kind === "hyde" ? body.kind : "chunks";
 
   if (!Array.isArray(texts) || texts.length === 0) {
     return Response.json({ error: "Expected { texts: string[] }." }, { status: 400 });
@@ -32,21 +34,23 @@ export async function POST(req: Request) {
   if (shared) {
     const verdict = rateLimit(
       clientId(req, `embed-${kind}`),
-      kind === "query" ? 60 : 20,
+      kind === "chunks" ? 20 : 60,
     );
     if (!verdict.ok) return tooMany(verdict);
   }
 
-  if (kind === "query") {
+  if (kind === "query" || kind === "hyde") {
+    const cap =
+      kind === "hyde" ? LIMITS.maxHydeChars : LIMITS.maxQuestionChars;
     if (texts.length !== 1) {
       return Response.json(
-        { error: "Query embedding takes exactly one text." },
+        { error: "This embedding kind takes exactly one text." },
         { status: 400 },
       );
     }
-    if (texts[0].length > LIMITS.maxQuestionChars) {
+    if (texts[0].length > cap) {
       return Response.json(
-        { error: `Queries are limited to ${LIMITS.maxQuestionChars} characters.` },
+        { error: `Limited to ${cap} characters.` },
         { status: 400 },
       );
     }

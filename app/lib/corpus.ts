@@ -61,6 +61,8 @@ export interface Passage {
 
 export const LIMITS = {
   maxQuestionChars: 400,
+  /** HyDE passages are model-written and longer than a question. */
+  maxHydeChars: 1500,
   maxPassages: 12,
   maxPassageChars: 4000,
   maxGuardrailChars: 2000,

@@ -165,7 +165,12 @@ export default function KeyGate({
             </Assurance>
             <Assurance>
               Sent from your browser to this app&apos;s own API route, and from
-              there straight to OpenAI. Nowhere else.
+              there straight to OpenAI. It goes nowhere else.
+            </Assurance>
+            <Assurance>
+              The reranking stage additionally downloads a small open model from
+              a public CDN to run in your browser. Your key and your questions
+              are never part of that — it is a static file fetch.
             </Assurance>
             <Assurance>
               A full session costs well under a cent. Models used:{" "}

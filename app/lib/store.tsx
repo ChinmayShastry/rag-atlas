@@ -12,7 +12,8 @@ import {
 import { chunkDocs } from "./chunking";
 import { apiPost } from "./api";
 import { costOf } from "./pricing";
-import { fitProjector, project, rankBySimilarity } from "./vector";
+import { cosine, fitProjector, project } from "./vector";
+import { bm25Scores, buildBm25, fuse } from "./bm25";
 import type {
   Chunk,
   Doc,
@@ -117,6 +118,27 @@ interface RagState {
   ranked: Scored[];
   retrieved: Scored[];
 
+  /* ---- Advanced RAG ---- */
+  /** HyDE: a model-written hypothetical passage, embedded and searched with. */
+  hydeText: string;
+  setHydeText: (s: string) => void;
+  hydeVector: number[] | null;
+  hydeEmbedding: boolean;
+  runHydeEmbedding: (text: string) => Promise<void>;
+  useHyde: boolean;
+  setUseHyde: (b: boolean) => void;
+  /** Weight on dense similarity: 1 pure semantic, 0 pure keyword. */
+  hybridAlpha: number;
+  setHybridAlpha: (n: number) => void;
+  denseScores: number[] | null;
+  sparseScores: number[];
+  baseRanked: Scored[];
+  candidates: Scored[];
+  candidateK: number;
+  setCandidateK: (n: number) => void;
+  rerankScores: Map<string, number> | null;
+  setRerankScores: (m: Map<string, number> | null) => void;
+
   plot: { chunk: Chunk; x: number; y: number }[];
   queryPoint: { x: number; y: number } | null;
 
@@ -195,6 +217,16 @@ export function RagProvider({
 
   const [topK, setTopK] = useState(4);
   const [minScore, setMinScore] = useState(0);
+
+  const [hydeText, setHydeText] = useState("");
+  const [hydeVector, setHydeVector] = useState<number[] | null>(null);
+  const [hydeEmbedding, setHydeEmbedding] = useState(false);
+  const [useHyde, setUseHyde] = useState(true);
+  const [hybridAlpha, setHybridAlpha] = useState(0.6);
+  const [candidateK, setCandidateK] = useState(15);
+  const [rerankScores, setRerankScores] = useState<Map<string, number> | null>(
+    null,
+  );
 
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -343,19 +375,92 @@ export function RagProvider({
     }
   }, [query, apiKey, addUsage]);
 
-  const ranked: Scored[] = useMemo(() => {
-    if (!vectors || !queryVector || vectorsStale) return [];
-    if (vectors.length !== chunks.length) return [];
-    return rankBySimilarity(queryVector, vectors).map((hit) => ({
-      chunk: chunks[hit.index],
-      score: hit.score,
-    }));
-  }, [vectors, queryVector, chunks, vectorsStale]);
+  /**
+   * Advanced RAG searches with the HyDE passage when one has been embedded,
+   * on the theory that a passage matches passages better than a question does.
+   */
+  const retrievalVector =
+    ragType === "advanced" && useHyde && hydeVector ? hydeVector : queryVector;
 
-  const retrieved = useMemo(
-    () => ranked.filter((r) => r.score >= minScore).slice(0, topK),
-    [ranked, topK, minScore],
+  const denseScores: number[] | null = useMemo(() => {
+    if (!vectors || !retrievalVector || vectorsStale) return null;
+    if (vectors.length !== chunks.length) return null;
+    return vectors.map((v) => cosine(retrievalVector, v));
+  }, [vectors, retrievalVector, chunks.length, vectorsStale]);
+
+  // Lexical index over the current chunks — pure client-side, no cost.
+  const bm25Index = useMemo(
+    () => buildBm25(chunks.map((c) => c.text)),
+    [chunks],
   );
+
+  const sparseScores: number[] = useMemo(() => {
+    if (!embeddedQuery) return new Array(chunks.length).fill(0);
+    return bm25Scores(bm25Index, embeddedQuery);
+  }, [bm25Index, embeddedQuery, chunks.length]);
+
+  /** Ranking before any reranking is applied. Naive uses dense only. */
+  const baseRanked: Scored[] = useMemo(() => {
+    if (!denseScores) return [];
+    const scores =
+      ragType === "advanced"
+        ? fuse(denseScores, sparseScores, hybridAlpha)
+        : denseScores;
+    return chunks
+      .map((chunk, i) => ({ chunk, score: scores[i] ?? 0 }))
+      .sort((a, b) => b.score - a.score);
+  }, [denseScores, sparseScores, hybridAlpha, chunks, ragType]);
+
+  /** The shortlist a cross-encoder would be run over. */
+  const candidates = useMemo(
+    () => baseRanked.slice(0, candidateK),
+    [baseRanked, candidateK],
+  );
+
+  const runHydeEmbedding = useCallback(
+    async (text: string) => {
+      const t = text.trim();
+      if (!t) return;
+      setHydeEmbedding(true);
+      try {
+        const data = await apiPost<{
+          vectors: number[][];
+          usage: { inputTokens: number; outputTokens: number };
+        }>("/api/embed", apiKey, { kind: "hyde", texts: [t] });
+        setHydeVector(data.vectors[0]);
+        addUsage({
+          model: "text-embedding-3-small",
+          label: "Embedded HyDE passage",
+          inputTokens: data.usage.inputTokens,
+          outputTokens: 0,
+        });
+      } catch {
+        setHydeVector(null);
+      } finally {
+        setHydeEmbedding(false);
+      }
+    },
+    [apiKey, addUsage],
+  );
+
+  const ranked: Scored[] = useMemo(() => {
+    if (ragType !== "advanced" || !rerankScores) return baseRanked;
+    const reordered = candidates
+      .map((c) => ({ chunk: c.chunk, score: rerankScores.get(c.chunk.id) ?? -99 }))
+      .sort((a, b) => b.score - a.score);
+    // Anything outside the shortlist never reached the cross-encoder.
+    const seen = new Set(reordered.map((r) => r.chunk.id));
+    return [...reordered, ...baseRanked.filter((r) => !seen.has(r.chunk.id))];
+  }, [ragType, rerankScores, candidates, baseRanked]);
+
+  const retrieved = useMemo(() => {
+    // Cross-encoder logits are unbounded and not comparable to a cosine floor,
+    // so the score floor only applies to similarity-scored rankings.
+    const floored = rerankScores && ragType === "advanced"
+      ? ranked
+      : ranked.filter((r) => r.score >= minScore);
+    return floored.slice(0, topK);
+  }, [ranked, topK, minScore, rerankScores, ragType]);
 
   const projector = useMemo(() => {
     if (!vectors || vectorsStale || vectors.length < 2) return null;
@@ -435,6 +540,23 @@ export function RagProvider({
     setMinScore,
     ranked,
     retrieved,
+    hydeText,
+    setHydeText,
+    hydeVector,
+    hydeEmbedding,
+    runHydeEmbedding,
+    useHyde,
+    setUseHyde,
+    hybridAlpha,
+    setHybridAlpha,
+    denseScores,
+    sparseScores,
+    baseRanked,
+    candidates,
+    candidateK,
+    setCandidateK,
+    rerankScores,
+    setRerankScores,
     plot,
     queryPoint,
     hovered,

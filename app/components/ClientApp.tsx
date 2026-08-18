@@ -13,6 +13,9 @@ import Step7Generation from "./Step7Generation";
 import Step8Evaluation from "./Step8Evaluation";
 import Step9Guardrails from "./Step9Guardrails";
 import StagePlaceholder from "./StagePlaceholder";
+import StageHyDE from "./StageHyDE";
+import StageHybrid from "./StageHybrid";
+import StageRerank from "./StageRerank";
 import { RagProvider, useRag } from "../lib/store";
 import { ragTypeDef } from "../lib/ragTypes";
 import { formatUSD } from "../lib/pricing";
@@ -73,6 +76,11 @@ const STAGE_COMPONENTS: Record<
   generation: Step7Generation,
   evaluation: Step8Evaluation,
   guardrails: Step9Guardrails,
+
+  // Advanced RAG
+  hyde: StageHyDE,
+  hybrid: StageHybrid,
+  rerank: StageRerank,
 };
 
 /** Renders the active architecture's stage list, numbering by position. */
