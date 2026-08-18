@@ -138,6 +138,11 @@ interface RagState {
   setCandidateK: (n: number) => void;
   rerankScores: Map<string, number> | null;
   setRerankScores: (m: Map<string, number> | null) => void;
+  /** Minimum cross-encoder logit to reach the prompt. Roughly calibrated: >0 is relevant. */
+  rerankFloor: number;
+  setRerankFloor: (n: number) => void;
+  /** Shortlist entries the floor rejected, kept for display. */
+  rerankRejected: Scored[];
 
   plot: { chunk: Chunk; x: number; y: number }[];
   queryPoint: { x: number; y: number } | null;
@@ -227,6 +232,7 @@ export function RagProvider({
   const [rerankScores, setRerankScores] = useState<Map<string, number> | null>(
     null,
   );
+  const [rerankFloor, setRerankFloor] = useState(0);
 
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -453,14 +459,28 @@ export function RagProvider({
     return [...reordered, ...baseRanked.filter((r) => !seen.has(r.chunk.id))];
   }, [ragType, rerankScores, candidates, baseRanked]);
 
+  const reranked = ragType === "advanced" && rerankScores;
+
+  /**
+   * Once a cross-encoder has run, only the passages it actually scored are
+   * eligible. The rest of `ranked` still carries fused similarity scores on a
+   * 0-1 scale, which would sail past a logit floor without ever having been
+   * judged.
+   */
+  const rerankedPool = useMemo(
+    () => (reranked ? ranked.filter((r) => rerankScores!.has(r.chunk.id)) : []),
+    [reranked, ranked, rerankScores],
+  );
+
   const retrieved = useMemo(() => {
-    // Cross-encoder logits are unbounded and not comparable to a cosine floor,
-    // so the score floor only applies to similarity-scored rankings.
-    const floored = rerankScores && ragType === "advanced"
-      ? ranked
-      : ranked.filter((r) => r.score >= minScore);
-    return floored.slice(0, topK);
-  }, [ranked, topK, minScore, rerankScores, ragType]);
+    if (reranked) return rerankedPool.filter((r) => r.score >= rerankFloor).slice(0, topK);
+    return ranked.filter((r) => r.score >= minScore).slice(0, topK);
+  }, [reranked, rerankedPool, rerankFloor, ranked, minScore, topK]);
+
+  const rerankRejected = useMemo(
+    () => (reranked ? rerankedPool.filter((r) => r.score < rerankFloor) : []),
+    [reranked, rerankedPool, rerankFloor],
+  );
 
   const projector = useMemo(() => {
     if (!vectors || vectorsStale || vectors.length < 2) return null;
@@ -557,6 +577,9 @@ export function RagProvider({
     setCandidateK,
     rerankScores,
     setRerankScores,
+    rerankFloor,
+    setRerankFloor,
+    rerankRejected,
     plot,
     queryPoint,
     hovered,

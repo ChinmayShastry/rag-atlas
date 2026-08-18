@@ -26,11 +26,17 @@ export default function StageRerank({ n }: StageProps) {
     setCandidateK,
     rerankScores,
     setRerankScores,
+    rerankFloor,
+    setRerankFloor,
+    rerankRejected,
+    retrieved,
     baseRanked,
     ranked,
     topK,
     chunks,
   } = useRag();
+
+  const inPromptIds = new Set(retrieved.map((r) => r.chunk.id));
 
   const [progress, setProgress] = useState<LoadProgress | null>(null);
   const [running, setRunning] = useState(false);
@@ -90,6 +96,36 @@ export default function StageRerank({ n }: StageProps) {
       locked={!ready}
       lockNote="Rank some chunks first."
     >
+      {rerankScores && retrieved.length === 0 && (
+        <div className="mb-4 flex items-start gap-3 rounded-2xl border border-berry/40 bg-berry/[0.07] px-4 py-3">
+          <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-berry text-white">
+            <svg
+              viewBox="0 0 20 20"
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+            >
+              <circle cx="10" cy="10" r="7" />
+              <path d="M5 5l10 10" />
+            </svg>
+          </span>
+          <div>
+            <div className="font-display text-[16px] font-bold text-[#8E2F41]">
+              Nothing cleared the floor
+            </div>
+            <p className="mt-0.5 text-[13px] leading-relaxed text-ink-soft">
+              Every candidate scored below {rerankFloor}, so no passages reach the
+              prompt and the stages below stay empty. This is the correct
+              behaviour, not a bug: a system that can measure relevance can also
+              decline to answer, rather than padding a prompt with the least-bad
+              of a weak field.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="grid gap-4 lg:grid-cols-[290px_minmax(0,1fr)]">
         <div className="space-y-4">
           <Panel title="Controls">
@@ -104,6 +140,31 @@ export default function StageRerank({ n }: StageProps) {
               }}
               hint={`The cross-encoder scores ${candidateK} candidates, then the top ${topK} go to the prompt. Wider net, better recall, more compute.`}
             />
+
+            {rerankScores && (
+              <div className="mt-4">
+                <Slider
+                  label="Relevance floor"
+                  value={rerankFloor}
+                  min={-10}
+                  max={5}
+                  step={0.5}
+                  accent="#B0455A"
+                  onChange={setRerankFloor}
+                  hint={
+                    rerankRejected.length === 0
+                      ? "Nothing rejected. Raise it until weak passages start dropping out."
+                      : `${rerankRejected.length} of ${candidateK} candidates rejected as irrelevant.`
+                  }
+                />
+                <p className="mt-2 text-[12px] leading-relaxed text-muted">
+                  Unlike a cosine score, a cross-encoder logit is roughly
+                  calibrated: above zero usually means genuinely relevant, below
+                  means not. That makes an absolute threshold meaningful here in
+                  a way it never was upstream.
+                </p>
+              </div>
+            )}
             <button
               onClick={run}
               disabled={running || !candidates.length}
@@ -207,7 +268,11 @@ export default function StageRerank({ n }: StageProps) {
                 const after = i + 1;
                 const delta = before - after;
                 const color = DOC_COLORS[r.chunk.docId]?.accent ?? "#C1553A";
-                const inPrompt = i < topK;
+                const inPrompt = rerankScores
+                  ? inPromptIds.has(r.chunk.id)
+                  : i < topK;
+                const rejected =
+                  !!rerankScores && r.score < rerankFloor;
 
                 return (
                   <div
@@ -218,7 +283,7 @@ export default function StageRerank({ n }: StageProps) {
                       background: inPrompt
                         ? `${color}0E`
                         : "rgba(255,255,255,.45)",
-                      opacity: inPrompt ? 1 : 0.72,
+                      opacity: inPrompt ? 1 : rejected ? 0.4 : 0.72,
                     }}
                   >
                     <div className="flex items-center gap-2">
@@ -258,6 +323,11 @@ export default function StageRerank({ n }: StageProps) {
                             in prompt
                           </span>
                         )}
+                        {rejected && (
+                          <span className="chip border-berry/30 bg-berry/[.07] text-[9.5px] text-berry">
+                            below floor
+                          </span>
+                        )}
                         <span className="font-mono text-[12px] font-bold tabular-nums text-ink">
                           {r.score.toFixed(rerankScores ? 2 : 3)}
                         </span>
@@ -283,7 +353,21 @@ export default function StageRerank({ n }: StageProps) {
       </div>
 
       <Insight>
-        {rerankScores ? (
+        {rerankScores && rerankRejected.length > 0 ? (
+          <>
+            The floor rejected{" "}
+            <strong className="font-bold text-ink">
+              {rerankRejected.length}
+            </strong>{" "}
+            of {candidateK} candidates. This is the one place in the whole
+            pipeline where an absolute relevance threshold is defensible —
+            cosine similarity has no meaningful zero point, so the floor in
+            earlier stages is a guess, while a cross-encoder logit genuinely
+            separates relevant from irrelevant. Drag it up until the answer
+            below starts to suffer, and you have found the real precision–recall
+            tradeoff for this corpus.
+          </>
+        ) : rerankScores ? (
           movers > 0 ? (
             <>
               <strong className="font-bold text-ink">{movers}</strong> of{" "}
