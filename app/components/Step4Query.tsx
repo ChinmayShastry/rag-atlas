@@ -30,9 +30,12 @@ export default function Step4Query({ n }: StageProps) {
   } = useRag();
 
   // Graph RAG seeds its walk by matching words against entity labels, so it
-  // has no embedding stage and needs no query vector.
+  // has no embedding stage and needs no query vector at all.
   const lexicalOnly = ragType === "graph";
-  const ready = lexicalOnly || !!vectors;
+  // RAPTOR embeds the query, but compares it against tree nodes rather than
+  // chunks, so it has no chunk-embedding stage to wait for either.
+  const usesChunkVectors = ragType !== "graph" && ragType !== "hierarchical";
+  const ready = !usesChunkVectors || !!vectors;
   const dirty = embeddedQuery !== null && embeddedQuery !== query.trim();
 
   return (
@@ -44,7 +47,9 @@ export default function Step4Query({ n }: StageProps) {
       lede={
         lexicalOnly
           ? "Graph retrieval starts from the entities your question names, so the question is matched against entity labels rather than embedded."
-          : "Your question goes through the exact same embedding model as the chunks. That is the whole trick — question and answer end up in one shared space."
+          : ragType === "hierarchical"
+            ? "Your question is embedded by the same model used to build the tree, so it can be compared against every node — leaves and summaries alike."
+            : "Your question goes through the exact same embedding model as the chunks. That is the whole trick — question and answer end up in one shared space."
       }
       locked={!ready}
       lockNote="Embed the chunks first — there is nothing to compare a question against yet."
@@ -129,7 +134,8 @@ export default function Step4Query({ n }: StageProps) {
         </div>
 
         <div className="space-y-4">
-          {!lexicalOnly && (
+          {/* The plot needs chunk vectors, which only some flows produce. */}
+          {vectors && (
             <Panel title="Query in the same space" bodyClass="p-3">
               <EmbeddingPlot height={300} />
             </Panel>

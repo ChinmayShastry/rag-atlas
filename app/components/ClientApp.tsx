@@ -26,6 +26,8 @@ import StageCritique from "./StageCritique";
 import StageExtract from "./StageExtract";
 import StageGraphBuild from "./StageGraphBuild";
 import StageTraverse from "./StageTraverse";
+import StageTree from "./StageTree";
+import StageTreeRoute from "./StageTreeRoute";
 import { RagProvider, useRag } from "../lib/store";
 import { ragTypeDef } from "../lib/ragTypes";
 import { formatUSD } from "../lib/pricing";
@@ -107,6 +109,10 @@ const STAGE_COMPONENTS: Record<
   extract: StageExtract,
   graphbuild: StageGraphBuild,
   traverse: StageTraverse,
+
+  // Hierarchical RAPTOR
+  tree: StageTree,
+  treeroute: StageTreeRoute,
 };
 
 /** Renders the active architecture's stage list, numbering by position. */

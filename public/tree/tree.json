@@ -1,0 +1,921 @@
+{
+ "meta": {
+  "chatModel": "gpt-4o-mini",
+  "embedModel": "text-embedding-3-small",
+  "builtAt": "2026-08-18T10:55:38.548Z",
+  "leafTarget": 700,
+  "levels": 3,
+  "calls": 17,
+  "inputTokens": 15354,
+  "outputTokens": 1939,
+  "estimatedCostUsd": 0.0034664999999999995
+ },
+ "nodes": [
+  {
+   "id": "n0",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "The Craft and Chemistry of Coffee Roasting",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 0,
+    "end": 42
+   }
+  },
+  {
+   "id": "n1",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "Green coffee is, to the untrained eye, an unpromising material. The seeds arrive pale and dense, smelling faintly of hay and raw peanuts, and they carry roughly ten to twelve percent moisture by weight. Nothing about them suggests the aromatic complexity locked inside. Roasting is the process that unlocks it, and it is best understood not as cooking but as a carefully steered chain of chemical reactions driven by heat applied over time.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 44,
+    "end": 484
+   }
+  },
+  {
+   "id": "n2",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "A roast begins with the charge. The roaster preheats the drum to a target temperature, often somewhere between 180 and 220 degrees Celsius depending on batch size and machine design, and then drops the green coffee in. The mass of cool beans immediately pulls heat out of the drum, and the temperature probe plunges. The low point of that plunge is called the turnaround point, and it usually arrives about sixty to ninety seconds after the charge. From there the bean mass begins to climb, and the roaster's job for the next eight to fourteen minutes is to manage the rate of that climb.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 486,
+    "end": 1074
+   }
+  },
+  {
+   "id": "n3",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "The first phase is the drying phase. Water must leave the bean before meaningful browning can occur, because evaporation holds the bean surface near the boiling point of water and caps the temperature at which other reactions can proceed. This phase typically occupies the first four to six minutes and ends somewhere near 150 degrees Celsius. Roasters listen and look for the color shift from green to pale yellow, and many describe a smell like toasted grain or basmati rice at this stage.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 1076,
+    "end": 1567
+   }
+  },
+  {
+   "id": "n4",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "Once the free moisture is gone, browning begins in earnest. Two families of reactions dominate. The Maillard reaction couples amino acids with reducing sugars, generating hundreds of volatile aromatic compounds and the brown melanoidin pigments that give roasted coffee its color. Caramelization, a separate process, breaks down sugars under heat without requiring amino acids. Together these reactions build the bulk of what a drinker later perceives as body, sweetness, and roast character. Because they are time and temperature dependent, two roasts that finish at identical temperatures but take different paths to get there will taste noticeably different.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 1569,
+    "end": 2230
+   }
+  },
+  {
+   "id": "n5",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "Around 196 degrees Celsius, or roughly 385 degrees Fahrenheit, the bean reaches first crack. Steam and carbon dioxide generated inside the bean build pressure until the cellular structure fractures audibly. The sound resembles popcorn, sharp and irregular, and it marks the point at which coffee becomes drinkable. The bean roughly doubles in volume, its surface smooths, and the silverskin, or chaff, sloughs off and is drawn away by the roaster's cyclone.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 2232,
+    "end": 2689
+   }
+  },
+  {
+   "id": "n6",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "What happens after first crack is where roasters exercise the most judgment. The interval between the onset of first crack and the moment the coffee is dropped from the drum is called development time. Expressed as a fraction of total roast length, it is known as the development time ratio, and it commonly falls between fifteen and twenty-five percent. Too short a development produces sour, grassy, underdeveloped cups with a papery finish. Too long flattens acidity and pushes the coffee toward generic roast flavors that mask origin character.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 2691,
+    "end": 3239
+   }
+  },
+  {
+   "id": "n7",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "If heat continues to be applied, the coffee reaches second crack at approximately 224 degrees Celsius, or about 435 degrees Fahrenheit. This sound is quieter and more continuous than first crack, a crackling rather than a popping, and it is caused by the fracturing of the bean's cell walls as oils migrate to the surface. Roasts taken well into second crack develop the dark, glossy, bittersweet profile associated with traditional espresso blends and French roasts. Past that point the coffee moves quickly toward carbonization, and the risk of a drum fire rises sharply.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 3241,
+    "end": 3814
+   }
+  },
+  {
+   "id": "n8",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "Weight loss is a reliable index of roast degree. A light roast typically sheds twelve to fourteen percent of its green weight, most of it water. A medium roast loses fifteen to seventeen percent. Dark roasts can shed eighteen to twenty percent or more, at which point a substantial portion of the loss is organic matter rather than moisture. Because the bean expands while losing mass, roasted coffee is dramatically less dense than green coffee, which is why volumetric dosing is unreliable and roasters and baristas alike work by weight.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 3816,
+    "end": 4355
+   }
+  },
+  {
+   "id": "n9",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "Several common beliefs about roasting are worth correcting. Caffeine is relatively heat stable and does not burn off in any meaningful quantity during a normal roast. Dark roasts contain slightly less caffeine per bean than light roasts, but only because the bean has lost mass; measured by weight, the difference is small, and measured by scoop, dark roast can actually deliver more caffeine because the beans are less dense. What does change substantially is the chlorogenic acid content, which degrades steadily with heat and contributes to the shift from bright, tart acidity toward the softer bitterness of darker roasts.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 4357,
+    "end": 4983
+   }
+  },
+  {
+   "id": "n10",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "The two commercially dominant species behave differently in the drum. Arabica, which accounts for the majority of specialty coffee, contains more lipids and sugars, roasts more delicately, and expresses more floral and fruit character. Robusta carries roughly twice the caffeine, more chlorogenic acid, and less sugar, giving it a heavier, more rubbery profile and a thick crema prized in some espresso traditions. Density also matters: high-grown beans from elevations above 1,500 meters are harder and denser, absorb heat more slowly, and generally tolerate more aggressive early heat application than soft, low-grown beans.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 4985,
+    "end": 5611
+   }
+  },
+  {
+   "id": "n11",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "Roasting does not end when the coffee leaves the drum. Freshly roasted beans are saturated with carbon dioxide produced during pyrolysis, and this gas must escape before the coffee brews predictably. The process is called degassing. Excess carbon dioxide interferes with water contact during extraction, causing dramatic blooming and uneven, often sour results. Most filter coffees settle after three to seven days of rest. Espresso, which relies on sustained pressure and shorter contact time, is generally judged to improve for seven to fourteen days after roast, and some roasters recommend even longer for dark roasts.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 5613,
+    "end": 6235
+   }
+  },
+  {
+   "id": "n12",
+   "level": 0,
+   "title": "Coffee Roasting",
+   "text": "Storage governs how long that peak lasts. The enemies of roasted coffee are oxygen, moisture, heat, and light, in roughly that order of importance. A one-way valve bag allows carbon dioxide to vent while blocking oxygen from entering, which is why quality roasters use them. Freezing green or roasted coffee in genuinely airtight containers can preserve it for months, but repeated freeze-thaw cycles drive condensation into the porous bean structure and cause rapid staling. Grinding accelerates every one of these processes by multiplying the exposed surface area, which is the single strongest practical argument for grinding immediately before brewing.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [],
+   "span": {
+    "docId": "coffee",
+    "start": 6237,
+    "end": 6893
+   }
+  },
+  {
+   "id": "n13",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "A honeybee colony is best understood as a single organism distributed across tens of thousands of bodies. The western honeybee, Apis mellifera, does not survive as an individual in any meaningful sense. A bee separated from its colony dies within days. Decisions that look like intelligence, including where to forage, when to swarm, and how warm to keep the nest, emerge from the interaction of many simple individuals rather than from any central authority. The queen, despite her name, issues no orders.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 28,
+    "end": 534
+   }
+  },
+  {
+   "id": "n14",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "A healthy colony at the height of summer contains somewhere between 20,000 and 80,000 bees. That population collapses in autumn to perhaps 10,000 as the colony conserves resources for winter. Three castes divide the labor. A single queen handles reproduction. Female workers, who are functionally sterile, perform every other task. A few hundred male drones exist during the reproductive season for the sole purpose of mating, and they are expelled from the hive to die when nectar flows end.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 536,
+    "end": 1028
+   }
+  },
+  {
+   "id": "n15",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "The queen's output during peak season is extraordinary. She can lay up to 2,000 eggs in a single day, a mass exceeding her own body weight. She mates only once in her life, during a series of nuptial flights in her first weeks, storing sperm from ten to twenty drones in an organ called the spermatheca. That single store must last her entire productive life of two to five years. Crucially, she controls the sex of each egg at the moment of laying. Fertilized eggs become diploid females, either workers or queens. Unfertilized eggs develop into haploid drones, meaning a drone has a grandfather but no father.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 1030,
+    "end": 1641
+   }
+  },
+  {
+   "id": "n16",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "Development time differs by caste and is a useful diagnostic for beekeepers inspecting brood. A queen emerges 16 days after the egg is laid, a worker at 21 days, and a drone at 24 days. All larvae are fed royal jelly for their first three days. What determines whether a female larva becomes a worker or a queen is simply that queen larvae continue receiving royal jelly throughout development, while worker larvae are switched to a diet of pollen and honey. The difference is entirely nutritional, not genetic.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 1643,
+    "end": 2154
+   }
+  },
+  {
+   "id": "n17",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "A worker's life is organized as a progression of jobs tied to her age, a pattern called temporal polyethism. For the first two or three days after emerging she cleans cells. From roughly day three to day eleven she serves as a nurse bee, feeding larvae from her hypopharyngeal glands. In the middle of her life she receives nectar from returning foragers, builds comb with wax secreted from glands on her abdomen, and stores and packs pollen. Around day eighteen she takes up guard duty at the entrance. Only in the final phase, from roughly day twenty-two onward, does she become a forager. A summer worker lives about six weeks, and much of that lifespan is consumed by the punishing work of foraging. Winter bees, which do not forage and carry heavier fat reserves, can live four to six months.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 2156,
+    "end": 2953
+   }
+  },
+  {
+   "id": "n18",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "Foraging is a demanding calculation. A forager will typically visit between 50 and 100 flowers in a single trip and returns with roughly 40 milligrams of nectar, close to half her body weight. She exhibits flower constancy, meaning she tends to work a single species during a foraging bout, which is precisely the behavior that makes honeybees such efficient pollinators. The often-quoted figure is that producing a single pound of honey requires visiting roughly two million flowers and flying a cumulative distance comparable to circling the globe.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 2955,
+    "end": 3505
+   }
+  },
+  {
+   "id": "n19",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "The mechanism by which foragers share location information is among the most remarkable communication systems in the animal kingdom. Karl von Frisch decoded it in the mid twentieth century and received a Nobel Prize for the work in 1973. A returning forager performs a waggle dance on the vertical face of the comb in the dark interior of the hive. She runs forward while vibrating her abdomen from side to side, then loops back to repeat the run, alternating left and right loops to trace a figure eight.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 3507,
+    "end": 4012
+   }
+  },
+  {
+   "id": "n20",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "Two variables encode the message. The angle of the waggle run relative to vertical corresponds to the angle of the food source relative to the sun's current azimuth. A run performed straight up the comb means fly directly toward the sun; a run sixty degrees to the right of vertical means fly sixty degrees to the right of the sun. The duration of the waggle portion encodes distance, with roughly one second of waggling corresponding to approximately one kilometer of flight, though the precise calibration varies between subspecies. Bees watching in complete darkness read the dance by touch and sound. Remarkably, dancers compensate for the sun's movement across the sky, adjusting the angle of their dance over time even when they have been inside the hive for hours.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 4014,
+    "end": 4785
+   }
+  },
+  {
+   "id": "n21",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "Temperature regulation is another colony-level achievement. The brood nest is held between 34 and 35 degrees Celsius with a precision of about half a degree, and this stability matters enormously: brood reared even slightly outside that band emerges with impaired learning ability and shortened lifespan. When the nest is too cool, workers decouple their wings from the flight muscles and shiver, generating metabolic heat. When it is too hot, they fan at the entrance to drive airflow and spread droplets of water on the comb so that evaporation carries heat away. In winter the colony forms a tight cluster around the queen, with bees continuously rotating between the insulating outer mantle and the warmer core, keeping the center near 20 degrees Celsius even when the outside air drops well below freezing.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 4787,
+    "end": 5598
+   }
+  },
+  {
+   "id": "n22",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "Honey production is fundamentally a preservation problem. Nectar arrives at roughly 70 to 80 percent water, a concentration at which yeasts and bacteria would thrive. Workers reduce it below 18 percent by repeatedly exposing droplets to hive air and by fanning to accelerate evaporation. Simultaneously, the enzyme invertase splits sucrose into glucose and fructose, and glucose oxidase generates small quantities of hydrogen peroxide. The resulting product is so hypertonic that it draws water out of any microbial cell that lands in it. Once the moisture target is met, workers cap the cell with wax, and the honey becomes effectively immortal. Sealed jars recovered from Egyptian tombs after three thousand years have been found still edible.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 5600,
+    "end": 6345
+   }
+  },
+  {
+   "id": "n23",
+   "level": 0,
+   "title": "Honeybee Colonies",
+   "text": "Reproduction at the colony level occurs through swarming. When a colony becomes crowded in late spring, workers construct queen cups and the old queen departs with roughly half the workforce, leaving a developing daughter behind. The swarm settles in a temporary cluster while a few hundred scout bees inspect potential cavities and advertise their findings with waggle dances. Scouts that visit a rival site and find it superior will switch their allegiance, and the cluster reaches a decision when one site accumulates a quorum of committed scouts. The entire process is a distributed vote, resolved without any individual ever comparing all the options.",
+   "docs": [
+    "bees"
+   ],
+   "children": [],
+   "span": {
+    "docId": "bees",
+    "start": 6347,
+    "end": 7003
+   }
+  },
+  {
+   "id": "n24",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Firing Ceramics: Kilns, Cones, and Atmosphere",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 0,
+    "end": 45
+   }
+  },
+  {
+   "id": "n25",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Everything a potter does at the wheel is provisional until the work is fired. Firing is the irreversible step that converts a fragile, water-soluble clay body into a permanent ceramic material, and it is governed less by intuition than by a set of well-documented physical transformations that occur at predictable points along the temperature curve.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 47,
+    "end": 397
+   }
+  },
+  {
+   "id": "n26",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Most studio work passes through the kiln twice. The first pass is the bisque firing. Its purpose is to drive off chemically bound water and burn out organic material, converting the raw clay into a porous but durable state that can be handled and glazed without dissolving. Bisque is typically fired to Orton cone 06 through cone 04, corresponding roughly to 999 to 1063 degrees Celsius. The resulting body is strong enough to survive dipping yet still absorbent enough to draw water out of a glaze slurry and leave an even coat behind.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 399,
+    "end": 935
+   }
+  },
+  {
+   "id": "n27",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "The second pass is the glaze firing, and it is taken considerably higher. Mid-range studio work is commonly fired to cone 6, approximately 1222 degrees Celsius, while traditional high-fire stoneware and porcelain go to cone 10, around 1285 degrees Celsius. At these temperatures the clay body vitrifies. Fluxes in the body melt and form a glassy phase that fills the pores between particles, and the piece becomes dense, strong, and nearly impermeable. Porcelain fired properly to cone 10 has water absorption below one percent and will ring when struck.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 937,
+    "end": 1491
+   }
+  },
+  {
+   "id": "n28",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "The term cone deserves explanation because it is routinely misunderstood. Orton pyrometric cones are small pyramids formulated to soften and bend at specific points, and what they actually measure is heat work rather than temperature. Heat work integrates temperature and time together, which matters because a kiln held at 1200 degrees for four hours does substantially more to a glaze than a kiln that touches 1200 degrees for ten minutes. This is why cone numbers, not thermocouple readings, define a firing. A pyrometer tells you where the kiln is at this instant; the cone tells you what the ware has actually experienced. Cone numbering is also counterintuitive: numbers with a zero prefix run cooler as the number rises, so cone 06 is cooler than cone 04, while unprefixed numbers run hotter as the number rises, so cone 10 is hotter than cone 6.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 1493,
+    "end": 2346
+   }
+  },
+  {
+   "id": "n29",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Several transformations along the way demand specific handling. Below about 200 degrees Celsius, residual atmospheric water leaves the clay. This stage is called water smoking, and rushing it is the most common cause of catastrophic failure in a bisque load, because trapped steam generates internal pressure faster than the porous body can vent it and the piece explodes. Between roughly 300 and 800 degrees, organic matter and carbon burn out, a process that requires oxygen and therefore adequate ventilation; carbon trapped past this window causes black coring and bloating later in the firing.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 2348,
+    "end": 2946
+   }
+  },
+  {
+   "id": "n30",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "The most notorious threshold is quartz inversion at 573 degrees Celsius. Free silica in the clay body abruptly changes crystal structure from alpha to beta quartz, and the accompanying volume change of about one percent happens almost instantaneously. The transformation occurs on both the way up and the way down, which means every firing crosses it twice. Ramping too quickly through this window, particularly during cooling, produces dunting, a characteristic clean crack that often runs straight through a foot ring. A second and more subtle transition, the cristobalite inversion, occurs near 226 degrees Celsius during cooling in bodies that have developed cristobalite at high temperature, and it is a frequent culprit when pieces crack in a kiln that seems safely cool.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 2948,
+    "end": 3725
+   }
+  },
+  {
+   "id": "n31",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Atmosphere is the other great variable, and it is what most sharply divides electric from fuel-burning kilns. An electric kiln heats by resistance elements and admits ambient air, producing an oxidation atmosphere in which metal oxides in glazes remain fully oxidized. A gas, wood, or oil kiln can be deliberately starved of air by adjusting the burners and damper so that combustion is incomplete. The resulting reduction atmosphere is rich in carbon monoxide, which is chemically hungry for oxygen and will strip it directly out of the metal oxides in both glaze and clay body.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 3727,
+    "end": 4306
+   }
+  },
+  {
+   "id": "n32",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "The visual consequences are dramatic and are the reason many potters tolerate the greater difficulty of fuel firing. Iron provides the clearest example. In oxidation, iron oxide yields ambers, honey browns, and warm yellows. In reduction, the same iron in a celadon glaze produces the cool blue-greens that Song dynasty potters spent centuries refining. Copper is even more extreme: in oxidation it gives familiar greens and turquoises, while in reduction it produces the deep, luminous copper reds known as sang de boeuf, or oxblood, which are notoriously difficult to reproduce consistently. Reduction also darkens and speckles the exposed clay body itself, since iron impurities in the stoneware react as well.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 4308,
+    "end": 5021
+   }
+  },
+  {
+   "id": "n33",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Beyond the standard oxidation and reduction firings lies a family of atmospheric techniques in which material is introduced into the kiln chamber. In salt and soda firing, sodium chloride or sodium carbonate is thrown into the kiln near peak temperature, where it volatilizes and combines with silica in the clay surface to form a sodium-alumino-silicate glaze directly on the ware. The result is the characteristic orange-peel texture, and because the vapor travels, the glaze reaches surfaces no brush could touch. Wood firing in a long chambered anagama kiln can run for several days of continuous stoking, during which flying ash settles on the pots and melts into a natural ash glaze whose pattern records the path the flame took through the chamber.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 5023,
+    "end": 5778
+   }
+  },
+  {
+   "id": "n34",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Raku is the outlier, and it inverts the usual relationship with time. Pieces are pulled from the kiln glowing at around 1000 degrees Celsius using tongs and moved immediately into a container of combustible material such as sawdust or newspaper, which ignites on contact. Sealing the container starves the fire and creates an intense post-firing reduction that pulls oxygen out of the glaze surface, producing metallic lusters and crackle patterns, while unglazed areas turn deep carbon black. The thermal shock is severe and deliberate. Raku ware is porous, structurally weak, and not food safe, which places it firmly in the category of decorative rather than functional ceramics.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 5780,
+    "end": 6462
+   }
+  },
+  {
+   "id": "n35",
+   "level": 0,
+   "title": "Pottery Kiln Firing",
+   "text": "Cooling is a genuine part of the firing schedule rather than an afterthought. Many crystalline and matte glazes require a controlled cooling cycle, sometimes involving a deliberate hold of several hours in the 1050 to 950 degree range, because the crystals that create the surface effect grow during cooling and simply do not form if the kiln is allowed to drop freely. Conversely, glossy glazes that are cooled too slowly can devitrify and turn cloudy. A common rule of thumb is that a kiln should not be opened until it has fallen below 200 degrees Celsius, and preferably closer to 100, both to protect the ware from thermal shock and to protect the operator from a face full of superheated air.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [],
+   "span": {
+    "docId": "kilns",
+    "start": 6464,
+    "end": 7162
+   }
+  },
+  {
+   "id": "n36",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "The Hillside Workshop: A Fictional Profile",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 0,
+    "end": 42
+   }
+  },
+  {
+   "id": "n37",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "Marta Vance is an invented character, written for this demonstration. Nothing here describes a real person. Her profile exists because it deliberately withholds the facts it depends on: almost every specific in this document points at a number recorded somewhere else in the corpus, and never states that number itself.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 44,
+    "end": 363
+   }
+  },
+  {
+   "id": "n38",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "Marta runs a small workshop on a north-facing hillside, where she divides her week between three crafts that she insists are the same craft wearing different clothes. All three, she says, are the management of heat and time over living material.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 365,
+    "end": 610
+   }
+  },
+  {
+   "id": "n39",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "Her pottery is stoneware, thrown on a kick wheel and fired in a gas kiln she built herself from a converted bread oven. She glazes for cone 10 and refuses to work any cooler, on the grounds that anything less does not properly vitrify and she dislikes the sound a half-matured pot makes when tapped. Her kiln is deliberately fuel-burning rather than electric because she wants the option of starving the burners of air. The copper glaze she is best known for, a deep and slightly variable red she calls Hillside Ox, only develops its colour under that starved atmosphere; fired in an electric kiln the same glaze comes out a flat and disappointing green. She has never used salt or soda in the chamber and considers wood firing a wonderful thing that other people should do.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 612,
+    "end": 1386
+   }
+  },
+  {
+   "id": "n40",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "Cooling is where she claims most potters lose their work. She holds her kiln for several hours on the way down through the crystalline range, because the matte surfaces she wants do not form if the kiln is allowed to fall freely, and she will not open the door early no matter how impatient the customer. Twice in her first year she cracked a whole shelf of work by rushing the cooling, and both times the fracture ran clean through the foot ring in the way that indicates the silica in the body changed structure faster than the pot could accommodate.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 1388,
+    "end": 1940
+   }
+  },
+  {
+   "id": "n41",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "Behind the workshop she keeps two hives of Apis mellifera, which she took up after reading that a colony makes decisions the way a good workshop does, by distributed argument rather than instruction. She is fascinated by the fact that her queens control the sex of every egg at the moment of laying, and that the only thing separating a worker from a queen is what the larva is fed after its third day. In a good summer she does nothing to the hives at all beyond watching the entrance, and she can tell from the traffic there whether a nectar flow is on. She has never counted the eggs a queen lays in a day but has read the figure and finds it difficult to believe.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 1942,
+    "end": 2609
+   }
+  },
+  {
+   "id": "n42",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "Her coffee is the part of the week she guards most jealously. She buys green beans from a single importer, always high-grown and dense, and roasts them in a one-kilo drum roaster in batches small enough to finish in about eleven minutes. She takes her roasts to first crack and drops them within ninety seconds of hearing it start, which puts her firmly in light-roast territory and produces the bright, tea-like cup she prefers. She has no interest in reaching second crack and describes the flavour of anything taken that far as \"a smell, not a taste.\" Because she roasts light, her weight loss is at the low end of the range, and she weighs every batch before and after to confirm it.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 2611,
+    "end": 3298
+   }
+  },
+  {
+   "id": "n43",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "She will not brew a roast on the day she makes it. Her filter coffee sits for the better part of a week before she touches it, and the espresso she pulls on the workshop machine waits considerably longer than that, because she has found that the pressure of an espresso shot exposes under-rested coffee in a way that a filter brew forgives. Everything is stored in valved bags, and she grinds immediately before brewing, which she regards as the least negotiable rule in the building.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 3300,
+    "end": 3784
+   }
+  },
+  {
+   "id": "n44",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "The three crafts share a vocabulary that she finds more than coincidental. Both her kiln and her roaster pass through a stage where water must leave the material before anything interesting can happen, and rushing that stage ruins the result in both cases, though for different reasons. Both have a moment that announces itself audibly. Both reward a maker who understands that the temperature reading on the instrument is not the same thing as the transformation happening inside the material. Her honey is the exception, and she likes it for that: the bees manage the moisture themselves, seal the result, and produce something that will outlast every pot she has ever made.",
+   "docs": [
+    "marta"
+   ],
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 3786,
+    "end": 4462
+   }
+  },
+  {
+   "id": "n45",
+   "level": 1,
+   "title": "Crafts of Roasting and Transformation",
+   "text": "The craft of coffee roasting shares similarities with other forms of material transformation, particularly in the critical stages where moisture must be removed for optimal results. Rushing this process can lead to poor outcomes, as both coffee and ceramics require careful attention to temperature and timing. An audible cue marks a significant moment in both crafts, highlighting the importance of understanding the difference between instrument readings and the actual changes occurring in the material. Honey stands out as an exception, as bees naturally manage moisture, creating a product that endures beyond the maker's creations.",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "children": [
+    "n0",
+    "n44"
+   ]
+  },
+  {
+   "id": "n46",
+   "level": 1,
+   "title": "Coffee Roasting Process and Techniques",
+   "text": "The coffee roasting process begins with preheating the drum to a temperature between 180 and 220 degrees Celsius, followed by the addition of green coffee, which causes a temperature drop known as the turnaround point occurring within sixty to ninety seconds. Roasting results in weight loss, with light roasts losing twelve to fourteen percent, medium roasts fifteen to seventeen percent, and dark roasts eighteen to twenty percent or more, affecting density and caffeine content. Post-roasting, beans must degas for three to seven days for optimal brewing, with espresso benefiting from a longer rest of seven to fourteen days. Proper storage in one-way valve bags is crucial to prevent staling, and grinding immediately before brewing is emphasized to maintain freshness.",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "children": [
+    "n2",
+    "n8",
+    "n9",
+    "n11",
+    "n12",
+    "n42",
+    "n43"
+   ]
+  },
+  {
+   "id": "n47",
+   "level": 1,
+   "title": "Ceramic Firing Process",
+   "text": "The firing process is crucial for potters, as it transforms fragile, water-soluble clay into a permanent ceramic material. This irreversible step relies on well-documented physical transformations that occur at specific temperatures, rather than on intuition.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [
+    "n25"
+   ]
+  },
+  {
+   "id": "n48",
+   "level": 1,
+   "title": "Ceramic Firing Processes Explained",
+   "text": "Ceramic studio work typically undergoes two firings: bisque and glaze. The bisque firing, reaching temperatures of 999 to 1063 degrees Celsius (cone 06 to cone 04), transforms raw clay into a porous state, while the glaze firing occurs at higher temperatures, around 1222 degrees Celsius (cone 6) to 1285 degrees Celsius (cone 10), resulting in a dense, impermeable body. Understanding the significance of Orton pyrometric cones, which measure heat work rather than just temperature, is crucial for successful firing. Additionally, specific temperature ranges during firing, such as water smoking below 200 degrees Celsius and controlled cooling for certain glazes, are essential to avoid defects. Raku firing presents a unique method, involving immediate post-firing reduction at around 1000 degrees Celsius, resulting in decorative but non-functional ware.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [
+    "n26",
+    "n27",
+    "n28",
+    "n29",
+    "n34",
+    "n35"
+   ]
+  },
+  {
+   "id": "n49",
+   "level": 1,
+   "title": "Honeybee Colony Dynamics and Behavior",
+   "text": "A honeybee colony, primarily the western honeybee (Apis mellifera), functions as a single organism with populations ranging from 20,000 to 80,000 in summer, collapsing to about 10,000 in winter. The queen can lay up to 2,000 eggs daily and controls the sex of each egg, while worker bees undergo a structured life cycle with specific roles tied to their age. Foraging involves visiting 50 to 100 flowers per trip, and the remarkable waggle dance communicates food source location and distance. Temperature regulation within the brood nest is critical for development, and honey production involves reducing nectar's water content to below 18 percent, ensuring its longevity.",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "children": [
+    "n13",
+    "n14",
+    "n15",
+    "n16",
+    "n17",
+    "n18",
+    "n19",
+    "n20",
+    "n21",
+    "n22",
+    "n23",
+    "n41"
+   ]
+  },
+  {
+   "id": "n50",
+   "level": 1,
+   "title": "Coffee Roasting Process Overview",
+   "text": "Coffee roasting involves critical temperature milestones, starting with first crack at around 196 degrees Celsius (385 degrees Fahrenheit), where the bean's structure fractures and it becomes drinkable. The development time following first crack, typically 15 to 25 percent of the total roast, is crucial for flavor, as too short a time leads to sourness while too long masks the coffee's origin. Continuing to apply heat leads to second crack at approximately 224 degrees Celsius (435 degrees Fahrenheit), resulting in a darker, bittersweet profile, but risks carbonization if overdone. The roasting behavior also varies between Arabica and Robusta beans, with Arabica offering floral notes and Robusta providing a thicker crema due to its higher caffeine content.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [
+    "n5",
+    "n6",
+    "n7",
+    "n10"
+   ]
+  },
+  {
+   "id": "n51",
+   "level": 1,
+   "title": "Ceramic Firing Techniques and Atmospheres",
+   "text": "Ceramic firing techniques vary significantly based on the kiln atmosphere, which can be oxidation or reduction. Electric kilns create an oxidation atmosphere, while gas, wood, or oil kilns can achieve a reduction atmosphere by limiting air supply, affecting the color and quality of glazes. Techniques such as salt and soda firing introduce materials into the kiln to create unique glazes, while wood firing allows ash to form natural glazes over time. An example of this is a potter who uses a gas kiln to achieve a specific copper glaze, which only develops its desired color in a reduction atmosphere.",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "children": [
+    "n24",
+    "n31",
+    "n33",
+    "n39"
+   ]
+  },
+  {
+   "id": "n52",
+   "level": 1,
+   "title": "Kiln Cooling and Cracking Risks",
+   "text": "Quartz inversion at 573 degrees Celsius is a critical threshold where free silica in clay changes structure, causing a one percent volume change that can lead to dunting if cooling is too rapid. Additionally, cristobalite inversion near 226 degrees Celsius can cause cracks even after the kiln appears cool. A potter emphasizes the importance of holding the kiln for several hours during cooling to avoid these issues, recalling instances where rushing the process resulted in significant losses.",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "children": [
+    "n30",
+    "n40"
+   ]
+  },
+  {
+   "id": "n53",
+   "level": 1,
+   "title": "Effects of Firing on Glaze Colors",
+   "text": "The firing atmosphere significantly influences the colors produced in pottery glazes, particularly with iron and copper. In oxidation, iron oxide results in ambers, honey browns, and warm yellows, while in reduction, it transforms into cool blue-greens, as seen in celadon glazes. Copper exhibits even more dramatic changes, yielding greens and turquoises in oxidation and deep, luminous reds known as sang de boeuf in reduction, which are challenging to replicate. Additionally, reduction firing affects the clay body, darkening and speckling it due to iron impurities.",
+   "docs": [
+    "kilns"
+   ],
+   "children": [
+    "n32"
+   ]
+  },
+  {
+   "id": "n54",
+   "level": 1,
+   "title": "Marta Vance's Craft Workshop",
+   "text": "Marta Vance is a fictional character created to illustrate a concept, with her profile intentionally omitting specific factual details that are recorded elsewhere. She operates a small workshop on a north-facing hillside, where she dedicates her time to three distinct crafts, which she believes are fundamentally the same, as they all involve the management of heat and time applied to living materials.",
+   "docs": [
+    "marta"
+   ],
+   "children": [
+    "n37",
+    "n38"
+   ]
+  },
+  {
+   "id": "n55",
+   "level": 1,
+   "title": "Coffee Roasting Process Explained",
+   "text": "Green coffee beans, initially pale and dense with 10 to 12 percent moisture, undergo a transformative roasting process that involves a series of chemical reactions driven by heat. The first phase, lasting four to six minutes, is the drying phase, where the beans reach around 150 degrees Celsius, allowing for a color shift and a toasted grain aroma. Following this, the browning phase begins, dominated by the Maillard reaction and caramelization, which create the complex flavors and aromas associated with roasted coffee, highlighting the importance of time and temperature in determining the final taste.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [
+    "n1",
+    "n3",
+    "n4"
+   ]
+  },
+  {
+   "id": "n56",
+   "level": 1,
+   "title": "The Hillside Workshop Overview",
+   "text": "The Hillside Workshop is a fictional establishment known for its unique approach to craftsmanship and creativity. It emphasizes the importance of community involvement and hands-on learning, offering various programs and workshops that cater to different skill levels. The workshop is set in a picturesque location, providing an inspiring environment for artists and craftsmen to develop their talents.",
+   "docs": [
+    "marta"
+   ],
+   "children": [
+    "n36"
+   ]
+  },
+  {
+   "id": "n57",
+   "level": 2,
+   "title": "Craftsmanship and Nature's Processes",
+   "text": "Coffee roasting and honey production both require careful management of moisture and temperature for optimal results, with coffee needing precise timing to avoid poor outcomes. Honeybees, particularly Apis mellifera, play a crucial role in this process, with colonies ranging from 20,000 to 80,000 in summer and the queen laying up to 2,000 eggs daily. Marta Vance, a fictional character, embodies the connection between various crafts, emphasizing their shared reliance on heat and time management. The Hillside Workshop, also fictional, fosters community engagement and skill development in these crafts.",
+   "docs": [
+    "coffee",
+    "marta",
+    "bees"
+   ],
+   "children": [
+    "n45",
+    "n49",
+    "n54",
+    "n56"
+   ]
+  },
+  {
+   "id": "n58",
+   "level": 2,
+   "title": "Coffee Roasting Process Overview",
+   "text": "The coffee roasting process begins with preheating the drum to 180 to 220 degrees Celsius, followed by the addition of green coffee, which causes a temperature drop and the turnaround point within sixty to ninety seconds. Key milestones include the first crack at around 196 degrees Celsius, where the beans become drinkable, and the second crack at approximately 224 degrees Celsius, which can lead to a darker profile if overdone. The roasting process involves a drying phase lasting four to six minutes at around 150 degrees Celsius, followed by a browning phase that develops complex flavors through the Maillard reaction and caramelization. Proper post-roasting degassing for three to seven days, with espresso benefiting from seven to fourteen days, and storage in one-way valve bags are essential for maintaining freshness.",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "children": [
+    "n46",
+    "n50",
+    "n55"
+   ]
+  },
+  {
+   "id": "n59",
+   "level": 2,
+   "title": "Ceramic Firing Techniques and Effects",
+   "text": "The firing process is essential for transforming clay into durable ceramics, involving two main stages: bisque firing at 999 to 1063 degrees Celsius and glaze firing at 1222 to 1285 degrees Celsius. The kiln atmosphere, whether oxidation or reduction, significantly impacts glaze colors and the overall quality of the pottery, with specific techniques like salt and soda firing enhancing unique effects. Critical temperature thresholds, such as quartz inversion at 573 degrees Celsius and cristobalite inversion at 226 degrees Celsius, must be carefully managed to prevent defects like cracking. The choice of materials and firing methods, including the use of Orton pyrometric cones, plays a vital role in achieving desired aesthetic outcomes.",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "children": [
+    "n47",
+    "n48",
+    "n51",
+    "n52",
+    "n53"
+   ]
+  }
+ ]
+}

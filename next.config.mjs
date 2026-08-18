@@ -7,7 +7,11 @@ const nextConfig = {
     // that from a path built at runtime, so include the files explicitly or
     // they will be missing from the serverless bundle on Vercel.
     outputFileTracingIncludes: {
-      "/api/**/*": ["./public/corpus/**", "./public/graph/**"],
+      "/api/**/*": [
+        "./public/corpus/**",
+        "./public/graph/**",
+        "./public/tree/**",
+      ],
     },
   },
 };

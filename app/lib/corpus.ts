@@ -49,27 +49,46 @@ export function corpusAvailable(): boolean {
 }
 
 /**
- * Graph RAG's global mode retrieves community summaries rather than raw
- * passages. Those are model-written, so they are not substrings of any source
- * document — but they are still our own build output, generated offline and
+ * Graph RAG's global mode retrieves community summaries, and RAPTOR retrieves
+ * tree-node summaries. Both are model-written, so neither is a substring of any
+ * source document — but both are our own build output, generated offline and
  * committed, so they belong on the allowlist alongside the corpus itself.
  */
 function loadSummaries(): string[] {
   if (summaryCache) return summaryCache;
+  const out: string[] = [];
+
   try {
     const raw = fs.readFileSync(
       path.join(process.cwd(), "public", "graph", "graph.json"),
       "utf8",
     );
-    const graph = JSON.parse(raw) as {
-      communities?: { summary?: string }[];
-    };
-    summaryCache = (graph.communities ?? [])
-      .map((c) => normalize(c.summary ?? ""))
-      .filter((s) => s.length > 0);
+    const graph = JSON.parse(raw) as { communities?: { summary?: string }[] };
+    for (const c of graph.communities ?? []) {
+      const s = normalize(c.summary ?? "");
+      if (s) out.push(s);
+    }
   } catch {
-    summaryCache = [];
+    /* graph not built */
   }
+
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "public", "tree", "tree.json"),
+      "utf8",
+    );
+    const tree = JSON.parse(raw) as { nodes?: { level?: number; text?: string }[] };
+    for (const n of tree.nodes ?? []) {
+      // Leaves are verbatim source text and are covered by the corpus check.
+      if ((n.level ?? 0) === 0) continue;
+      const s = normalize(n.text ?? "");
+      if (s) out.push(s);
+    }
+  } catch {
+    /* tree not built */
+  }
+
+  summaryCache = out;
   return summaryCache;
 }
 

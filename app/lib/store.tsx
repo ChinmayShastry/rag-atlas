@@ -28,6 +28,8 @@ import type {
   Subgraph,
 } from "./graph";
 import { estimateTokens } from "./chunking";
+import { collapsedSearch, traversalSearch } from "./tree";
+import type { ScoredNode, SummaryTree } from "./tree";
 import type {
   Chunk,
   Critique,
@@ -216,6 +218,21 @@ interface RagState {
   subgraph: Subgraph | null;
   graphCommunities: { community: Community; score: number }[];
 
+  /* ---- Hierarchical RAPTOR ---- */
+  tree: SummaryTree | null;
+  treeLoading: boolean;
+  treeError: string | null;
+  /** Node id -> embedding. Computed once, on demand. */
+  treeVectors: Map<string, number[]> | null;
+  treeEmbedding: boolean;
+  runTreeEmbedding: () => Promise<void>;
+  treeMode: "collapsed" | "traversal";
+  setTreeMode: (m: "collapsed" | "traversal") => void;
+  treeKeepPerLevel: number;
+  setTreeKeepPerLevel: (n: number) => void;
+  treeHits: ScoredNode[];
+  treeTraversal: { levels: ScoredNode[][]; selected: ScoredNode[] } | null;
+
   plot: { chunk: Chunk; x: number; y: number }[];
   queryPoint: { x: number; y: number } | null;
 
@@ -320,6 +337,18 @@ export function RagProvider({
   const [graphError, setGraphError] = useState<string | null>(null);
   const [graphMode, setGraphMode] = useState<"local" | "global">("local");
   const [graphHops, setGraphHops] = useState(1);
+
+  const [tree, setTree] = useState<SummaryTree | null>(null);
+  const [treeLoading, setTreeLoading] = useState(true);
+  const [treeError, setTreeError] = useState<string | null>(null);
+  const [treeVectors, setTreeVectors] = useState<Map<string, number[]> | null>(
+    null,
+  );
+  const [treeEmbedding, setTreeEmbedding] = useState(false);
+  const [treeMode, setTreeMode] = useState<"collapsed" | "traversal">(
+    "collapsed",
+  );
+  const [treeKeepPerLevel, setTreeKeepPerLevel] = useState(2);
 
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -624,6 +653,67 @@ export function RagProvider({
     };
   }, []);
 
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/tree/tree.json")
+      .then((r) => {
+        if (!r.ok) throw new Error(`tree.json returned ${r.status}`);
+        return r.json();
+      })
+      .then((t: SummaryTree) => {
+        if (cancelled) return;
+        setTree(t);
+        setTreeError(null);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setTreeError(
+          `Could not load the summary tree (${err instanceof Error ? err.message : "network error"}). Rebuild it with: node scripts/build-tree.mjs`,
+        );
+      })
+      .finally(() => !cancelled && setTreeLoading(false));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const runTreeEmbedding = useCallback(async () => {
+    if (!tree || treeVectors) return;
+    setTreeEmbedding(true);
+    try {
+      const data = await apiPost<{
+        vectors: number[][];
+        usage: { inputTokens: number; outputTokens: number };
+      }>("/api/embed", apiKey, {
+        kind: "chunks",
+        texts: tree.nodes.map((n) => n.text),
+      });
+      const map = new Map<string, number[]>();
+      tree.nodes.forEach((n, i) => map.set(n.id, data.vectors[i]));
+      setTreeVectors(map);
+      addUsage({
+        model: "text-embedding-3-small",
+        label: `Embedded ${tree.nodes.length} tree nodes`,
+        inputTokens: data.usage.inputTokens,
+        outputTokens: 0,
+      });
+    } catch {
+      /* surfaced by the stage's own error handling */
+    } finally {
+      setTreeEmbedding(false);
+    }
+  }, [tree, treeVectors, apiKey, addUsage]);
+
+  const treeHits = useMemo(() => {
+    if (!tree || !treeVectors || !queryVector) return [];
+    return collapsedSearch(tree, treeVectors, queryVector, topK);
+  }, [tree, treeVectors, queryVector, topK]);
+
+  const treeTraversal = useMemo(() => {
+    if (!tree || !treeVectors || !queryVector) return null;
+    return traversalSearch(tree, treeVectors, queryVector, treeKeepPerLevel);
+  }, [tree, treeVectors, queryVector, treeKeepPerLevel]);
+
   const graphSeeds = useMemo(
     () => (graph && embeddedQuery ? seedNodes(embeddedQuery, graph) : []),
     [graph, embeddedQuery],
@@ -651,6 +741,29 @@ export function RagProvider({
   );
 
   const retrieved = useMemo(() => {
+    if (ragType === "hierarchical") {
+      // Tree nodes become passages directly: leaves carry source text, higher
+      // levels carry summaries of everything beneath them.
+      const picked =
+        treeMode === "collapsed"
+          ? treeHits
+          : (treeTraversal?.selected ?? []);
+      return picked.map(({ node, score }) => ({
+        chunk: {
+          id: `tree-${node.id}`,
+          docId: node.level === 0 ? (node.span?.docId ?? "tree") : "tree",
+          docTitle:
+            node.level === 0 ? node.title : `L${node.level} · ${node.title}`,
+          index: -1,
+          localIndex: node.level,
+          text: node.text,
+          start: node.span?.start ?? 0,
+          end: node.span?.end ?? node.text.length,
+          tokens: estimateTokens(node.text),
+        },
+        score,
+      }));
+    }
     if (ragType === "graph") {
       // Global mode answers from community summaries rather than passages —
       // the whole point being that no single passage describes a theme.
@@ -699,6 +812,9 @@ export function RagProvider({
     return ranked.filter((r) => r.score >= minScore).slice(0, topK);
   }, [
     ragType,
+    treeMode,
+    treeHits,
+    treeTraversal,
     graphMode,
     graphCommunities,
     subgraph,
@@ -849,6 +965,18 @@ export function RagProvider({
     graphSeeds,
     subgraph,
     graphCommunities,
+    tree,
+    treeLoading,
+    treeError,
+    treeVectors,
+    treeEmbedding,
+    runTreeEmbedding,
+    treeMode,
+    setTreeMode,
+    treeKeepPerLevel,
+    setTreeKeepPerLevel,
+    treeHits,
+    treeTraversal,
     plot,
     queryPoint,
     hovered,
