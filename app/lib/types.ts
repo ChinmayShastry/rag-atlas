@@ -45,6 +45,21 @@ export interface EvalScores {
   unsupportedClaims: string[];
 }
 
+/** One step of a multi-hop retrieval chain. */
+export interface Hop {
+  /** As produced by the planner, possibly referring to an earlier answer. */
+  planned: string;
+  /** After substituting earlier findings in; equal to `planned` when independent. */
+  resolved: string;
+  dependsOnPrevious: boolean;
+  /** True when the rewrite actually substituted something. */
+  substituted: boolean;
+  retrieved: Scored[];
+  answer: string;
+  status: "waiting" | "rewriting" | "retrieving" | "answering" | "done" | "error";
+  error?: string;
+}
+
 export type GuardVerdict = "pass" | "warn" | "block";
 
 export interface GuardResult {

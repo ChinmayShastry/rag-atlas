@@ -23,7 +23,7 @@ export default function Step1Corpus({ n }: StageProps) {
       title="The corpus"
       lede={
         <>
-          RAG can only ever answer from what you give it. These three plain{" "}
+          RAG can only ever answer from what you give it. These plain{" "}
           <code className="rounded bg-parchment px-1 py-px font-mono text-[13px] text-clay">
             .txt
           </code>{" "}
@@ -32,13 +32,13 @@ export default function Step1Corpus({ n }: StageProps) {
       }
     >
       {docsLoading ? (
-        <div className="grid gap-4 sm:grid-cols-3">
-          {[0, 1, 2].map((i) => (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[0, 1, 2, 3].map((i) => (
             <div key={i} className="card h-52 animate-pulse bg-parchment/50" />
           ))}
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {docs.map((doc) => {
             const on = activeDocIds.includes(doc.id);
             const color = DOC_COLORS[doc.id]?.accent ?? "#C1553A";
@@ -126,9 +126,9 @@ export default function Step1Corpus({ n }: StageProps) {
       )}
 
       <Insight>
-        {activeDocIds.length === 3 ? (
+        {activeDocIds.length === docs.length ? (
           <>
-            All three documents are live —{" "}
+            All {docs.length} documents are live —{" "}
             <strong className="font-bold text-ink">
               {totalChars.toLocaleString()} characters
             </strong>{" "}
@@ -140,7 +140,7 @@ export default function Step1Corpus({ n }: StageProps) {
           <>
             Now running on{" "}
             <strong className="font-bold text-ink">
-              {activeDocIds.length} of 3
+              {activeDocIds.length} of {docs.length}
             </strong>{" "}
             documents. Ask about an excluded topic later and you will see exactly
             how the pipeline behaves when the answer simply is not in the index.

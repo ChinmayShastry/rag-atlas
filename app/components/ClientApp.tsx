@@ -16,6 +16,9 @@ import StagePlaceholder from "./StagePlaceholder";
 import StageHyDE from "./StageHyDE";
 import StageHybrid from "./StageHybrid";
 import StageRerank from "./StageRerank";
+import StageDecompose from "./StageDecompose";
+import StageHops from "./StageHops";
+import StageSynthesize from "./StageSynthesize";
 import { RagProvider, useRag } from "../lib/store";
 import { ragTypeDef } from "../lib/ragTypes";
 import { formatUSD } from "../lib/pricing";
@@ -81,6 +84,11 @@ const STAGE_COMPONENTS: Record<
   hyde: StageHyDE,
   hybrid: StageHybrid,
   rerank: StageRerank,
+
+  // Multi-hop RAG
+  decompose: StageDecompose,
+  hops: StageHops,
+  synthesize: StageSynthesize,
 };
 
 /** Renders the active architecture's stage list, numbering by position. */

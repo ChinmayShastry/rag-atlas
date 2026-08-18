@@ -14,6 +14,7 @@ const FILES = [
   "coffee-roasting.txt",
   "honeybee-colonies.txt",
   "pottery-kiln-firing.txt",
+  "marta-workshop.txt",
 ];
 
 let cache: string[] | null = null;

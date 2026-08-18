@@ -19,6 +19,7 @@ import type {
   Doc,
   EvalScores,
   GuardResult,
+  Hop,
   Scored,
   Strategy,
 } from "./types";
@@ -49,6 +50,15 @@ export const DOC_MANIFEST = [
     blurb: "Cones, quartz inversion, oxidation versus reduction.",
     accent: "#B0455A",
     plot: "#DE6B80",
+  },
+  {
+    id: "marta",
+    title: "The Hillside Workshop",
+    file: "marta-workshop.txt",
+    blurb:
+      "A fictional profile whose facts only resolve by looking them up elsewhere.",
+    accent: "#5F7A4F",
+    plot: "#93B07C",
   },
 ];
 
@@ -144,6 +154,16 @@ interface RagState {
   /** Shortlist entries the floor rejected, kept for display. */
   rerankRejected: Scored[];
 
+  /* ---- Multi-hop RAG ---- */
+  hops: Hop[];
+  setHops: React.Dispatch<React.SetStateAction<Hop[]>>;
+  planReasoning: string;
+  setPlanReasoning: (s: string) => void;
+  /** Embeds one piece of text and returns the vector, without touching global state. */
+  embedOne: (text: string, kind: "query" | "hyde") => Promise<number[]>;
+  /** Cosine-ranks all chunks against an arbitrary vector. */
+  rankAgainst: (vector: number[]) => Scored[];
+
   plot: { chunk: Chunk; x: number; y: number }[];
   queryPoint: { x: number; y: number } | null;
 
@@ -233,6 +253,8 @@ export function RagProvider({
     null,
   );
   const [rerankFloor, setRerankFloor] = useState(0);
+  const [hops, setHops] = useState<Hop[]>([]);
+  const [planReasoning, setPlanReasoning] = useState("");
 
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -449,6 +471,33 @@ export function RagProvider({
     [apiKey, addUsage],
   );
 
+  const embedOne = useCallback(
+    async (text: string, kind: "query" | "hyde") => {
+      const data = await apiPost<{
+        vectors: number[][];
+        usage: { inputTokens: number; outputTokens: number };
+      }>("/api/embed", apiKey, { kind, texts: [text.trim()] });
+      addUsage({
+        model: "text-embedding-3-small",
+        label: "Embedded hop query",
+        inputTokens: data.usage.inputTokens,
+        outputTokens: 0,
+      });
+      return data.vectors[0];
+    },
+    [apiKey, addUsage],
+  );
+
+  const rankAgainst = useCallback(
+    (vector: number[]): Scored[] => {
+      if (!vectors || vectors.length !== chunks.length) return [];
+      return chunks
+        .map((chunk, i) => ({ chunk, score: cosine(vector, vectors[i]) }))
+        .sort((a, b) => b.score - a.score);
+    },
+    [vectors, chunks],
+  );
+
   const ranked: Scored[] = useMemo(() => {
     if (ragType !== "advanced" || !rerankScores) return baseRanked;
     const reordered = candidates
@@ -473,9 +522,23 @@ export function RagProvider({
   );
 
   const retrieved = useMemo(() => {
+    // Multi-hop hands the generator everything its chain gathered, in hop order
+    // and deduplicated — the union is the point, not any single hop's top-K.
+    if (ragType === "multihop") {
+      const seen = new Set<string>();
+      const union: Scored[] = [];
+      for (const hop of hops) {
+        for (const r of hop.retrieved) {
+          if (seen.has(r.chunk.id)) continue;
+          seen.add(r.chunk.id);
+          union.push(r);
+        }
+      }
+      return union;
+    }
     if (reranked) return rerankedPool.filter((r) => r.score >= rerankFloor).slice(0, topK);
     return ranked.filter((r) => r.score >= minScore).slice(0, topK);
-  }, [reranked, rerankedPool, rerankFloor, ranked, minScore, topK]);
+  }, [ragType, hops, reranked, rerankedPool, rerankFloor, ranked, minScore, topK]);
 
   const rerankRejected = useMemo(
     () => (reranked ? rerankedPool.filter((r) => r.score < rerankFloor) : []),
@@ -580,6 +643,12 @@ export function RagProvider({
     rerankFloor,
     setRerankFloor,
     rerankRejected,
+    hops,
+    setHops,
+    planReasoning,
+    setPlanReasoning,
+    embedOne,
+    rankAgainst,
     plot,
     queryPoint,
     hovered,

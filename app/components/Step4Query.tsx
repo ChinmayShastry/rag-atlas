@@ -10,6 +10,7 @@ import { ErrorNote, Insight, Panel, Spinner, StepSection } from "./ui";
 const KIND_STYLE = {
   easy: { color: "#4E6340", bg: "rgba(110,130,87,.10)", label: "covered" },
   cross: { color: "#9A6A16", bg: "rgba(222,146,43,.13)", label: "spans docs" },
+  hop: { color: "#4A6340", bg: "rgba(95,122,79,.12)", label: "needs 2 hops" },
   trap: { color: "#8E2F41", bg: "rgba(160,58,78,.09)", label: "not in corpus" },
 };
 

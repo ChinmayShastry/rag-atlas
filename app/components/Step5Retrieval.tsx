@@ -86,7 +86,7 @@ export default function Step5Retrieval({ n }: StageProps) {
             <Stat label="Weakest" value={worst.toFixed(3)} accent="#9C8674" />
             <Stat
               label="Documents"
-              value={`${docsHit.size}/3`}
+              value={`${docsHit.size}/${new Set(chunks.map((c) => c.docId)).size}`}
               accent="#6E8257"
               sub="in the winners"
             />
