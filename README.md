@@ -1,8 +1,8 @@
 # RAG Atlas
 
-An interactive walkthrough of retrieval-augmented generation, evaluation, and guardrails. Nine stages, three plain `.txt` files, and sliders wired to live output — drag one and the chunks, vectors, retrieved passages, prompt, and answer all move with it.
+An interactive walkthrough of **six RAG architectures**, plus evaluation and guardrails. Four plain `.txt` files, one question, and a switcher — ask the same thing of each architecture and watch where they diverge.
 
-Nothing is simulated. Real chunking, real 1536-dimensional embeddings, real cosine ranking, real streamed generation, and a real second model grading the first.
+Nothing is simulated. Real chunking, real 1536-dimensional embeddings, real cosine ranking, a real cross-encoder running in your browser, real streamed generation, and a real second model grading the first.
 
 ### **[▶ Try it live →](https://rag-atlas-learn.vercel.app)**
 
@@ -11,6 +11,35 @@ Nothing is simulated. Real chunking, real 1536-dimensional embeddings, real cosi
 > One slider, nothing else touched. Chunk size drops from 1200 to 300 characters, the count climbs from **26 to 100**, average size falls from 808 to 226 — and the coloured bands over the source text redraw to match. Every colour is one chunk; striped regions are overlap, text belonging to two chunks at once, which is what rescues a fact that lands on a boundary.
 >
 > This runs entirely in the browser. No request, no cost, no latency.
+
+---
+
+## The six architectures
+
+Pick one from **Architecture** in the header. Your documents, chunks and question carry over, so the only variable is the architecture itself.
+
+| Architecture | The retrieval middle | What it is for |
+|---|---|---|
+| **Naive** | embed → rank → stuff | The original pattern, and still the right default. |
+| **Advanced** | HyDE → hybrid → rerank | Same shape, smarter at each step. |
+| **Agentic** | route → grade → correct → critique | Checks its own retrieval and its own answer. |
+| **Multi-hop** | decompose → chain → synthesise | Questions no single passage can answer. |
+| **Graph** | extract → graph → traverse | Indexes relationships instead of text. |
+| **Hierarchical** | cluster → summarise → route | RAPTOR. Retrieval at the right altitude. |
+
+Corpus, chunking, generation, evaluation and guardrails are identical throughout — only the middle differs, which is the point. Stage numbers therefore shift between architectures: augmentation is stage 6 under Naive and stage 8 under Advanced.
+
+### What each architecture adds
+
+**Advanced** — **HyDE** asks the model to invent the passage it expects would answer your question, then searches with that instead, showing the similarity lift against the raw question. **Hybrid** blends BM25 lexical scoring with dense similarity on a slider, both computed client-side for free. **Reranking** runs a genuine cross-encoder (`Xenova/ms-marco-MiniLM-L-6-v2`, ~21 MB, WebGPU or WASM) over a shortlist, with a relevance floor — cross-encoder logits are roughly calibrated, so unlike cosine they support an absolute threshold.
+
+**Agentic** — **Routing** decides before any search whether to retrieve, answer directly, or decline. **Grading** scores every retrieved passage on its own and drops the irrelevant ones before the generator sees them. **Correction** branches on what grading found, rewriting the query and searching again when nothing survived. **Self-critique** is a gate rather than a score: it runs before you see the answer and can withhold it.
+
+**Multi-hop** — Splits a question into narrow lookups, marks which cannot be searched until an earlier one answers, then rewrites those into concrete queries once the prior finding exists. The fourth document exists for this: it names a cone but never a temperature, a bee species but never a laying rate, so its questions are unanswerable by any single chunk.
+
+**Graph** — A model reads every paragraph and extracts entities and relationships into a graph (**250 entities, 222 relationships**, built offline). **26 entities bridge two or more documents**, which is the join vector search cannot make. Local search walks outward from entities your question names; global search answers from cluster summaries, the only way to reach a question whose answer is not written down anywhere.
+
+**Hierarchical** — Clusters chunks, summarises each cluster, then clusters the summaries, recursively (**45 leaves → 12 → 3**). Collapsed search ignores the hierarchy and lets every node compete flat, which the paper found beats walking down from the root — the tree earns its keep by putting summaries in the index at all.
 
 ---
 
@@ -29,6 +58,8 @@ Open <http://localhost:3000> and paste an OpenAI API key when asked. Get one at 
 > **Do not run `npm run build` while `npm run dev` is running.** Both write to `.next/`, and the build will pull chunk files out from under the live dev server. Stop dev first.
 
 ### Troubleshooting
+
+**`Failed to fetch` on any stage** — the dev server is not running, or a content blocker is filtering `/api`. The app names both causes rather than showing the browser's raw message; a bare "Failed to fetch" from anywhere else means the request never left the browser.
 
 **`Error: Cannot find module './379.js'`** (or any numbered chunk) — the `.next/` directory is in a mixed state, usually from a build running alongside dev. Stop the dev server and delete it:
 
@@ -62,10 +93,10 @@ With that set, the landing page offers "Start exploring — no key needed", and 
 
 | Protection | Behaviour |
 |---|---|
-| **Corpus lock** | Text submitted for embedding, generation, or judging must be a genuine excerpt of `public/corpus/*.txt`. This is what stops the endpoints being used as a free general-purpose LLM proxy. |
+| **Corpus lock** | Text submitted for embedding, generation, or judging must be a genuine excerpt of `public/corpus/*.txt`, or one of the summaries in the committed graph and tree. This is what stops the endpoints being used as a free general-purpose LLM proxy. |
 | **Prompt assembly** | The server builds the prompt itself. Callers choose a question and passages; they cannot supply a raw `messages` array. |
-| **Rate limits** | Per IP, per hour: 40 generations, 40 evaluations, 60 guardrail checks, 20 chunk-embedding batches, 60 query embeddings. |
-| **Length caps** | Questions 400 chars, passages 4,000 chars each (max 12), guardrail probes 2,000 chars. |
+| **Rate limits** | Per IP, per hour: 40 generations, 40 evaluations, 40 planning calls, 40 grading calls, 60 guardrail checks, 20 chunk-embedding batches, 60 query embeddings. |
+| **Length caps** | Questions 400 chars, HyDE passages 1,500, passages 4,000 chars each (max 12), guardrail probes 2,000 chars. |
 
 A visitor who enters their **own** key bypasses every one of those restrictions — they are paying, so they get the unrestricted pipeline.
 
@@ -73,19 +104,20 @@ A visitor who enters their **own** key bypasses every one of those restrictions 
 
 ---
 
-## What each stage shows
+## The shared stages
 
-| # | Stage | Live controls |
-|---|-------|---------------|
-| 1 | **Corpus** — the three source files | toggle documents in and out |
-| 2 | **Chunking** — where the cuts land, painted onto the source text | chunk size, overlap, strategy, three-way comparison |
-| 3 | **Embedding** — chunks projected into 2D by PCA | hover and pin any point to inspect its raw vector |
-| 4 | **Query** — your question in the same vector space | six preset questions, including one deliberately unanswerable |
-| 5 | **Retrieval** — cosine ranking with the winners lit up | top-K, score floor |
-| 6 | **Augmentation** — the literal prompt, colour-coded by source | hover a passage to trace it back to its chunk |
-| 7 | **Generation** — streamed, cited answer | temperature, plus the same question answered with no retrieval |
-| 8 | **Evaluation** — faithfulness, relevance, completeness | LLM-as-judge, with unsupported claims quoted |
-| 9 | **Guardrails** — input and output gates | attack sandbox, groundedness threshold |
+Every architecture begins and ends the same way.
+
+| Stage | Live controls |
+|---|---|
+| **Corpus** — the four source files | toggle documents in and out |
+| **Chunking** — where the cuts land, painted onto the source text | chunk size, overlap, strategy, three-way comparison |
+| **Embedding** — chunks projected into 2D by PCA | hover and pin any point to inspect its raw vector |
+| **Query** — your question, embedded or matched lexically | nine presets: covered, cross-document, two-hop, and one deliberately unanswerable |
+| **Augmentation** — the literal prompt, colour-coded by source | hover a passage to trace it back to its chunk |
+| **Generation** — streamed, cited answer | temperature, plus the same question answered with no retrieval |
+| **Evaluation** — faithfulness, relevance, completeness | LLM-as-judge, with unsupported claims quoted |
+| **Guardrails** — input and output gates | attack sandbox, groundedness threshold |
 
 ### Chunking strategy, compared on the same text
 
@@ -101,29 +133,49 @@ Deterministic rules run client-side on every keystroke, at no cost and no latenc
 
 ### Things worth trying
 
-- Set **top-K to 1** and ask *"Compare the critical temperatures in coffee roasting and kiln firing"* — watch it answer half the question.
-- Push **temperature to 1.2** in stage 7, regenerate, then re-score in stage 8 and watch faithfulness fall.
-- Switch **off the coffee document** in stage 1, then ask about first crack. The refusal is the correct behaviour.
-- Set **chunk size to 250** and compare all three strategies — fixed windows produce dozens of chunks that begin mid-word.
-- Paste an attack into the stage 9 probe and watch the regex rules fire before you finish typing.
+- Ask *"What temperature does Marta's stoneware mature at?"* under **Naive**, then under **Multi-hop**. Naive cannot answer it; no chunk contains both halves.
+- Under **Advanced**, set the hybrid slider to pure keyword and ask *"Why does pottery crack at 573 degrees?"* — a coffee passage climbs eleven places, because it literally contains "crack" and "degrees".
+- Under **Advanced**, rerank and then raise the relevance floor past zero. Usually one passage survives, and the rest of the prompt was padding.
+- Under **Agentic**, ask *"Who won the 1998 FIFA World Cup?"* and watch the router decline before spending anything.
+- Under **Graph**, switch to global mode and ask about themes across the crafts — no single passage contains that answer.
+- Push **temperature to 1.2**, regenerate, then re-score. Watch faithfulness fall.
+- Switch **off the coffee document**, then ask about first crack. The refusal is the correct behaviour.
+
+---
+
+## Rebuilding the offline indexes
+
+Graph RAG and RAPTOR need an index built by a model, which is the expensive part and does not change per visitor. Both are committed as static files; rebuild them only if you change the corpus.
+
+```bash
+node scripts/build-graph.mjs
+```
+
+```bash
+node scripts/build-tree.mjs
+```
+
+Both read `OPENAI_API_KEY` from the environment. The graph costs about **$0.012** (74 calls, one per paragraph plus one per community); the tree about **$0.0035** (17 calls). Outputs land in `public/graph/graph.json` and `public/tree/tree.json`.
+
+Graph entities are anchored to character offsets in the source files rather than to chunks, so the graph stays valid however the chunking sliders are set.
 
 ---
 
 ## How your key is handled
 
 - Held in React state for the life of the browser tab. Never written to `localStorage`, a cookie, a database, or a log.
-- Sent from the browser to this app's own `/api/*` routes, and from there directly to `api.openai.com`. It touches no third party.
-- The Advanced RAG reranking stage is the one exception to "nothing else is contacted": it fetches Transformers.js from jsDelivr and a ~21 MB cross-encoder from the Hugging Face CDN, then runs entirely in your browser. Static file downloads only — no key, question, or document leaves the page.
+- Sent from the browser to this app's own `/api/*` routes, and from there directly to `api.openai.com`.
+- The Advanced reranking stage is the one exception to "nothing else is contacted": it fetches Transformers.js from jsDelivr and a ~21 MB cross-encoder from the Hugging Face CDN, then runs entirely in your browser. Static file downloads only — no key, question, or document leaves the page.
 - All OpenAI calls happen server-side, so the key never appears in the client bundle.
 - Close the tab and it is gone. There is nothing to log out of.
 
 ## What a session costs
 
-Well under a cent. A full pass — embedding ~44 chunks, one query, one answer, one evaluation, one guardrail check — runs about **$0.001**. The header meter tracks it live and breaks it down per call.
+Well under a cent. A full Naive pass — embedding ~54 chunks, one query, one answer, one evaluation, one guardrail check — runs about **$0.001**. Agentic and Multi-hop cost more, since they spend a call per decision or per hop. The header meter tracks it live and breaks it down per call.
 
-Chunking, similarity ranking, PCA, and every slider run entirely in your browser and cost nothing. Embeddings are cached per chunking configuration, so returning to a previous slider position is free.
+Chunking, BM25, similarity ranking, PCA, graph traversal, the force layout and every slider run entirely in your browser and cost nothing. So does reranking, which downloads a model once and then runs locally. Embeddings are cached per chunking configuration, so returning to a previous slider position is free.
 
-**Models:** `gpt-4o-mini` for generation, judging, and injection classification; `text-embedding-3-small` for embeddings; `omni-moderation-latest` for moderation (free).
+**Models:** `gpt-4o-mini` for generation, judging, planning, grading and classification; `text-embedding-3-small` for embeddings; `omni-moderation-latest` for moderation (free); `Xenova/ms-marco-MiniLM-L-6-v2` in your browser for reranking (free).
 
 ---
 
@@ -133,29 +185,43 @@ Chunking, similarity ranking, PCA, and every slider run entirely in your browser
 app/
   api/            server routes — the only place the key is used
     validate/     cheap authenticated call to verify the key
+    config/       deployment health check: is a shared key present
     embed/        batch embeddings
-    chat/         streaming generation (NDJSON)
+    chat/         streaming generation (NDJSON), five prompt modes
     evaluate/     LLM-as-judge, structured output
+    plan/         decompose, rewrite, route, correct
+    grade/        passage grading and answer critique
     guardrails/   moderation + injection classifier
   components/     one file per stage, plus the shared UI kit
   lib/
+    ragTypes.ts   the six architectures and their stage flows
     chunking.ts   three strategies, all offset-accurate
     vector.ts     cosine, and a power-iteration PCA to 2D
+    bm25.ts       lexical scoring and score fusion
+    rerank.ts     cross-encoder loaded from CDN at runtime
+    graph.ts      seeding, traversal, force layout
+    tree.ts       collapsed and traversal search over the tree
     guardrails.ts regex + Luhn rules that run client-side
-    prompt.ts     the system prompt and context assembly
+    corpus.ts     server-side allowlist for the corpus lock
+    prompt.ts     every system prompt and context assembly
     store.tsx     shared state and the embedding cache
-public/corpus/    the three .txt source files
+scripts/          offline index builders
+public/corpus/    the four .txt source files
+public/graph/     committed knowledge graph
+public/tree/      committed summary tree
 ```
 
-To swap in your own documents: drop `.txt` files into `public/corpus/` and update `DOC_MANIFEST` in `app/lib/store.tsx`.
+To swap in your own documents: drop `.txt` files into `public/corpus/`, update `DOC_MANIFEST` in `app/lib/store.tsx` and `FILES` in `app/lib/corpus.ts`, then rerun both build scripts.
 
 ---
 
 ## Notes on the implementation
 
 - **PCA is real.** Power iteration finds the top two components of the chunk vectors without materialising a 1536×1536 covariance matrix. The query is projected through the same fitted transform, so on-screen distance is meaningful relative to the chunks.
-- **Chunk offsets are exact.** Every chunk carries its character range in the source document, which is what makes the ribbon in stage 2 able to paint overlap regions accurately.
-- **The card detector runs a Luhn checksum**, so it does not fire on every long number.
+- **The cross-encoder is real.** Query and passage go through the model together, which is why it cannot be precomputed and only ever runs over a shortlist. It is loaded from a CDN at runtime rather than bundled, because its onnxruntime assets use `import.meta` in a form Next's minifier cannot parse.
+- **Chunk offsets are exact**, which is what lets the chunking ribbon paint overlap regions accurately.
 - **Sentence and recursive splitting overlap by whole units**, so a small overlap next to large chunks can have no effect. The UI detects this and says so rather than letting the slider look broken.
+- **Graph community selection ignores keyword overlap** in global mode. A thematic question shares no vocabulary with any single cluster name, so matching on overlap returns the clusters least able to answer it.
+- **RAPTOR's level mix is honest.** On four documents leaves nearly always win, because a specific passage beats a summary and there are three times as many. The stage says so rather than implying the demo proves more than it does.
 
 Built with Next.js 14 and Tailwind. No database, no analytics, no telemetry.
