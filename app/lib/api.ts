@@ -10,16 +10,47 @@ function authHeaders(key: string): Record<string, string> {
   return headers;
 }
 
+/**
+ * A `fetch` that rejects never reached the server, so there is no status code
+ * and no error body to report. The browser's own message for this is "Failed to
+ * fetch", which tells a visitor nothing and looks like an application bug.
+ *
+ * The realistic causes are all actionable, so name them: the dev server stopped,
+ * the network is down, or a content blocker is filtering requests to /api —
+ * which is common, since some blocklists match paths like /api/chat.
+ */
+function unreachable(path: string): Error {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    return new Error(
+      `You appear to be offline, so ${path} could not be reached. Reconnect and try again.`,
+    );
+  }
+  return new Error(
+    `Could not reach ${path}. The server may have stopped, or a browser extension may be blocking requests to this app's API. Check that the site is still running, then try again.`,
+  );
+}
+
+/** Aborts are deliberate, so they must not be dressed up as network failures. */
+function isAbort(err: unknown): boolean {
+  return err instanceof DOMException && err.name === "AbortError";
+}
+
 export async function apiPost<T>(
   path: string,
   key: string,
   body: unknown,
 ): Promise<T> {
-  const res = await fetch(path, {
-    method: "POST",
-    headers: authHeaders(key),
-    body: JSON.stringify(body),
-  });
+  let res: Response;
+  try {
+    res = await fetch(path, {
+      method: "POST",
+      headers: authHeaders(key),
+      body: JSON.stringify(body),
+    });
+  } catch (err) {
+    if (isAbort(err)) throw err;
+    throw unreachable(path);
+  }
 
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data?.error ?? `Request failed (${res.status}).`);
@@ -38,12 +69,18 @@ export async function streamChat(
   handlers: StreamHandlers,
   signal?: AbortSignal,
 ): Promise<void> {
-  const res = await fetch("/api/chat", {
-    method: "POST",
-    headers: authHeaders(key),
-    body: JSON.stringify(body),
-    signal,
-  });
+  let res: Response;
+  try {
+    res = await fetch("/api/chat", {
+      method: "POST",
+      headers: authHeaders(key),
+      body: JSON.stringify(body),
+      signal,
+    });
+  } catch (err) {
+    if (isAbort(err)) throw err;
+    throw unreachable("/api/chat");
+  }
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
@@ -56,7 +93,17 @@ export async function streamChat(
   let buffer = "";
 
   for (;;) {
-    const { done, value } = await reader.read();
+    let chunk: ReadableStreamReadResult<Uint8Array>;
+    try {
+      chunk = await reader.read();
+    } catch (err) {
+      if (isAbort(err)) throw err;
+      // The connection dropped part-way; whatever streamed so far is kept.
+      throw new Error(
+        "The connection dropped while the answer was streaming. The server may have stopped, or the network went away.",
+      );
+    }
+    const { done, value } = chunk;
     if (done) break;
     buffer += decoder.decode(value, { stream: true });
 

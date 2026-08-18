@@ -24,11 +24,24 @@ export default function KeyGate({
     setBusy(true);
     setError(null);
     try {
-      const res = await fetch("/api/validate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-openai-key": key.trim() },
-        body: "{}",
-      });
+      let res: Response;
+      try {
+        res = await fetch("/api/validate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-openai-key": key.trim(),
+          },
+          body: "{}",
+        });
+      } catch {
+        // Never reached the server, so there is no status or body to report.
+        throw new Error(
+          typeof navigator !== "undefined" && navigator.onLine === false
+            ? "You appear to be offline. Reconnect and try again."
+            : "Could not reach this app's server. It may have stopped, or a browser extension may be blocking requests to /api.",
+        );
+      }
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error ?? "Could not validate that key.");
       onReady(key.trim());

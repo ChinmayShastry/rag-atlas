@@ -5,10 +5,10 @@ import type { StageProps } from "../lib/ragTypes";
 import { useState } from "react";
 import { DOC_COLORS, useRag } from "../lib/store";
 import { estimateTokens } from "../lib/chunking";
-import { Insight, StepSection } from "./ui";
+import { ErrorNote, Insight, StepSection } from "./ui";
 
 export default function Step1Corpus({ n }: StageProps) {
-  const { docs, docsLoading, activeDocIds, toggleDoc } = useRag();
+  const { docs, docsLoading, docsError, activeDocIds, toggleDoc } = useRag();
   const [expanded, setExpanded] = useState<string | null>(null);
 
   const totalChars = docs
@@ -31,7 +31,9 @@ export default function Step1Corpus({ n }: StageProps) {
         </>
       }
     >
-      {docsLoading ? (
+      {docsError ? (
+        <ErrorNote>{docsError}</ErrorNote>
+      ) : docsLoading ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[0, 1, 2, 3].map((i) => (
             <div key={i} className="card h-52 animate-pulse bg-parchment/50" />

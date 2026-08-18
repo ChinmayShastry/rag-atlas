@@ -90,6 +90,7 @@ interface RagState {
 
   docs: Doc[];
   docsLoading: boolean;
+  docsError: string | null;
   activeDocIds: string[];
   toggleDoc: (id: string) => void;
 
@@ -219,6 +220,7 @@ export function RagProvider({
 
   const [docs, setDocs] = useState<Doc[]>([]);
   const [docsLoading, setDocsLoading] = useState(true);
+  const [docsError, setDocsError] = useState<string | null>(null);
   const [activeDocIds, setActiveDocIds] = useState<string[]>(
     DOC_MANIFEST.map((d) => d.id),
   );
@@ -278,6 +280,7 @@ export function RagProvider({
     Promise.all(
       DOC_MANIFEST.map(async (meta) => {
         const res = await fetch(`/corpus/${meta.file}`);
+        if (!res.ok) throw new Error(`${meta.file} returned ${res.status}`);
         const text = await res.text();
         return { ...meta, text: text.trim() };
       }),
@@ -285,9 +288,17 @@ export function RagProvider({
       .then((loaded) => {
         if (cancelled) return;
         setDocs(loaded);
+        setDocsError(null);
         setDocsLoading(false);
       })
-      .catch(() => !cancelled && setDocsLoading(false));
+      .catch((err) => {
+        if (cancelled) return;
+        // Without this the corpus stage renders empty with no explanation.
+        setDocsError(
+          `Could not load the source documents (${err instanceof Error ? err.message : "network error"}). The server may have stopped — reload once it is running.`,
+        );
+        setDocsLoading(false);
+      });
     return () => {
       cancelled = true;
     };
@@ -591,6 +602,7 @@ export function RagProvider({
     canCallApi: !!apiKey || demoKeyAvailable,
     docs,
     docsLoading,
+    docsError,
     activeDocIds,
     toggleDoc,
     strategy,
