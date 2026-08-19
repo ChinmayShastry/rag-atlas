@@ -28,6 +28,7 @@ import StageGraphBuild from "./StageGraphBuild";
 import StageTraverse from "./StageTraverse";
 import StageTree from "./StageTree";
 import StageTreeRoute from "./StageTreeRoute";
+import ComparisonPanel from "./ComparisonPanel";
 import { RagProvider, useRag } from "../lib/store";
 import { ragTypeDef } from "../lib/ragTypes";
 import { formatUSD } from "../lib/pricing";
@@ -64,6 +65,7 @@ function Shell() {
       <main className="mx-auto max-w-[1220px] px-5 pb-24">
         <Intro usingDemoKey={usingDemoKey} />
         <Flow />
+        <ComparisonPanel />
         <Outro />
       </main>
     </>

@@ -205,7 +205,12 @@ interface RagState {
   /** Node id -> embedding. Computed once, on demand. */
   treeVectors: Map<string, number[]> | null;
   treeEmbedding: boolean;
-  runTreeEmbedding: () => Promise<void>;
+  /**
+   * Returns the vectors as well as storing them. Callers that need them
+   * immediately cannot read `treeVectors` back — it is still the old value in
+   * their closure until the next render.
+   */
+  runTreeEmbedding: () => Promise<Map<string, number[]> | null>;
   treeMode: "collapsed" | "traversal";
   setTreeMode: (m: "collapsed" | "traversal") => void;
   treeKeepPerLevel: number;
@@ -658,7 +663,8 @@ export function RagProvider({
   }, []);
 
   const runTreeEmbedding = useCallback(async () => {
-    if (!tree || treeVectors) return;
+    if (!tree) return null;
+    if (treeVectors) return treeVectors;
     setTreeEmbedding(true);
     try {
       const data = await apiPost<{
@@ -677,8 +683,9 @@ export function RagProvider({
         inputTokens: data.usage.inputTokens,
         outputTokens: 0,
       });
+      return map;
     } catch {
-      /* surfaced by the stage's own error handling */
+      return null;
     } finally {
       setTreeEmbedding(false);
     }

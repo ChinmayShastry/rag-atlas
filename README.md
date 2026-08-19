@@ -1,6 +1,6 @@
 # RAG Atlas
 
-An interactive walkthrough of **six RAG architectures**, plus evaluation and guardrails. Four plain `.txt` files, one question, and a switcher — ask the same thing of each architecture and watch where they diverge.
+An interactive walkthrough of **six RAG architectures**, plus evaluation and guardrails. Ten plain `.txt` files, one question, and a switcher — ask the same thing of each architecture and watch where they diverge, or run all six at once and compare.
 
 Nothing is simulated. Real chunking, real 1536-dimensional embeddings, real cosine ranking, a real cross-encoder running in your browser, real streamed generation, and a real second model grading the first.
 
@@ -37,9 +37,19 @@ Corpus, chunking, generation, evaluation and guardrails are identical throughout
 
 **Multi-hop** — Splits a question into narrow lookups, marks which cannot be searched until an earlier one answers, then rewrites those into concrete queries once the prior finding exists. The fourth document exists for this: it names a cone but never a temperature, a bee species but never a laying rate, so its questions are unanswerable by any single chunk.
 
-**Graph** — A model reads every paragraph and extracts entities and relationships into a graph (**250 entities, 222 relationships**, built offline). **26 entities bridge two or more documents**, which is the join vector search cannot make. Local search walks outward from entities your question names; global search answers from cluster summaries, the only way to reach a question whose answer is not written down anywhere.
+**Graph** — A model reads every paragraph and extracts entities and relationships into a graph (**553 entities, 546 relationships**, built offline). **53 entities bridge two or more documents** — `water` spans five of them, `cooling` four — which is the join vector search cannot make. Local search walks outward from entities your question names; global search answers from cluster summaries, the only way to reach a question whose answer is not written down anywhere.
 
-**Hierarchical** — Clusters chunks, summarises each cluster, then clusters the summaries, recursively (**45 leaves → 12 → 3**). Collapsed search ignores the hierarchy and lets every node compete flat, which the paper found beats walking down from the root — the tree earns its keep by putting summaries in the index at all.
+**Hierarchical** — Clusters chunks, summarises each cluster, then clusters the summaries, recursively (**106 leaves → 27 → 7 → 2**). Ask for a temperature and retrieval collapses onto leaves; ask what the crafts share and it returns one node from every level. Collapsed search ignores the hierarchy and lets every node compete flat, which the paper found beats walking down from the root — the tree earns its keep by putting summaries in the index at all.
+
+### Run all six at once
+
+At the foot of the page is a panel that takes your question and runs every architecture on it, then lays the answers out side by side with a faithfulness score, passage count, call count, cost and wall time for each.
+
+It is opt-in and collapsed by default, because it is the only thing on the site that spends money without you asking for a specific stage. A full comparison is around **$0.002 across 20 calls** and takes roughly half a minute — the architectures run in parallel, though multi-hop is internally sequential and finishes last.
+
+It deliberately does not drive the visible page. Switching the architecture six times would leave you looking at whatever state the last run finished in, so each pipeline is reproduced from the same primitives the stages use and the page you were reading is left untouched.
+
+> On a shared demo key, six generations per comparison against a 40/hour cap works out to roughly six comparisons per visitor per hour.
 
 ---
 
@@ -110,7 +120,7 @@ Every architecture begins and ends the same way.
 
 | Stage | Live controls |
 |---|---|
-| **Corpus** — the four source files | toggle documents in and out |
+| **Corpus** — the ten source files | toggle documents in and out |
 | **Chunking** — where the cuts land, painted onto the source text | chunk size, overlap, strategy, three-way comparison |
 | **Embedding** — chunks projected into 2D by PCA | hover and pin any point to inspect its raw vector |
 | **Query** — your question, embedded or matched lexically | nine presets: covered, cross-document, two-hop, and one deliberately unanswerable |
@@ -155,7 +165,7 @@ node scripts/build-graph.mjs
 node scripts/build-tree.mjs
 ```
 
-Both read `OPENAI_API_KEY` from the environment. The graph costs about **$0.012** (74 calls, one per paragraph plus one per community); the tree about **$0.0035** (17 calls). Outputs land in `public/graph/graph.json` and `public/tree/tree.json`.
+Both read `OPENAI_API_KEY` from the environment. The graph costs about **$0.028** (178 calls, one per paragraph plus one per community); the tree about **$0.008** (39 calls). Outputs land in `public/graph/graph.json` and `public/tree/tree.json`.
 
 Graph entities are anchored to character offsets in the source files rather than to chunks, so the graph stays valid however the chunking sliders are set.
 
@@ -171,7 +181,7 @@ Graph entities are anchored to character offsets in the source files rather than
 
 ## What a session costs
 
-Well under a cent. A full Naive pass — embedding ~54 chunks, one query, one answer, one evaluation, one guardrail check — runs about **$0.001**. Agentic and Multi-hop cost more, since they spend a call per decision or per hop. The header meter tracks it live and breaks it down per call.
+Well under a cent. A full Naive pass — embedding ~118 chunks, one query, one answer, one evaluation, one guardrail check — runs about **$0.001**. Running all six architectures from the comparison panel costs about **$0.002** across roughly 20 calls. Agentic and Multi-hop cost more, since they spend a call per decision or per hop. The header meter tracks it live and breaks it down per call.
 
 Chunking, BM25, similarity ranking, PCA, graph traversal, the force layout and every slider run entirely in your browser and cost nothing. So does reranking, which downloads a model once and then runs locally. Embeddings are cached per chunking configuration, so returning to a previous slider position is free.
 
@@ -206,12 +216,12 @@ app/
     prompt.ts     every system prompt and context assembly
     store.tsx     shared state and the embedding cache
 scripts/          offline index builders
-public/corpus/    the four .txt source files
+public/corpus/    the ten .txt source files, plus manifest.json
 public/graph/     committed knowledge graph
 public/tree/      committed summary tree
 ```
 
-To swap in your own documents: drop `.txt` files into `public/corpus/`, update `DOC_MANIFEST` in `app/lib/store.tsx` and `FILES` in `app/lib/corpus.ts`, then rerun both build scripts.
+To swap in your own documents: drop `.txt` files into `public/corpus/`, add them to `public/corpus/manifest.json`, then rerun both build scripts. Nothing else needs changing — the app, the allowlist and the scripts all read that one file.
 
 ---
 
@@ -222,6 +232,7 @@ To swap in your own documents: drop `.txt` files into `public/corpus/`, update `
 - **Chunk offsets are exact**, which is what lets the chunking ribbon paint overlap regions accurately.
 - **Sentence and recursive splitting overlap by whole units**, so a small overlap next to large chunks can have no effect. The UI detects this and says so rather than letting the slider look broken.
 - **Graph community selection ignores keyword overlap** in global mode. A thematic question shares no vocabulary with any single cluster name, so matching on overlap returns the clusters least able to answer it.
-- **RAPTOR's level mix is honest.** On four documents leaves nearly always win, because a specific passage beats a summary and there are three times as many. The stage says so rather than implying the demo proves more than it does.
+- **RAPTOR routes by abstraction, and you can see it.** A question about a temperature retrieves leaves; a question about what the documents share retrieves one node from every level. This only works because no single passage states those themes — an earlier draft had one that did, and no summary could ever win.
+- **One manifest, four consumers.** `public/corpus/manifest.json` is read by the app, the server-side allowlist, and both build scripts. It exists because they previously held separate copies, and the first rebuild after adding six documents silently indexed only the original four.
 
 Built with Next.js 14 and Tailwind. No database, no analytics, no telemetry.

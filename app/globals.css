@@ -202,6 +202,17 @@
   }
 }
 
+/* Points at the architecture switcher until a visitor opens it once. */
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -8,8 +8,14 @@ import { useRag } from "../lib/store";
 export default function ArchitectureSwitcher() {
   const { ragType, setRagType } = useRag();
   const [open, setOpen] = useState(false);
+  const [everOpened, setEverOpened] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const current = ragTypeDef(ragType);
+
+  // The switcher is easy to miss, and a visitor who never finds it sees one
+  // architecture and assumes that is the whole site. The cue shows once and
+  // retires permanently the first time the menu is opened.
+  const showCue = !everOpened && !open;
 
   useEffect(() => {
     if (!open) return;
@@ -29,9 +35,31 @@ export default function ArchitectureSwitcher() {
 
   return (
     <div className="relative shrink-0" ref={ref}>
+      {showCue && (
+        <div className="pointer-events-none absolute right-0 top-full z-30 mt-2 flex items-center gap-1.5 whitespace-nowrap">
+          <span
+            className="text-[15px] leading-none"
+            style={{ animation: "nudge 1.9s ease-in-out infinite" }}
+            aria-hidden
+          >
+            ☝️
+          </span>
+          <span className="rounded-lg border border-amber/40 bg-honey/[0.16] px-2 py-1 text-[11.5px] font-semibold text-[#9A6A16] shadow-warm">
+            Six architectures — pick one
+          </span>
+        </div>
+      )}
+
       <button
-        onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-2 rounded-xl border border-line bg-white/70 px-2.5 py-1.5 transition hover:border-terracotta/40 hover:shadow-warm"
+        onClick={() => {
+          setOpen((o) => !o);
+          setEverOpened(true);
+        }}
+        className={`flex items-center gap-2 rounded-xl border bg-white/70 px-2.5 py-1.5 transition hover:border-terracotta/40 hover:shadow-warm ${
+          showCue
+            ? "border-amber/50 shadow-warm"
+            : "border-line"
+        }`}
         title="Switch RAG architecture"
         aria-expanded={open}
       >
