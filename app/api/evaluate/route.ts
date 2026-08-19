@@ -1,10 +1,4 @@
-import {
-  CHAT_MODEL,
-  callOpenAI,
-  explainError,
-  keyMissing,
-  readKey,
-} from "@/app/lib/openai";
+import { keyMissing, readConfig, structuredCall } from "@/app/lib/openai";
 import { LIMITS, validatePassages } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
 import { buildContext } from "@/app/lib/prompt";
@@ -61,9 +55,9 @@ const clamp = (n: unknown) =>
   Math.max(0, Math.min(100, Math.round(typeof n === "number" ? n : 0)));
 
 export async function POST(req: Request) {
-  const resolved = readKey(req);
-  if (!resolved) return keyMissing();
-  const { key, shared } = resolved;
+  const cfg = readConfig(req);
+  if (!cfg) return keyMissing();
+  const { shared } = cfg;
 
   if (shared) {
     const verdict = rateLimit(clientId(req, "evaluate"), 40);
@@ -99,25 +93,19 @@ export async function POST(req: Request) {
   );
 
   try {
-    const res = await callOpenAI("/chat/completions", key, {
-      model: CHAT_MODEL,
-      temperature: 0,
-      messages: [
-        { role: "system", content: JUDGE_SYSTEM },
-        {
-          role: "user",
-          content: `CONTEXT:\n${context}\n\nQUESTION:\n${question}\n\nANSWER:\n${answer}`,
-        },
-      ],
-      response_format: { type: "json_schema", json_schema: SCHEMA },
-    });
+    const { parsed, usage } = await structuredCall(
+      cfg,
+      JUDGE_SYSTEM,
+      `CONTEXT:
+${context}
 
-    if (!res.ok) {
-      return Response.json({ error: await explainError(res) }, { status: res.status });
-    }
+QUESTION:
+${question}
 
-    const data = await res.json();
-    const parsed = JSON.parse(data.choices[0].message.content);
+ANSWER:
+${answer}`,
+      SCHEMA,
+    );
 
     return Response.json({
       scores: {
@@ -131,14 +119,16 @@ export async function POST(req: Request) {
           ? parsed.unsupported_claims
           : [],
       },
-      usage: {
-        inputTokens: data.usage?.prompt_tokens ?? 0,
-        outputTokens: data.usage?.completion_tokens ?? 0,
-      },
+      usage,
     });
-  } catch {
+  } catch (err) {
     return Response.json(
-      { error: "The judge response could not be parsed. Try again." },
+      {
+        error:
+          err instanceof Error
+            ? err.message
+            : "The judge response could not be parsed. Try again.",
+      },
       { status: 502 },
     );
   }

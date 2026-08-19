@@ -1,12 +1,49 @@
 "use client";
 
+export interface ProviderSettings {
+  /** Empty means OpenAI. Anything else must be an OpenAI-compatible /v1 base. */
+  baseUrl: string;
+  chatModel: string;
+  embedModel: string;
+}
+
+export const OPENAI_DEFAULTS: ProviderSettings = {
+  baseUrl: "",
+  chatModel: "gpt-4o-mini",
+  embedModel: "text-embedding-3-small",
+};
+
+/**
+ * Module state rather than a parameter, so the ~20 existing apiPost call sites
+ * do not each have to thread provider settings through. The store is the only
+ * writer, and it writes on every change.
+ */
+let provider: ProviderSettings = { ...OPENAI_DEFAULTS };
+
+export function setProviderSettings(next: ProviderSettings) {
+  provider = next;
+}
+
+export function getProviderSettings(): ProviderSettings {
+  return provider;
+}
+
 /**
  * An empty key is valid: it means "use the deployment's demo key, if it has
  * one". The header is omitted entirely rather than sent blank.
+ *
+ * Provider overrides ride along only when the visitor supplied a key — the
+ * server ignores them on the shared key regardless, but there is no reason to
+ * send them.
  */
 function authHeaders(key: string): Record<string, string> {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
-  if (key) headers["x-openai-key"] = key;
+  if (!key) return headers;
+
+  headers["x-openai-key"] = key;
+  if (provider.baseUrl) headers["x-openai-base"] = provider.baseUrl;
+  if (provider.chatModel) headers["x-openai-chat-model"] = provider.chatModel;
+  if (provider.embedModel) headers["x-openai-embed-model"] = provider.embedModel;
   return headers;
 }
 

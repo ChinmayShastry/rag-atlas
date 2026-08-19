@@ -10,8 +10,9 @@ import {
   useState,
 } from "react";
 import { chunkDocs } from "./chunking";
-import { apiPost } from "./api";
-import { costOf } from "./pricing";
+import { OPENAI_DEFAULTS, apiPost, setProviderSettings } from "./api";
+import type { ProviderSettings } from "./api";
+import { costOf, hasRate } from "./pricing";
 import { cosine, fitProjector, project } from "./vector";
 import { bm25Scores, buildBm25, fuse } from "./bm25";
 import {
@@ -81,6 +82,14 @@ interface RagState {
 
   apiKey: string;
   setApiKey: (k: string) => void;
+  /**
+   * Which API the visitor's key belongs to. Only meaningful alongside their own
+   * key — the shared demo key is always pinned to OpenAI's defaults.
+   */
+  provider: ProviderSettings;
+  setProvider: (p: ProviderSettings) => void;
+  /** True when this app has published rates for every model it has called. */
+  pricingKnown: boolean;
   /** True when the deployment carries its own key, so no gate is required. */
   demoKeyAvailable: boolean;
   usingDemoKey: boolean;
@@ -271,6 +280,16 @@ export function RagProvider({
 }) {
   const [ragType, setRagType] = useState<RagType>("naive");
   const [apiKey, setApiKey] = useState("");
+  const [provider, setProviderState] = useState<ProviderSettings>({
+    ...OPENAI_DEFAULTS,
+  });
+
+  // api.ts holds these in module state so every call site picks them up without
+  // being re-plumbed; this is the one place that writes them.
+  const setProvider = useCallback((next: ProviderSettings) => {
+    setProviderSettings(next);
+    setProviderState(next);
+  }, []);
 
   const [docs, setDocs] = useState<Doc[]>([]);
   const [docsLoading, setDocsLoading] = useState(true);
@@ -411,9 +430,21 @@ export function RagProvider({
 
   const vectorsStale = vectorSig !== null && vectorSig !== chunkSignature;
 
-  const addUsage = useCallback((e: Omit<UsageEntry, "at">) => {
-    setUsage((prev) => [...prev, { ...e, at: Date.now() }]);
-  }, []);
+  const addUsage = useCallback(
+    (e: Omit<UsageEntry, "at">) => {
+      // Call sites name the OpenAI defaults, because that is what the app asks
+      // for. If the visitor pointed it at another provider, rewrite the label
+      // here so the meter reports what actually ran.
+      const model =
+        e.model === OPENAI_DEFAULTS.chatModel
+          ? provider.chatModel
+          : e.model === OPENAI_DEFAULTS.embedModel
+            ? provider.embedModel
+            : e.model;
+      setUsage((prev) => [...prev, { ...e, model, at: Date.now() }]);
+    },
+    [provider],
+  );
 
   const runEmbedding = useCallback(async () => {
     if (!chunks.length) return null;
@@ -860,6 +891,8 @@ export function RagProvider({
     [usage],
   );
 
+  const pricingKnown = useMemo(() => usage.every((u) => hasRate(u.model)), [usage]);
+
   const reachStep = useCallback((n: number) => {
     setFurthestStep((prev) => (n > prev ? n : prev));
   }, []);
@@ -869,6 +902,9 @@ export function RagProvider({
     setRagType,
     apiKey,
     setApiKey,
+    provider,
+    setProvider,
+    pricingKnown,
     demoKeyAvailable,
     usingDemoKey: demoKeyAvailable && !apiKey,
     canCallApi: !!apiKey || demoKeyAvailable,

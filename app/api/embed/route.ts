@@ -1,9 +1,8 @@
 import {
-  EMBED_MODEL,
-  callOpenAI,
+  callProvider,
   explainError,
   keyMissing,
-  readKey,
+  readConfig,
 } from "@/app/lib/openai";
 import { LIMITS, isFromCorpus } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
@@ -13,9 +12,9 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
-  const resolved = readKey(req);
-  if (!resolved) return keyMissing();
-  const { key, shared } = resolved;
+  const cfg = readConfig(req);
+  if (!cfg) return keyMissing();
+  const { shared } = cfg;
 
   const body = await req.json().catch(() => null);
   const texts: unknown = body?.texts;
@@ -80,8 +79,8 @@ export async function POST(req: Request) {
   }
 
   try {
-    const res = await callOpenAI("/embeddings", key, {
-      model: EMBED_MODEL,
+    const res = await callProvider("/embeddings", cfg, {
+      model: cfg.embedModel,
       input: texts.map((t) => (t.trim() === "" ? " " : t)),
     });
 
@@ -97,13 +96,13 @@ export async function POST(req: Request) {
     return Response.json({
       vectors,
       dimensions: vectors[0]?.length ?? 0,
-      model: EMBED_MODEL,
+      model: cfg.embedModel,
       usage: {
         inputTokens: data.usage?.prompt_tokens ?? 0,
         outputTokens: 0,
       },
     });
   } catch {
-    return Response.json({ error: "Could not reach OpenAI." }, { status: 502 });
+    return Response.json({ error: "Could not reach the provider." }, { status: 502 });
   }
 }

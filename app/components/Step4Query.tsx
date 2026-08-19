@@ -190,7 +190,7 @@ export default function Step4Query({ n }: StageProps) {
       <Insight>
         {queryVector ? (
           <>
-            The white marker is your question living in the same 1536-dimensional
+            The white marker is your question living in the same high-dimensional
             space as every chunk. Notice which cluster it drifted toward — that
             drift happened purely from meaning, with no keyword matching
             anywhere in the process.

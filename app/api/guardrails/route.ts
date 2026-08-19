@@ -1,11 +1,12 @@
 import {
-  CHAT_MODEL,
   MODERATION_MODEL,
-  callOpenAI,
+  callProvider,
   explainError,
   keyMissing,
-  readKey,
+  readConfig,
+  structuredCall,
 } from "@/app/lib/openai";
+import type { ProviderConfig } from "@/app/lib/openai";
 import type { GuardResult, GuardVerdict } from "@/app/lib/types";
 import { LIMITS } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
@@ -58,11 +59,11 @@ const MODERATION_LABELS: Record<string, string> = {
 };
 
 async function runModeration(
-  key: string,
+  cfg: ProviderConfig,
   text: string,
   stage: "input" | "output",
 ): Promise<GuardResult> {
-  const res = await callOpenAI("/moderations", key, {
+  const res = await callProvider("/moderations", cfg, {
     model: MODERATION_MODEL,
     input: text,
   });
@@ -89,23 +90,15 @@ async function runModeration(
 }
 
 async function runClassifier(
-  key: string,
+  cfg: ProviderConfig,
   text: string,
 ): Promise<{ guard: GuardResult; inputTokens: number; outputTokens: number }> {
-  const res = await callOpenAI("/chat/completions", key, {
-    model: CHAT_MODEL,
-    temperature: 0,
-    messages: [
-      { role: "system", content: CLASSIFIER_SYSTEM },
-      { role: "user", content: text },
-    ],
-    response_format: { type: "json_schema", json_schema: CLASSIFIER_SCHEMA },
-  });
-
-  if (!res.ok) throw new Error(await explainError(res));
-
-  const data = await res.json();
-  const parsed = JSON.parse(data.choices[0].message.content);
+  const { parsed, usage } = await structuredCall(
+    cfg,
+    CLASSIFIER_SYSTEM,
+    text,
+    CLASSIFIER_SCHEMA,
+  );
   const verdict: GuardVerdict = ["pass", "warn", "block"].includes(parsed.verdict)
     ? parsed.verdict
     : "warn";
@@ -118,15 +111,38 @@ async function runClassifier(
       verdict,
       detail: parsed.reason ?? "",
     },
-    inputTokens: data.usage?.prompt_tokens ?? 0,
-    outputTokens: data.usage?.completion_tokens ?? 0,
+    inputTokens: usage.inputTokens,
+    outputTokens: usage.outputTokens,
   };
 }
 
+/**
+ * Moderation is an OpenAI-specific endpoint with no equivalent on most
+ * compatible providers, so it degrades to an explicit "not available" rather
+ * than failing the whole guardrail check.
+ */
+async function moderationFor(
+  cfg: ProviderConfig,
+  text: string,
+  stage: "input" | "output",
+): Promise<GuardResult> {
+  if (!cfg.isOpenAI) {
+    return {
+      id: `moderation-${stage}`,
+      stage,
+      label: stage === "input" ? "Moderation (question)" : "Moderation (answer)",
+      verdict: "warn",
+      detail:
+        "Not available on this endpoint. The moderation API is OpenAI-specific; the deterministic rules above still ran.",
+    };
+  }
+  return runModeration(cfg, text, stage);
+}
+
 export async function POST(req: Request) {
-  const resolved = readKey(req);
-  if (!resolved) return keyMissing();
-  const { key, shared } = resolved;
+  const cfg = readConfig(req);
+  if (!cfg) return keyMissing();
+  const { shared } = cfg;
 
   if (shared) {
     const verdict = rateLimit(clientId(req, "guardrails"), 60);
@@ -152,8 +168,8 @@ export async function POST(req: Request) {
 
   try {
     const [moderation, classifier] = await Promise.all([
-      runModeration(key, text, stage),
-      withClassifier ? runClassifier(key, text) : Promise.resolve(null),
+      moderationFor(cfg, text, stage),
+      withClassifier ? runClassifier(cfg, text) : Promise.resolve(null),
     ]);
 
     const results: GuardResult[] = [moderation];

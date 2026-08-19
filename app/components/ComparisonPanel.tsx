@@ -12,7 +12,7 @@ import { crossEncode, loadReranker } from "../lib/rerank";
 import { chunksForSpans, expand, seedNodes, spansOf } from "../lib/graph";
 import { collapsedSearch } from "../lib/tree";
 import type { EvalScores, Scored } from "../lib/types";
-import { costOf, formatUSD } from "../lib/pricing";
+import { costOf, formatUSD, hasRate } from "../lib/pricing";
 import { ErrorNote, Panel, Spinner } from "./ui";
 
 /**
@@ -466,8 +466,12 @@ export default function ComparisonPanel() {
     }
   }
 
+  // Named from the active provider, so a custom endpoint reports "—" rather
+  // than a price taken from OpenAI's rate card.
+  const chatModel = rag.provider.chatModel;
+  const priced = hasRate(chatModel);
   const totalCost = rows.reduce(
-    (s, r) => s + costOf("gpt-4o-mini", r.inputTokens, r.outputTokens),
+    (s, r) => s + costOf(chatModel, r.inputTokens, r.outputTokens),
     0,
   );
   const done = rows.filter((r) => r.status === "done").length;
@@ -551,7 +555,7 @@ export default function ComparisonPanel() {
                   )}
                   {done > 0 && (
                     <span className="ml-auto font-mono text-[12.5px] text-muted">
-                      {formatUSD(totalCost)} ·{" "}
+                      {priced ? formatUSD(totalCost) : "—"} ·{" "}
                       {rows.reduce((s, r) => s + r.calls, 0)} calls
                     </span>
                   )}
@@ -566,6 +570,7 @@ export default function ComparisonPanel() {
                       row={row}
                       isBest={!!best && best.type === row.type && done === 6}
                       expanded={expanded === row.type}
+                      chatModel={chatModel}
                       onToggle={() =>
                         setExpanded((c) => (c === row.type ? null : row.type))
                       }
@@ -595,15 +600,19 @@ function ResultCard({
   row,
   isBest,
   expanded,
+  chatModel,
   onToggle,
 }: {
   row: Row;
   isBest: boolean;
   expanded: boolean;
+  chatModel: string;
   onToggle: () => void;
 }) {
   const def = ragTypeDef(row.type);
-  const cost = costOf("gpt-4o-mini", row.inputTokens, row.outputTokens);
+  const cost = hasRate(chatModel)
+    ? formatUSD(costOf(chatModel, row.inputTokens, row.outputTokens))
+    : "—";
   const f = row.scores?.faithfulness ?? null;
   const colour = f === null ? "#9C8674" : f >= 80 ? "#4E6340" : f >= 55 ? "#9A6A16" : "#8E2F41";
 
@@ -642,7 +651,7 @@ function ResultCard({
             ? "failed"
             : row.status === "waiting"
               ? "waiting"
-              : `${row.passages} passages · ${row.calls} calls · ${formatUSD(cost)} · ${(row.ms / 1000).toFixed(1)}s`}
+              : `${row.passages} passages · ${row.calls} calls · ${cost} · ${(row.ms / 1000).toFixed(1)}s`}
       </div>
 
       {row.note && (

@@ -2,13 +2,92 @@
 
 import { useState } from "react";
 import { Spinner } from "./ui";
+import { OPENAI_DEFAULTS } from "../lib/api";
+import type { ProviderSettings } from "../lib/api";
+
+/**
+ * Any API that speaks the OpenAI wire format works. The catch is that this app
+ * needs BOTH chat completions and embeddings from the same endpoint, and
+ * several popular providers — Groq, DeepSeek, OpenRouter — serve chat only.
+ * Only providers that do both are offered as presets.
+ *
+ * Model names are starting points, not guarantees: providers rename and retire
+ * them. Every field stays editable, and a wrong name comes back as a plain
+ * 404 naming the model.
+ */
+const PRESETS: {
+  id: string;
+  label: string;
+  hint: string;
+  keysUrl: string | null;
+  settings: ProviderSettings;
+}[] = [
+  {
+    id: "openai",
+    label: "OpenAI",
+    hint: "The default. Nothing to configure.",
+    keysUrl: "https://platform.openai.com/api-keys",
+    settings: OPENAI_DEFAULTS,
+  },
+  {
+    id: "together",
+    label: "Together AI",
+    hint: "Open-weight models, both endpoints.",
+    keysUrl: "https://api.together.xyz/settings/api-keys",
+    settings: {
+      baseUrl: "https://api.together.xyz/v1",
+      chatModel: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+      embedModel: "BAAI/bge-base-en-v1.5",
+    },
+  },
+  {
+    id: "fireworks",
+    label: "Fireworks",
+    hint: "Open-weight models, both endpoints.",
+    keysUrl: "https://fireworks.ai/account/api-keys",
+    settings: {
+      baseUrl: "https://api.fireworks.ai/inference/v1",
+      chatModel: "accounts/fireworks/models/llama-v3p3-70b-instruct",
+      embedModel: "nomic-ai/nomic-embed-text-v1.5",
+    },
+  },
+  {
+    id: "mistral",
+    label: "Mistral",
+    hint: "mistral-embed covers the vector stages.",
+    keysUrl: "https://console.mistral.ai/api-keys",
+    settings: {
+      baseUrl: "https://api.mistral.ai/v1",
+      chatModel: "mistral-small-latest",
+      embedModel: "mistral-embed",
+    },
+  },
+  {
+    id: "ollama",
+    label: "Ollama (local)",
+    hint: "Only when you run this app locally too — the endpoint is dialled from the server, not your browser. Any key value works.",
+    keysUrl: null,
+    settings: {
+      baseUrl: "http://localhost:11434/v1",
+      chatModel: "llama3.1",
+      embedModel: "nomic-embed-text",
+    },
+  },
+  {
+    id: "custom",
+    label: "Something else",
+    hint: "Any OpenAI-compatible /v1 base URL.",
+    keysUrl: null,
+    settings: { baseUrl: "", chatModel: "", embedModel: "" },
+  },
+];
 
 export default function KeyGate({
   onReady,
   demoKeyAvailable = false,
   onUseDemo,
 }: {
-  onReady: (key: string) => void;
+  onReady: (key: string, provider: ProviderSettings) => void;
   demoKeyAvailable?: boolean;
   onUseDemo?: () => void;
 }) {
@@ -18,20 +97,53 @@ export default function KeyGate({
   const [show, setShow] = useState(false);
   const [showKeyForm, setShowKeyForm] = useState(!demoKeyAvailable);
 
+  const [presetId, setPresetId] = useState("openai");
+  const [advanced, setAdvanced] = useState(false);
+  const [settings, setSettings] = useState<ProviderSettings>(OPENAI_DEFAULTS);
+
+  const isOpenAI = presetId === "openai";
+  const preset = PRESETS.find((p) => p.id === presetId) ?? PRESETS[0];
+
+  function choose(id: string) {
+    setPresetId(id);
+    setError(null);
+    const next = PRESETS.find((p) => p.id === id)?.settings ?? OPENAI_DEFAULTS;
+    // "Something else" keeps whatever was typed rather than wiping it.
+    setSettings(id === "custom" ? { ...settings, baseUrl: settings.baseUrl } : next);
+  }
+
+  const field = (k: keyof ProviderSettings) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSettings((s) => ({ ...s, [k]: e.target.value }));
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!key.trim() || busy) return;
+
+    const resolved: ProviderSettings = {
+      baseUrl: settings.baseUrl.trim(),
+      chatModel: settings.chatModel.trim() || OPENAI_DEFAULTS.chatModel,
+      embedModel: settings.embedModel.trim() || OPENAI_DEFAULTS.embedModel,
+    };
+
+    if (!isOpenAI && !resolved.baseUrl) {
+      setError("Enter the base URL for this provider — it usually ends in /v1.");
+      return;
+    }
+
     setBusy(true);
     setError(null);
     try {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+        "x-openai-key": key.trim(),
+      };
+      if (resolved.baseUrl) headers["x-openai-base"] = resolved.baseUrl;
+
       let res: Response;
       try {
         res = await fetch("/api/validate", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-openai-key": key.trim(),
-          },
+          headers,
           body: "{}",
         });
       } catch {
@@ -44,7 +156,7 @@ export default function KeyGate({
       }
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error ?? "Could not validate that key.");
-      onReady(key.trim());
+      onReady(key.trim(), resolved);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Validation failed.");
       setBusy(false);
@@ -71,8 +183,9 @@ export default function KeyGate({
             RAG Atlas
           </h1>
           <p className="mx-auto mt-3 max-w-[430px] text-[16px] leading-relaxed text-ink-soft">
-            Nine stages of retrieval-augmented generation, evaluation, and
-            guardrails — each one drawn, and every slider wired to live output.
+            Six architectures of retrieval-augmented generation, evaluation,
+            and guardrails — every stage drawn, and every slider wired to live
+            output.
           </p>
         </div>
 
@@ -94,7 +207,7 @@ export default function KeyGate({
             </button>
             <p className="mt-3 text-center text-[12.5px] leading-relaxed text-ink-soft">
               Runs on the site owner&apos;s key. Rate limited, and restricted to
-              questions about the three bundled documents.
+              questions about the ten bundled documents.
             </p>
             {!showKeyForm && (
               <button
@@ -113,7 +226,7 @@ export default function KeyGate({
             htmlFor="key"
             className="mb-2 block text-[12px] font-bold uppercase tracking-[0.1em] text-ink-soft"
           >
-            OpenAI API key
+            {isOpenAI ? "OpenAI API key" : `${preset.label} API key`}
           </label>
 
           <div className="relative">
@@ -122,7 +235,7 @@ export default function KeyGate({
               type={show ? "text" : "password"}
               value={key}
               onChange={(e) => setKey(e.target.value)}
-              placeholder="sk-..."
+              placeholder={isOpenAI ? "sk-..." : "Your provider's key"}
               autoComplete="off"
               spellCheck={false}
               className="field pr-20 font-mono text-[13px]"
@@ -144,6 +257,96 @@ export default function KeyGate({
             </div>
           )}
 
+          <div className="mt-3">
+            <button
+              type="button"
+              onClick={() => setAdvanced((a) => !a)}
+              className="flex w-full items-center gap-1.5 text-[12.5px] font-semibold text-ink-soft transition hover:text-terracotta"
+            >
+              <svg
+                viewBox="0 0 20 20"
+                className={`h-3.5 w-3.5 transition-transform ${advanced ? "rotate-90" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+              >
+                <path d="M7 4l6 6-6 6" />
+              </svg>
+              Not an OpenAI key?
+              {!isOpenAI && (
+                <span className="ml-auto rounded-full bg-terracotta/10 px-2 py-0.5 font-mono text-[10.5px] font-bold uppercase tracking-wider text-terracotta">
+                  {preset.label}
+                </span>
+              )}
+            </button>
+
+            {advanced && (
+              <div className="mt-3 space-y-3 rounded-xl border border-line bg-parchment/40 p-3.5">
+                <p className="text-[12.5px] leading-relaxed text-ink-soft">
+                  Any API that speaks the OpenAI format works. This pipeline
+                  needs <strong className="font-semibold text-ink">both</strong>{" "}
+                  chat and embeddings from the same endpoint, so chat-only
+                  services — Groq, DeepSeek, OpenRouter — cannot drive it.
+                </p>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {PRESETS.map((pr) => (
+                    <button
+                      key={pr.id}
+                      type="button"
+                      onClick={() => choose(pr.id)}
+                      className={`rounded-lg border px-2.5 py-1.5 text-[12px] font-semibold transition ${
+                        pr.id === presetId
+                          ? "border-terracotta bg-terracotta/[0.09] text-terracotta"
+                          : "border-line bg-white/70 text-ink-soft hover:border-terracotta/40 hover:text-terracotta"
+                      }`}
+                    >
+                      {pr.label}
+                    </button>
+                  ))}
+                </div>
+
+                <p className="text-[11.5px] text-muted">{preset.hint}</p>
+
+                {!isOpenAI && (
+                  <div className="space-y-2.5 border-t border-line pt-3">
+                    <Field
+                      label="Base URL"
+                      value={settings.baseUrl}
+                      onChange={field("baseUrl")}
+                      placeholder="https://api.example.com/v1"
+                      disabled={busy}
+                    />
+                    <div className="grid gap-2.5 sm:grid-cols-2">
+                      <Field
+                        label="Chat model"
+                        value={settings.chatModel}
+                        onChange={field("chatModel")}
+                        placeholder={OPENAI_DEFAULTS.chatModel}
+                        disabled={busy}
+                      />
+                      <Field
+                        label="Embedding model"
+                        value={settings.embedModel}
+                        onChange={field("embedModel")}
+                        placeholder={OPENAI_DEFAULTS.embedModel}
+                        disabled={busy}
+                      />
+                    </div>
+                    <p className="text-[11.5px] leading-relaxed text-muted">
+                      Two stages stay OpenAI-only and will say so when you reach
+                      them: the moderation endpoint, and the running cost meter,
+                      which has no published rates to work from.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
           <button
             type="submit"
             disabled={!key.trim() || busy}
@@ -151,7 +354,7 @@ export default function KeyGate({
           >
             {busy ? (
               <>
-                <Spinner /> Verifying with OpenAI…
+                <Spinner /> Verifying with {isOpenAI ? "OpenAI" : preset.label}…
               </>
             ) : (
               <>
@@ -178,7 +381,8 @@ export default function KeyGate({
             </Assurance>
             <Assurance>
               Sent from your browser to this app&apos;s own API route, and from
-              there straight to OpenAI. It goes nowhere else.
+              there straight to {isOpenAI ? "OpenAI" : preset.label}. It goes
+              nowhere else.
             </Assurance>
             <Assurance>
               The reranking stage additionally downloads a small open model from
@@ -186,13 +390,14 @@ export default function KeyGate({
               are never part of that — it is a static file fetch.
             </Assurance>
             <Assurance>
-              A full session costs well under a cent. Models used:{" "}
+              {isOpenAI ? "A full session costs well under a cent. " : ""}
+              Models used:{" "}
               <code className="rounded bg-parchment px-1 py-px font-mono text-[11.5px] text-clay">
-                gpt-4o-mini
+                {settings.chatModel || OPENAI_DEFAULTS.chatModel}
               </code>{" "}
               and{" "}
               <code className="rounded bg-parchment px-1 py-px font-mono text-[11.5px] text-clay">
-                text-embedding-3-small
+                {settings.embedModel || OPENAI_DEFAULTS.embedModel}
               </code>
               .
             </Assurance>
@@ -200,19 +405,53 @@ export default function KeyGate({
         </form>
         )}
 
-        <p className="mt-5 text-center text-[12.5px] text-muted">
-          Need a key? Create one at{" "}
-          <a
-            href="https://platform.openai.com/api-keys"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="font-semibold text-terracotta underline decoration-terracotta/30 underline-offset-2 hover:decoration-terracotta"
-          >
-            platform.openai.com/api-keys
-          </a>
-        </p>
+        {preset.keysUrl && (
+          <p className="mt-5 text-center text-[12.5px] text-muted">
+            Need a key? Create one at{" "}
+            <a
+              href={preset.keysUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="font-semibold text-terracotta underline decoration-terracotta/30 underline-offset-2 hover:decoration-terracotta"
+            >
+              {preset.keysUrl.replace(/^https:\/\//, "")}
+            </a>
+          </p>
+        )}
       </div>
     </main>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  placeholder,
+  disabled,
+}: {
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  disabled?: boolean;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-[10.5px] font-bold uppercase tracking-[0.1em] text-muted">
+        {label}
+      </span>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        autoComplete="off"
+        spellCheck={false}
+        disabled={disabled}
+        className="field py-2 font-mono text-[12px]"
+      />
+    </label>
   );
 }
 

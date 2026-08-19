@@ -1,10 +1,4 @@
-import {
-  CHAT_MODEL,
-  callOpenAI,
-  explainError,
-  keyMissing,
-  readKey,
-} from "@/app/lib/openai";
+import { keyMissing, readConfig, structuredCall } from "@/app/lib/openai";
 import { LIMITS, validatePassages } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
 import { buildContext } from "@/app/lib/prompt";
@@ -88,9 +82,9 @@ const CRITIQUE_SCHEMA = {
 } as const;
 
 export async function POST(req: Request) {
-  const resolved = readKey(req);
-  if (!resolved) return keyMissing();
-  const { key, shared } = resolved;
+  const cfg = readConfig(req);
+  if (!cfg) return keyMissing();
+  const { shared } = cfg;
 
   if (shared) {
     const verdict = rateLimit(clientId(req, "grade"), 40);
@@ -137,29 +131,12 @@ export async function POST(req: Request) {
     : `QUESTION:\n${question}\n\nPASSAGES:\n${context}`;
 
   try {
-    const res = await callOpenAI("/chat/completions", key, {
-      model: CHAT_MODEL,
-      temperature: 0,
-      messages: [
-        { role: "system", content: isCritique ? CRITIQUE_SYSTEM : GRADE_SYSTEM },
-        { role: "user", content: userContent },
-      ],
-      response_format: {
-        type: "json_schema",
-        json_schema: isCritique ? CRITIQUE_SCHEMA : GRADE_SCHEMA,
-      },
-    });
-
-    if (!res.ok) {
-      return Response.json({ error: await explainError(res) }, { status: res.status });
-    }
-
-    const data = await res.json();
-    const parsed = JSON.parse(data.choices[0].message.content);
-    const usage = {
-      inputTokens: data.usage?.prompt_tokens ?? 0,
-      outputTokens: data.usage?.completion_tokens ?? 0,
-    };
+    const { parsed, usage } = await structuredCall(
+      cfg,
+      isCritique ? CRITIQUE_SYSTEM : GRADE_SYSTEM,
+      userContent,
+      isCritique ? CRITIQUE_SCHEMA : GRADE_SCHEMA,
+    );
 
     if (isCritique) {
       return Response.json({
@@ -185,9 +162,14 @@ export async function POST(req: Request) {
       ),
       usage,
     });
-  } catch {
+  } catch (err) {
     return Response.json(
-      { error: "The grader response could not be parsed. Try again." },
+      {
+        error:
+          err instanceof Error
+            ? err.message
+            : "The grader response could not be parsed. Try again.",
+      },
       { status: 502 },
     );
   }

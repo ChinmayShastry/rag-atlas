@@ -63,7 +63,7 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:3000> and paste an OpenAI API key when asked. Get one at [platform.openai.com/api-keys](https://platform.openai.com/api-keys).
+Open <http://localhost:3000> and paste an OpenAI API key when asked. Get one at [platform.openai.com/api-keys](https://platform.openai.com/api-keys), or use [another provider](#using-a-provider-other-than-openai).
 
 > **Do not run `npm run build` while `npm run dev` is running.** Both write to `.next/`, and the build will pull chunk files out from under the live dev server. Stop dev first.
 
@@ -78,6 +78,30 @@ rm -rf .next && npm run dev
 ```
 
 **Headings render in Times New Roman** — `next/font` fetches Google Fonts at build time, and a network hiccup makes it fall back silently, caching that failure. Same fix: stop the server, delete `.next`, restart. The app also ships zero-specificity font defaults, so a failed fetch degrades to Georgia/system-ui rather than to browser defaults.
+
+## Using a provider other than OpenAI
+
+Any API that speaks the OpenAI wire format works. On the key screen, open **"Not an OpenAI key?"** and pick a preset or enter a base URL and model names by hand:
+
+| Provider | Base URL |
+|---|---|
+| Together AI | `https://api.together.xyz/v1` |
+| Fireworks | `https://api.fireworks.ai/inference/v1` |
+| Mistral | `https://api.mistral.ai/v1` |
+| Ollama (local) | `http://localhost:11434/v1` |
+
+**The pipeline needs both chat completions and embeddings from the same endpoint.** That rules out chat-only services — Groq, DeepSeek and OpenRouter serve no embeddings API, so they cannot drive this app. Embedding dimensionality does not matter; the plots, PCA and cosine ranking all read it from the response.
+
+Three things degrade, and the app says so where they do:
+
+- **Structured output.** Every judgement call asks for `response_format: json_schema` first. On a 400/404/422 the server retries with `json_object` and the schema restated in the prompt, then without `response_format` at all, and unwraps JSON from a code fence if one arrives. Weaker models produce weaker judgements, but the stage still runs.
+- **Moderation.** `omni-moderation-latest` is OpenAI-only. On any other endpoint the moderation guardrail reports "not available" rather than failing; the deterministic pattern rules still run.
+- **Cost.** The meter only carries OpenAI's rate card. Token counts stay real; the dollar figure shows `—`.
+
+Two rules the server enforces, regardless of what the browser sends:
+
+- A custom base URL is honoured **only** for a request carrying the visitor's own key. On the shared demo key it is ignored entirely — otherwise anyone could point the deployment at a URL they control and be handed its credentials.
+- A base URL must be `https://`, or `http://` on localhost. The localhost exception is for Ollama, and it only works when you run this app on the same machine: the endpoint is dialled from the server, not from your browser, so a deployed instance cannot reach your laptop.
 
 ## Deploy to Vercel
 
@@ -174,9 +198,9 @@ Graph entities are anchored to character offsets in the source files rather than
 ## How your key is handled
 
 - Held in React state for the life of the browser tab. Never written to `localStorage`, a cookie, a database, or a log.
-- Sent from the browser to this app's own `/api/*` routes, and from there directly to `api.openai.com`.
+- Sent from the browser to this app's own `/api/*` routes, and from there directly to `api.openai.com` — or to the compatible endpoint you chose, and nowhere else.
 - The Advanced reranking stage is the one exception to "nothing else is contacted": it fetches Transformers.js from jsDelivr and a ~21 MB cross-encoder from the Hugging Face CDN, then runs entirely in your browser. Static file downloads only — no key, question, or document leaves the page.
-- All OpenAI calls happen server-side, so the key never appears in the client bundle.
+- All provider calls happen server-side, so the key never appears in the client bundle.
 - Close the tab and it is gone. There is nothing to log out of.
 
 ## What a session costs
@@ -185,7 +209,7 @@ Well under a cent. A full Naive pass — embedding ~118 chunks, one query, one a
 
 Chunking, BM25, similarity ranking, PCA, graph traversal, the force layout and every slider run entirely in your browser and cost nothing. So does reranking, which downloads a model once and then runs locally. Embeddings are cached per chunking configuration, so returning to a previous slider position is free.
 
-**Models:** `gpt-4o-mini` for generation, judging, planning, grading and classification; `text-embedding-3-small` for embeddings; `omni-moderation-latest` for moderation (free); `Xenova/ms-marco-MiniLM-L-6-v2` in your browser for reranking (free).
+**Models:** `gpt-4o-mini` for generation, judging, planning, grading and classification; `text-embedding-3-small` for embeddings; `omni-moderation-latest` for moderation (free); `Xenova/ms-marco-MiniLM-L-6-v2` in your browser for reranking (free). The first two are overridable per visitor — see [using another provider](#using-a-provider-other-than-openai).
 
 ---
 

@@ -1,10 +1,4 @@
-import {
-  CHAT_MODEL,
-  callOpenAI,
-  explainError,
-  keyMissing,
-  readKey,
-} from "@/app/lib/openai";
+import { keyMissing, readConfig, structuredCall } from "@/app/lib/openai";
 import { LIMITS } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
 
@@ -136,9 +130,9 @@ const CORRECT_SCHEMA = {
 } as const;
 
 export async function POST(req: Request) {
-  const resolved = readKey(req);
-  if (!resolved) return keyMissing();
-  const { key, shared } = resolved;
+  const cfg = readConfig(req);
+  if (!cfg) return keyMissing();
+  const { shared } = cfg;
 
   if (shared) {
     const verdict = rateLimit(clientId(req, "plan"), 40);
@@ -191,29 +185,12 @@ export async function POST(req: Request) {
           : question;
 
   try {
-    const res = await callOpenAI("/chat/completions", key, {
-      model: CHAT_MODEL,
-      temperature: 0,
-      messages: [
-        { role: "system", content: SYSTEMS[task] },
-        { role: "user", content: userContent },
-      ],
-      response_format: {
-        type: "json_schema",
-        json_schema: SCHEMAS[task],
-      },
-    });
-
-    if (!res.ok) {
-      return Response.json({ error: await explainError(res) }, { status: res.status });
-    }
-
-    const data = await res.json();
-    const parsed = JSON.parse(data.choices[0].message.content);
-    const usage = {
-      inputTokens: data.usage?.prompt_tokens ?? 0,
-      outputTokens: data.usage?.completion_tokens ?? 0,
-    };
+    const { parsed, usage } = await structuredCall(
+      cfg,
+      SYSTEMS[task],
+      userContent,
+      SCHEMAS[task],
+    );
 
     if (task === "rewrite") {
       return Response.json({
@@ -250,9 +227,14 @@ export async function POST(req: Request) {
       })),
       usage,
     });
-  } catch {
+  } catch (err) {
     return Response.json(
-      { error: "The planner response could not be parsed. Try again." },
+      {
+        error:
+          err instanceof Error
+            ? err.message
+            : "The planner response could not be parsed. Try again.",
+      },
       { status: 502 },
     );
   }

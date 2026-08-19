@@ -1,9 +1,8 @@
 import {
-  CHAT_MODEL,
-  callOpenAI,
+  callProvider,
   explainError,
   keyMissing,
-  readKey,
+  readConfig,
 } from "@/app/lib/openai";
 import { LIMITS, validatePassages } from "@/app/lib/corpus";
 import { clientId, rateLimit, tooMany } from "@/app/lib/ratelimit";
@@ -32,9 +31,9 @@ export const maxDuration = 60;
  *   {"t":"delta","v":"..."}   {"t":"usage","v":{...}}   {"t":"error","v":"..."}
  */
 export async function POST(req: Request) {
-  const resolved = readKey(req);
-  if (!resolved) return keyMissing();
-  const { key, shared } = resolved;
+  const cfg = readConfig(req);
+  if (!cfg) return keyMissing();
+  const { shared } = cfg;
 
   if (shared) {
     const verdict = rateLimit(clientId(req, "chat"), 40);
@@ -108,8 +107,8 @@ export async function POST(req: Request) {
 
   let upstream: Response;
   try {
-    upstream = await callOpenAI("/chat/completions", key, {
-      model: CHAT_MODEL,
+    upstream = await callProvider("/chat/completions", cfg, {
+      model: cfg.chatModel,
       messages,
       temperature,
       max_tokens: 700,
@@ -117,7 +116,7 @@ export async function POST(req: Request) {
       stream_options: { include_usage: true },
     });
   } catch {
-    return Response.json({ error: "Could not reach OpenAI." }, { status: 502 });
+    return Response.json({ error: "Could not reach the provider." }, { status: 502 });
   }
 
   if (!upstream.ok || !upstream.body) {
@@ -169,7 +168,7 @@ export async function POST(req: Request) {
           }
         }
       } catch {
-        emit("error", "The stream from OpenAI was interrupted.");
+        emit("error", "The stream from the provider was interrupted.");
       } finally {
         controller.close();
       }

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { STAGE_META, ragTypeDef } from "../lib/ragTypes";
 import { useRag } from "../lib/store";
 import { useDismiss } from "../lib/useDismiss";
-import { costOf, formatCount, formatUSD } from "../lib/pricing";
+import { costOf, formatCount, formatUSD, hasRate } from "../lib/pricing";
 import ArchitectureSwitcher from "./ArchitectureSwitcher";
 
 export default function Header() {
@@ -72,8 +72,12 @@ export default function Header() {
 }
 
 function CostMeter() {
-  const { usage, totalCost, totalTokens } = useRag();
+  const { usage, totalCost, totalTokens, pricingKnown } = useRag();
   const [open, setOpen] = useState(false);
+
+  // A custom provider has no published rates here. Showing $0.0000 would read
+  // as "this was free" rather than "this app does not know".
+  const money = (n: number) => (pricingKnown ? formatUSD(n) : "—");
   const ref = useRef<HTMLDivElement>(null);
   const close = useCallback(() => setOpen(false), []);
   useDismiss(ref, open, close);
@@ -83,7 +87,11 @@ function CostMeter() {
       <button
         onClick={() => setOpen((o) => !o)}
         className="flex items-center gap-2 rounded-xl border border-line bg-white/70 px-2.5 py-1.5 transition hover:border-terracotta/40 hover:shadow-warm"
-        title="Session spend on your key"
+        title={
+          pricingKnown
+            ? "Session spend on your key"
+            : "Token counts are real; this app has no rate card for your provider"
+        }
       >
         <svg
           viewBox="0 0 20 20"
@@ -98,7 +106,7 @@ function CostMeter() {
         </svg>
         <div className="text-left leading-none">
           <div className="font-mono text-[13px] font-bold tabular-nums text-ink">
-            {formatUSD(totalCost)}
+            {money(totalCost)}
           </div>
           <div className="mt-0.5 text-[9.5px] font-semibold uppercase tracking-wider text-muted">
             {formatCount(totalTokens)} tok
@@ -113,7 +121,7 @@ function CostMeter() {
                 Session spend
               </h4>
               <span className="font-mono text-[15px] font-bold text-terracotta">
-                {formatUSD(totalCost)}
+                {money(totalCost)}
               </span>
             </div>
 
@@ -142,7 +150,11 @@ function CostMeter() {
                         </div>
                       </div>
                       <span className="shrink-0 font-mono text-[11.5px] tabular-nums text-ink-soft">
-                        {formatUSD(costOf(u.model, u.inputTokens, u.outputTokens))}
+                        {hasRate(u.model)
+                          ? formatUSD(
+                              costOf(u.model, u.inputTokens, u.outputTokens),
+                            )
+                          : "—"}
                       </span>
                     </div>
                   ))}
@@ -150,8 +162,9 @@ function CostMeter() {
             )}
 
             <p className="mt-3 border-t border-line pt-2.5 text-[11px] leading-relaxed text-muted">
-              Estimated from published per-token rates. Your OpenAI dashboard is
-              the authoritative figure.
+              {pricingKnown
+                ? "Estimated from published per-token rates. Your OpenAI dashboard is the authoritative figure."
+                : "Token counts are real, but this app only carries OpenAI's rate card — so there is no price to estimate from. Your provider's dashboard has the figure."}
             </p>
         </div>
       )}

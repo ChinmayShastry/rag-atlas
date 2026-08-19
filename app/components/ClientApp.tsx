@@ -31,7 +31,7 @@ import StageTreeRoute from "./StageTreeRoute";
 import ComparisonPanel from "./ComparisonPanel";
 import { RagProvider, useRag } from "../lib/store";
 import { ragTypeDef } from "../lib/ragTypes";
-import { formatUSD } from "../lib/pricing";
+import { formatCount, formatUSD } from "../lib/pricing";
 
 export default function ClientApp({
   demoKeyAvailable,
@@ -46,13 +46,18 @@ export default function ClientApp({
 }
 
 function Shell() {
-  const { apiKey, setApiKey, demoKeyAvailable, usingDemoKey } = useRag();
+  const { apiKey, setApiKey, setProvider, demoKeyAvailable, usingDemoKey } =
+    useRag();
   const [demoAccepted, setDemoAccepted] = useState(false);
 
   if (!apiKey && !demoAccepted) {
     return (
       <KeyGate
-        onReady={setApiKey}
+        onReady={(key, provider) => {
+          // Provider first: the key is what unmounts the gate.
+          setProvider(provider);
+          setApiKey(key);
+        }}
         demoKeyAvailable={demoKeyAvailable}
         onUseDemo={() => setDemoAccepted(true)}
       />
@@ -162,10 +167,11 @@ function Intro({ usingDemoKey }: { usingDemoKey: boolean }) {
           generation actually happen.
         </h1>
         <p className="mt-4 text-[16.5px] leading-relaxed text-ink-soft">
-          Nine stages, three text files, and a lot of sliders. Everything below
-          is live: drag a control and the chunks, the vectors, the retrieved
-          passages, and the answer all move with it. Start at the top and work
-          down — each stage explains itself in a line or two, then shows you.
+          Ten text files, a lot of sliders, and six architectures to run them
+          through. Everything below is live: drag a control and the chunks, the
+          vectors, the retrieved passages, and the answer all move with it.
+          Start at the top and work down — each stage explains itself in a line
+          or two, then shows you.
         </p>
       </div>
 
@@ -224,7 +230,7 @@ function IntroCard({
 }
 
 function Outro() {
-  const { totalCost, totalTokens, usage } = useRag();
+  const { totalCost, totalTokens, usage, pricingKnown } = useRag();
 
   return (
     <section className="mt-10 border-t border-line pt-10">
@@ -238,9 +244,9 @@ function Outro() {
           <div className="space-y-3 text-[14px] leading-relaxed text-ink-soft">
             <p>
               Nothing you saw was a simulation. Real chunking, real
-              1536-dimensional embeddings, real cosine ranking, real streamed
+              high-dimensional embeddings, real cosine ranking, real streamed
               generation, and a real second model grading the first — all from
-              three plain text files and your own key.
+              ten plain text files and a single API key.
             </p>
             <p>
               The parts worth carrying away: retrieval quality caps answer
@@ -261,10 +267,10 @@ function Outro() {
           <div className="space-y-2">
             <div className="rounded-xl border border-line bg-white/60 p-3.5">
               <div className="text-[10.5px] font-bold uppercase tracking-[0.11em] text-muted">
-                This session cost you
+                {pricingKnown ? "This session cost you" : "This session used"}
               </div>
               <div className="font-mono text-[28px] font-bold leading-tight text-terracotta">
-                {formatUSD(totalCost)}
+                {pricingKnown ? formatUSD(totalCost) : formatCount(totalTokens)}
               </div>
               <div className="text-[12px] text-muted">
                 {totalTokens.toLocaleString()} tokens across {usage.length} API

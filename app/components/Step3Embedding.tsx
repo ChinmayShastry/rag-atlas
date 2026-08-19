@@ -42,7 +42,7 @@ export default function Step3Embedding({ n }: StageProps) {
       n={n}
       kicker={stageKicker(n)}
       title="Embedding"
-      lede="Each chunk is converted into a list of 1536 numbers that encodes its meaning. Text that means similar things lands in a similar place."
+      lede={`Each chunk is converted into a list of ${embedDims || 1536} numbers that encodes its meaning. Text that means similar things lands in a similar place.`}
     >
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
         <Panel
