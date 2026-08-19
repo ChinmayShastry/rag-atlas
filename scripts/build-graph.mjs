@@ -23,12 +23,9 @@ const CORPUS_DIR = path.join(ROOT, "public", "corpus");
 const OUT_FILE = path.join(ROOT, "public", "graph", "graph.json");
 const MODEL = "gpt-4o-mini";
 
-const DOCS = [
-  { id: "coffee", title: "Coffee Roasting", file: "coffee-roasting.txt" },
-  { id: "bees", title: "Honeybee Colonies", file: "honeybee-colonies.txt" },
-  { id: "kilns", title: "Pottery Kiln Firing", file: "pottery-kiln-firing.txt" },
-  { id: "marta", title: "The Hillside Workshop", file: "marta-workshop.txt" },
-];
+const DOCS = JSON.parse(
+  fs.readFileSync(path.join(CORPUS_DIR, "manifest.json"), "utf8"),
+);
 
 const key = process.env.OPENAI_API_KEY;
 if (!key) {

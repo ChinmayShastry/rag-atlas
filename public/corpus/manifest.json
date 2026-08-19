@@ -1,0 +1,82 @@
+[
+  {
+    "id": "coffee",
+    "title": "Coffee Roasting",
+    "file": "coffee-roasting.txt",
+    "blurb": "Roast phases, first and second crack, degassing, storage.",
+    "accent": "#C2603A",
+    "plot": "#E8865C"
+  },
+  {
+    "id": "bees",
+    "title": "Honeybee Colonies",
+    "file": "honeybee-colonies.txt",
+    "blurb": "Castes, the waggle dance, thermoregulation, swarming.",
+    "accent": "#B0811C",
+    "plot": "#F2C14E"
+  },
+  {
+    "id": "kilns",
+    "title": "Pottery Kiln Firing",
+    "file": "pottery-kiln-firing.txt",
+    "blurb": "Cones, quartz inversion, oxidation versus reduction.",
+    "accent": "#B0455A",
+    "plot": "#DE6B80"
+  },
+  {
+    "id": "marta",
+    "title": "The Hillside Workshop",
+    "file": "marta-workshop.txt",
+    "blurb": "A fictional profile whose facts only resolve by looking them up elsewhere.",
+    "accent": "#5F7A4F",
+    "plot": "#93B07C"
+  },
+  {
+    "id": "sourdough",
+    "title": "Sourdough Fermentation",
+    "file": "sourdough-fermentation.txt",
+    "blurb": "Starters, hydration, the two acids, oven spring.",
+    "accent": "#A2673C",
+    "plot": "#D89A5E"
+  },
+  {
+    "id": "steel",
+    "title": "Steel Heat Treatment",
+    "file": "steel-heat-treatment.txt",
+    "blurb": "Austenite, quenching, tempering colours, grain growth.",
+    "accent": "#7A6A8C",
+    "plot": "#A897BC"
+  },
+  {
+    "id": "glass",
+    "title": "Glass Annealing",
+    "file": "glass-annealing.txt",
+    "blurb": "Viscosity ranges, the annealing point, residual stress.",
+    "accent": "#3F7E86",
+    "plot": "#6FB3BC"
+  },
+  {
+    "id": "cheese",
+    "title": "Cheese Affinage",
+    "file": "cheese-affinage.txt",
+    "blurb": "Proteolysis, rind ecologies, tyrosine crystals.",
+    "accent": "#9C7A24",
+    "plot": "#D8B24A"
+  },
+  {
+    "id": "indigo",
+    "title": "The Indigo Vat",
+    "file": "indigo-dye-vat.txt",
+    "blurb": "Reduction, the bloom, and colour that forms in the air.",
+    "accent": "#4A6BA8",
+    "plot": "#7E9BD4"
+  },
+  {
+    "id": "tea",
+    "title": "Tea Processing",
+    "file": "tea-processing.txt",
+    "blurb": "Withering, kill-green, and why it is not fermentation.",
+    "accent": "#6B8F4E",
+    "plot": "#9CC275"
+  }
+]

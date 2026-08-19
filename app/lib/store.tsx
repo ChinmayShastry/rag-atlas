@@ -44,42 +44,22 @@ import type {
 } from "./types";
 import type { RagType } from "./ragTypes";
 
-export const DOC_MANIFEST = [
-  {
-    id: "coffee",
-    title: "Coffee Roasting",
-    file: "coffee-roasting.txt",
-    blurb: "Roast phases, first and second crack, degassing, storage.",
-    /** `accent` reads on cream; `plot` reads on the dark embedding panel. */
-    accent: "#C2603A",
-    plot: "#E8865C",
-  },
-  {
-    id: "bees",
-    title: "Honeybee Colonies",
-    file: "honeybee-colonies.txt",
-    blurb: "Castes, the waggle dance, thermoregulation, swarming.",
-    accent: "#B0811C",
-    plot: "#F2C14E",
-  },
-  {
-    id: "kilns",
-    title: "Pottery Kiln Firing",
-    file: "pottery-kiln-firing.txt",
-    blurb: "Cones, quartz inversion, oxidation versus reduction.",
-    accent: "#B0455A",
-    plot: "#DE6B80",
-  },
-  {
-    id: "marta",
-    title: "The Hillside Workshop",
-    file: "marta-workshop.txt",
-    blurb:
-      "A fictional profile whose facts only resolve by looking them up elsewhere.",
-    accent: "#5F7A4F",
-    plot: "#93B07C",
-  },
-];
+import manifest from "../../public/corpus/manifest.json";
+
+/**
+ * The single source of truth for the corpus, shared with the server-side
+ * allowlist and both offline build scripts. `accent` reads on cream; `plot`
+ * reads on the dark embedding panel.
+ */
+export const DOC_MANIFEST: {
+  id: string;
+  title: string;
+  file: string;
+  blurb: string;
+  accent: string;
+  plot: string;
+}[] = manifest;
+
 
 export const DOC_COLORS: Record<string, { accent: string; plot: string }> =
   Object.fromEntries(

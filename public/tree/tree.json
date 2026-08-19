@@ -2,13 +2,13 @@
  "meta": {
   "chatModel": "gpt-4o-mini",
   "embedModel": "text-embedding-3-small",
-  "builtAt": "2026-08-18T10:55:38.548Z",
+  "builtAt": "2026-08-19T02:40:40.522Z",
   "leafTarget": 700,
-  "levels": 3,
-  "calls": 17,
-  "inputTokens": 15354,
-  "outputTokens": 1939,
-  "estimatedCostUsd": 0.0034664999999999995
+  "levels": 4,
+  "calls": 39,
+  "inputTokens": 35854,
+  "outputTokens": 4717,
+  "estimatedCostUsd": 0.008208299999999998
  },
  "nodes": [
   {
@@ -585,7 +585,7 @@
    "id": "n38",
    "level": 0,
    "title": "The Hillside Workshop",
-   "text": "Marta runs a small workshop on a north-facing hillside, where she divides her week between three crafts that she insists are the same craft wearing different clothes. All three, she says, are the management of heat and time over living material.",
+   "text": "Marta runs a small workshop on a north-facing hillside, where she divides her week between several crafts and declines to rank them.",
    "docs": [
     "marta"
    ],
@@ -593,7 +593,7 @@
    "span": {
     "docId": "marta",
     "start": 365,
-    "end": 610
+    "end": 497
    }
   },
   {
@@ -607,8 +607,8 @@
    "children": [],
    "span": {
     "docId": "marta",
-    "start": 612,
-    "end": 1386
+    "start": 499,
+    "end": 1273
    }
   },
   {
@@ -622,8 +622,8 @@
    "children": [],
    "span": {
     "docId": "marta",
-    "start": 1388,
-    "end": 1940
+    "start": 1275,
+    "end": 1827
    }
   },
   {
@@ -637,8 +637,8 @@
    "children": [],
    "span": {
     "docId": "marta",
-    "start": 1942,
-    "end": 2609
+    "start": 1829,
+    "end": 2496
    }
   },
   {
@@ -652,8 +652,8 @@
    "children": [],
    "span": {
     "docId": "marta",
-    "start": 2611,
-    "end": 3298
+    "start": 2498,
+    "end": 3185
    }
   },
   {
@@ -667,92 +667,1217 @@
    "children": [],
    "span": {
     "docId": "marta",
-    "start": 3300,
-    "end": 3784
+    "start": 3187,
+    "end": 3671
    }
   },
   {
    "id": "n44",
    "level": 0,
    "title": "The Hillside Workshop",
-   "text": "The three crafts share a vocabulary that she finds more than coincidental. Both her kiln and her roaster pass through a stage where water must leave the material before anything interesting can happen, and rushing that stage ruins the result in both cases, though for different reasons. Both have a moment that announces itself audibly. Both reward a maker who understands that the temperature reading on the instrument is not the same thing as the transformation happening inside the material. Her honey is the exception, and she likes it for that: the bees manage the moisture themselves, seal the result, and produce something that will outlast every pot she has ever made.",
+   "text": "A jar of starter lives on the shelf above the roaster, fed on the same schedule for eleven years. She keeps it deliberately cool and stiff rather than warm and slack, because she wants the sharper of the two acids a starter can produce, and she is dismissive of bakers who chase sourness by extending the bulk ferment instead. Her loaves go into a domestic oven she considers inadequate and are pulled when the internal temperature reaches the figure she was taught, which she checks with a probe rather than by tapping.",
    "docs": [
     "marta"
    ],
    "children": [],
    "span": {
     "docId": "marta",
-    "start": 3786,
-    "end": 4462
+    "start": 3673,
+    "end": 4193
    }
   },
   {
    "id": "n45",
-   "level": 1,
-   "title": "Crafts of Roasting and Transformation",
-   "text": "The craft of coffee roasting shares similarities with other forms of material transformation, particularly in the critical stages where moisture must be removed for optimal results. Rushing this process can lead to poor outcomes, as both coffee and ceramics require careful attention to temperature and timing. An audible cue marks a significant moment in both crafts, highlighting the importance of understanding the difference between instrument readings and the actual changes occurring in the material. Honey stands out as an exception, as bees naturally manage moisture, creating a product that endures beyond the maker's creations.",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "In the outbuilding she keeps an indigo vat, a fermentation vat rather than a chemical one, fed with madder and bran and held at the warm end of its working range by a heater she salvaged from an aquarium. She judges its health by the coppery bloom on the surface and by the colour of the liquid beneath, and she will not dye protein fibres in it at all, on the grounds that the alkalinity required would ruin them. The linen she dyes goes through twelve dips.",
    "docs": [
-    "coffee",
     "marta"
    ],
-   "children": [
-    "n0",
-    "n44"
-   ]
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 4195,
+    "end": 4654
+   }
   },
   {
    "id": "n46",
-   "level": 1,
-   "title": "Coffee Roasting Process and Techniques",
-   "text": "The coffee roasting process begins with preheating the drum to a temperature between 180 and 220 degrees Celsius, followed by the addition of green coffee, which causes a temperature drop known as the turnaround point occurring within sixty to ninety seconds. Roasting results in weight loss, with light roasts losing twelve to fourteen percent, medium roasts fifteen to seventeen percent, and dark roasts eighteen to twenty percent or more, affecting density and caffeine content. Post-roasting, beans must degas for three to seven days for optimal brewing, with espresso benefiting from a longer rest of seven to fourteen days. Proper storage in one-way valve bags is crucial to prevent staling, and grinding immediately before brewing is emphasized to maintain freshness.",
+   "level": 0,
+   "title": "The Hillside Workshop",
+   "text": "The one tool she did not make is a set of chisels, and she has strong views about their heat treatment. She retempers them herself when they chip, taking them to the pale straw colour rather than anything darker, and accepts that they will chip again rather than lose the edge retention.",
    "docs": [
-    "coffee",
     "marta"
    ],
-   "children": [
-    "n2",
-    "n8",
-    "n9",
-    "n11",
-    "n12",
-    "n42",
-    "n43"
-   ]
+   "children": [],
+   "span": {
+    "docId": "marta",
+    "start": 4656,
+    "end": 4943
+   }
   },
   {
    "id": "n47",
-   "level": 1,
-   "title": "Ceramic Firing Process",
-   "text": "The firing process is crucial for potters, as it transforms fragile, water-soluble clay into a permanent ceramic material. This irreversible step relies on well-documented physical transformations that occur at specific temperatures, rather than on intuition.",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Sourdough: Fermentation as a Managed Ecosystem",
    "docs": [
-    "kilns"
+    "sourdough"
    ],
-   "children": [
-    "n25"
-   ]
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 0,
+    "end": 46
+   }
   },
   {
    "id": "n48",
-   "level": 1,
-   "title": "Ceramic Firing Processes Explained",
-   "text": "Ceramic studio work typically undergoes two firings: bisque and glaze. The bisque firing, reaching temperatures of 999 to 1063 degrees Celsius (cone 06 to cone 04), transforms raw clay into a porous state, while the glaze firing occurs at higher temperatures, around 1222 degrees Celsius (cone 6) to 1285 degrees Celsius (cone 10), resulting in a dense, impermeable body. Understanding the significance of Orton pyrometric cones, which measure heat work rather than just temperature, is crucial for successful firing. Additionally, specific temperature ranges during firing, such as water smoking below 200 degrees Celsius and controlled cooling for certain glazes, are essential to avoid defects. Raku firing presents a unique method, involving immediate post-firing reduction at around 1000 degrees Celsius, resulting in decorative but non-functional ware.",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "A sourdough starter is not a single organism but a small stable ecosystem, and understanding it as such explains most of what a baker can and cannot control. Two populations live in the flour and water paste. Wild yeasts, commonly species of Kazachstania and Saccharomyces, consume sugars and release carbon dioxide, which is what lifts the dough. Lactic acid bacteria, chiefly of the Lactobacillus and Fructilactobacillus groups, produce the acids that give the bread its flavour and its keeping quality. In a mature starter the bacteria outnumber the yeasts by roughly a hundred to one, and the acidity they create is precisely what keeps competing organisms out.",
    "docs": [
-    "kilns"
+    "sourdough"
    ],
-   "children": [
-    "n26",
-    "n27",
-    "n28",
-    "n29",
-    "n34",
-    "n35"
-   ]
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 48,
+    "end": 713
+   }
   },
   {
    "id": "n49",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "A starter is maintained by discarding most of it and feeding the remainder equal weights of flour and water, a ratio usually written as one to one to one. The discard is not waste in any biological sense; it exists because a population fed on a fixed amount of flour must be kept small enough that the food is not exhausted before the baker wants to use it. A starter left unfed becomes progressively more acidic as the bacteria continue working, and eventually the acidity suppresses the yeasts, at which point the culture rises poorly and smells sharply of solvent.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 715,
+    "end": 1282
+   }
+  },
+  {
+   "id": "n50",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Hydration is the single number bakers argue about most. It is the weight of water divided by the weight of flour, expressed as a percentage, and it governs how the dough behaves at every stage. A stiff dough at sixty-five percent holds its shape and is easy to handle but produces a tighter crumb. A slack dough at eighty-five percent flows, sticks, and demands more skill, but yields the open irregular holes that many bakers are chasing. Hydration also changes fermentation speed, because a wetter dough allows the organisms to move and feed more freely.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 1284,
+    "end": 1840
+   }
+  },
+  {
+   "id": "n51",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "The two acids produced are not interchangeable, and the balance between them is under the baker's control. Lactic acid is soft and yoghurt-like. Acetic acid is sharp and vinegary. Warm fermentation, above roughly twenty-six degrees Celsius, and higher hydration both favour lactic acid, producing a mild loaf. Cool fermentation and stiffer dough favour acetic acid and a distinctly sour one. A baker who wants more sourness does not add anything; they lower the temperature and stiffen the dough.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 1842,
+    "end": 2338
+   }
+  },
+  {
+   "id": "n52",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Gluten development is a separate process running alongside fermentation. Flour contains two proteins, glutenin and gliadin, which on contact with water link into the elastic network that traps the gas the yeast produces. Many bakers begin with an autolyse, mixing only flour and water and leaving it to rest for twenty to sixty minutes before adding starter and salt. During that rest the flour hydrates fully and enzymes begin cutting the proteins, so the dough reaches the same strength with far less mechanical work.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 2340,
+    "end": 2859
+   }
+  },
+  {
+   "id": "n53",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Bulk fermentation is where the dough actually becomes bread, and it is judged by volume and feel rather than by the clock. At twenty-four to twenty-six degrees it commonly runs four to six hours. During this period the baker performs a series of folds rather than continuous kneading, each fold stretching the gluten network and redistributing the gas into finer bubbles. The dough is ready when it has risen by perhaps half again its original volume, feels aerated, and holds a domed shape when tipped.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 2861,
+    "end": 3364
+   }
+  },
+  {
+   "id": "n54",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Many bakers then retard the shaped loaf in a refrigerator between four and twelve degrees for twelve to eighteen hours. Retarding does several things at once. Yeast activity slows almost to a stop while bacterial activity continues, so the loaf grows more sour without over-proofing. The cold dough is also far easier to score cleanly, and the slow rise develops flavour compounds that a fast warm ferment never produces.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 3366,
+    "end": 3787
+   }
+  },
+  {
+   "id": "n55",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Baking is a sequence of rapid transformations. The loaf goes into an oven at around two hundred and thirty to two hundred and fifty degrees Celsius. In the first ten minutes the trapped gas expands and the remaining yeast makes a final burst of carbon dioxide before dying, producing the sudden rise known as oven spring. Steam in the oven during this period keeps the surface flexible so the loaf can expand; without it the crust sets early and the bread tears at its weakest point instead of at the score.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 3789,
+    "end": 4296
+   }
+  },
+  {
+   "id": "n56",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Once the steam is vented the crust begins to colour. Two reactions dominate, both requiring heat and the absence of surface water. The Maillard reaction couples amino acids with reducing sugars, and caramelisation breaks sugars down under heat alone. Together they produce the brown colour and the great majority of the aroma, which is why an underbaked loaf tastes flat regardless of how well it was fermented. The bread is finished when its internal temperature reaches roughly ninety-six to ninety-nine degrees, at which point the starch has fully gelatinised.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 4298,
+    "end": 4861
+   }
+  },
+  {
+   "id": "n57",
+   "level": 0,
+   "title": "Sourdough Fermentation",
+   "text": "Cooling is part of baking rather than something that happens afterwards. A loaf cut straight from the oven is gummy, because the starch is still setting and steam is still leaving the crumb. An hour of cooling on a rack lets that finish. Cutting early does not merely release steam; it permanently changes the texture of the slice.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [],
+   "span": {
+    "docId": "sourdough",
+    "start": 4863,
+    "end": 5194
+   }
+  },
+  {
+   "id": "n58",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "Steel is unusual among common materials in that its properties can be changed dramatically without changing its composition at all. The same bar can be made soft enough to file or hard enough to scratch glass, purely through a sequence of heating and cooling. What makes this possible is that iron rearranges its crystal structure at a specific temperature, and how quickly it is cooled through that rearrangement determines what it becomes.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 28,
+    "end": 469
+   }
+  },
+  {
+   "id": "n59",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "Below roughly seven hundred and twenty-three degrees Celsius, carbon steel exists as ferrite and cementite, a structure in which carbon sits in distinct iron carbide regions. Above that temperature, known as the lower critical point, the iron converts to austenite, a different crystal arrangement that can dissolve carbon throughout its structure. For most plain carbon steels the smith heats to somewhere between eight hundred and eight hundred and seventy degrees to ensure the conversion is complete and the carbon is evenly distributed.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 471,
+    "end": 1012
+   }
+  },
+  {
+   "id": "n60",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "Judging that temperature is a practical problem, and the traditional solution exploits a coincidence of physics. Iron loses its magnetism at its Curie point, around seven hundred and seventy degrees, which sits very close to the temperature range of interest. A smith touches a magnet to the heated steel; when the magnet no longer sticks, the steel is at or above the Curie point and is very likely austenitic. Colour is the other traditional guide, though it is badly misleading in bright daylight, and most smiths judge colour in deliberately dim conditions.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 1014,
+    "end": 1575
+   }
+  },
+  {
+   "id": "n61",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "Quenching is the step that produces hardness. Steel cooled slowly from austenite has time for the carbon to migrate back out and reform its usual structure, and the result is soft. Cooled fast enough, the carbon is trapped in place and the iron transforms instead into martensite, a strained crystal structure that is extremely hard and correspondingly brittle. The quench medium is chosen to match the steel: brine and water pull heat out fastest and risk cracking, oil is gentler and suits most tool steels, and some alloys harden adequately in still air.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 1577,
+    "end": 2134
+   }
+  },
+  {
+   "id": "n62",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "The risk during quenching is that the transformation involves a volume change, and the outside of the piece transforms before the inside. A blade quenched edge-first, or a piece with a sharp internal corner, can develop stresses large enough to crack it outright. Cracks from quenching are usually clean and follow the geometry of the part, appearing at the thickest-to-thinnest transitions where the cooling rate differed most.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 2136,
+    "end": 2564
+   }
+  },
+  {
+   "id": "n63",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "Steel straight from the quench is almost never usable. Fully hardened martensite will hold an edge but will also chip or snap under moderate impact. Tempering restores toughness by reheating the piece to a much lower temperature, typically between one hundred and fifty and three hundred and fifty degrees, and holding it there. This allows a small controlled amount of the trapped carbon to precipitate out, relieving the internal strain. The tradeoff is direct and unavoidable: every degree of tempering temperature buys toughness at the cost of hardness.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 2566,
+    "end": 3123
+   }
+  },
+  {
+   "id": "n64",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "The temperature of a temper can be read from the colour of the oxide film that forms on clean steel. A pale straw colour appears near two hundred and thirty degrees and suits a knife edge or a razor. Bronze and purple follow. A full blue, near three hundred degrees, indicates a considerably softer and tougher condition appropriate for springs and for tools that must absorb shock. These colours are a thin interference film, not a change in the metal itself, and they can be polished away without undoing the temper.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 3125,
+    "end": 3643
+   }
+  },
+  {
+   "id": "n65",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "Two further treatments serve different purposes. Annealing means heating to the austenitic range and then cooling as slowly as possible, often by burying the piece in ash or shutting it in the forge overnight, which produces the softest and most machinable condition. Normalising means heating to the same range and then cooling in still air, which refines the grain structure and relieves stresses from forging without making the steel fully soft. Smiths commonly normalise two or three times after forging and before hardening, because forging leaves the grain coarse and uneven.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 3645,
+    "end": 4226
+   }
+  },
+  {
+   "id": "n66",
+   "level": 0,
+   "title": "Steel Heat Treatment",
+   "text": "Overheating is the most damaging mistake available. Held far above the critical range, the grains of austenite grow, and coarse grain persists through the quench into the finished piece, leaving it brittle in a way that tempering cannot fix. Held hotter still, in an oxygen-rich atmosphere, carbon burns out of the surface layer entirely, a condition called decarburisation, which produces a piece that will not harden at its surface no matter how correctly it is quenched. Both faults are invisible until the work is finished and fails.",
+   "docs": [
+    "steel"
+   ],
+   "children": [],
+   "span": {
+    "docId": "steel",
+    "start": 4228,
+    "end": 4765
+   }
+  },
+  {
+   "id": "n67",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "Glass is a liquid that has been cooled until it stopped flowing, without ever arranging itself into a crystal. That single fact governs everything about working it. Because there is no crystal structure to break down, glass has no melting point in the way that a metal does. It has instead a continuous range of viscosity, and every operation a glassblower performs is defined by where on that range the material currently sits.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 40,
+    "end": 468
+   }
+  },
+  {
+   "id": "n68",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "At around one thousand degrees Celsius soda-lime glass is at its working point, fluid enough to gather on a pipe and shape with tools but still coherent enough to hold a form. As it cools it stiffens continuously rather than setting at a threshold, which is why a blower works in short bursts and returns constantly to the reheating chamber. Near seven hundred degrees the glass reaches its softening point, where it will still slump under its own weight but can no longer be blown. Below that it is dimensionally stable and, to the eye, finished.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 470,
+    "end": 1017
+   }
+  },
+  {
+   "id": "n69",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "It is not finished. Glass cooled from working temperature to room temperature without intervention will almost always break, sometimes on the bench and sometimes weeks later on a shelf. The cause is that glass conducts heat poorly. The surface of a cooling piece contracts and rigidifies while the interior is still hot and mobile. When the interior finally cools and tries to contract, the already-rigid surface will not let it, and the piece is left holding permanent internal stress. Sufficient stress makes the object break spontaneously, and pieces that fail this way often come apart with no impact at all.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 1019,
+    "end": 1631
+   }
+  },
+  {
+   "id": "n70",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "Annealing is the controlled cooling that removes that stress, and it is defined by two specific temperatures. The annealing point, for typical soda-lime glass somewhere between five hundred and ten and five hundred and sixty degrees, is the temperature at which internal stress relaxes within minutes because the glass is still just mobile enough to flow at the molecular scale. The strain point, roughly forty to sixty degrees lower, is where that mobility effectively stops. Between those two temperatures a piece can be relieved of stress; below the strain point, nothing further can be relieved, but nothing new can be introduced either, provided cooling from there is gentle.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 1633,
+    "end": 2313
+   }
+  },
+  {
+   "id": "n71",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "The practical consequence is that annealing has two distinct phases. The piece is held at or just above the annealing point long enough for stress to relax throughout its thickness, which for a thin blown vessel may be twenty minutes and for a thick solid sculpture may be many hours. It is then cooled slowly and evenly through the strain point, after which the rate can increase considerably. The oven that does this is called a lehr, and in a working studio it runs continuously, accepting finished pieces throughout the day and cooling overnight on a programmed schedule.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 2315,
+    "end": 2890
+   }
+  },
+  {
+   "id": "n72",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "Thickness dominates the schedule far more than size does. A large thin bowl anneals faster than a small solid paperweight, because what matters is how far heat must travel to escape from the centre. Rules of thumb in the trade scale annealing time with roughly the square of thickness, which is why a paperweight that looks trivial can require a schedule of a day or more while a delicate goblet is safe overnight.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 2892,
+    "end": 3306
+   }
+  },
+  {
+   "id": "n73",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "The stress that annealing removes can be seen directly. Viewed through crossed polarising filters, a stressed piece shows bright coloured fringes where the glass is birefringent under strain, and a properly annealed piece appears nearly uniform. Studios keep a polariscope for exactly this check, since the alternative is discovering the problem when a customer's vase fails.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 3308,
+    "end": 3683
+   }
+  },
+  {
+   "id": "n74",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "Thermal expansion explains why glasses cannot be casually mixed. Every formulation has a coefficient of thermal expansion describing how much it grows when heated, and soda-lime glass expands roughly three times as much as borosilicate. Joining two glasses with different coefficients guarantees stress at the join as they cool at different rates, and the piece will eventually fail there. This is why studios standardise rigidly on one compatible family of colours and clear glass, and why borosilicate, with its low expansion, tolerates the thermal shock that makes it suitable for laboratory and cookware use.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 3685,
+    "end": 4297
+   }
+  },
+  {
+   "id": "n75",
+   "level": 0,
+   "title": "Glass Annealing",
+   "text": "One further hazard lies in the middle of the cooling range. Held too long at temperatures where crystals can nucleate, glass will begin to devitrify, growing crystalline regions that appear as a dull grey or milky skin on the surface. Devitrification is not a stress problem and annealing does not cause it, but a badly designed schedule that lingers in the wrong band will produce it. Once it has formed it cannot be reheated away; the affected surface must be ground off or the piece abandoned.",
+   "docs": [
+    "glass"
+   ],
+   "children": [],
+   "span": {
+    "docId": "glass",
+    "start": 4299,
+    "end": 4795
+   }
+  },
+  {
+   "id": "n76",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "Making cheese and ripening cheese are two different crafts, and in much of Europe they have historically been done by different people. The maker produces a young wheel; the affineur takes it and, over weeks to years, turns it into something else entirely. Almost everything a person recognises as the character of a cheese is created during ripening rather than at the point of manufacture.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 34,
+    "end": 425
+   }
+  },
+  {
+   "id": "n77",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "The young wheel arrives as a dense, bland, rubbery mass of protein and fat with very little flavour. It contains three sets of tools that will do the work. There are the starter cultures added at the beginning, lactic acid bacteria that converted milk sugar into lactic acid and then largely died, leaving their enzymes behind. There is residual rennet, the coagulating enzyme, which continues slowly cutting protein chains. And there are whatever secondary organisms the affineur chooses to encourage on the surface.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 427,
+    "end": 944
+   }
+  },
+  {
+   "id": "n78",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "Ripening is fundamentally the breakdown of large molecules into small ones. Proteolysis cuts the protein network into peptides and then into free amino acids, which is what turns a squeaky curd into something that yields and finally becomes creamy. Lipolysis breaks fats into free fatty acids, producing the sharp and sometimes goaty notes that dominate in aged sheep and goat cheeses. Both processes run continuously, and their relative speed is what an affineur manipulates.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 946,
+    "end": 1422
+   }
+  },
+  {
+   "id": "n79",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "The controls available are few and blunt. Temperature in a ripening cave typically sits between ten and thirteen degrees Celsius, which is warm enough that enzymes work but cool enough that they work slowly and evenly. Humidity is held high, commonly between eighty-five and ninety-five percent relative humidity, because a wheel that dries too fast forms a hard skin that stops moisture leaving the interior and arrests ripening in the middle. Air movement matters as much as either: stagnant air encourages the wrong moulds, and excessive draught dries the rind.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 1424,
+    "end": 1988
+   }
+  },
+  {
+   "id": "n80",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "Different families of cheese depend on entirely different surface ecologies. A bloomy rind, as on Brie and Camembert, is Penicillium camemberti, a white mould deliberately introduced that grows a felt across the surface and ripens the cheese from the outside inward. This is why a young Camembert has a chalky core and a properly ripe one is uniformly soft; the softening front is moving inward from the rind, and cutting it early reveals exactly how far the process has travelled.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 1990,
+    "end": 2471
+   }
+  },
+  {
+   "id": "n81",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "A washed rind takes a different route. The wheel is wiped regularly with brine, sometimes with beer or wine, which suppresses moulds and instead favours Brevibacterium linens, the orange bacterium responsible for the pungency of Époisses and Munster. The same organism lives on human skin, which accounts for the widely noted resemblance. Washed-rind cheeses need more frequent attention than any other kind, sometimes twice weekly for months.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 2473,
+    "end": 2916
+   }
+  },
+  {
+   "id": "n82",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "The hard alpine cheeses take the longest and change the most. A wheel of Comté or Gruyère is pressed and brined, then ripened for anything from four months to three years. Over that time proteolysis is slow but relentless, and after a year or more the free amino acid tyrosine begins to crystallise. Those crystals are the small white crunchy specks in a well-aged wheel, and they are a reliable indicator of genuine age rather than a defect. A second kind of crystal, calcium lactate, forms differently and appears on the surface rather than within the paste.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 2918,
+    "end": 3478
+   }
+  },
+  {
+   "id": "n83",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "Blue cheeses invert the usual geometry. Penicillium roqueforti is mixed into the curd rather than applied to the surface, but it requires oxygen to grow, so the wheel is pierced with needles after a few weeks to admit air along the channels. The blue veining follows those piercings exactly, which is why the pattern in a wheel of Stilton is regular rather than random.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 3480,
+    "end": 3849
+   }
+  },
+  {
+   "id": "n84",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "Turning is the affineur's most repetitive and least negotiable duty. A wheel left sitting collects moisture on its underside, ripens unevenly, and develops a flattened damp face where unwanted organisms establish themselves. Depending on the style, a wheel may be turned daily at first and weekly later, and a cave holding several thousand wheels represents a very great deal of lifting.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 3851,
+    "end": 4238
+   }
+  },
+  {
+   "id": "n85",
+   "level": 0,
+   "title": "Cheese Affinage",
+   "text": "Knowing when a cheese is ready is not a matter of counting days. Affineurs judge by feel, pressing the wheel to gauge how far the paste has softened, and by sound, tapping or striking it and listening for the dull note of a solid interior against the hollow one that indicates a crack or a gas pocket. The most experienced use an iron, a narrow probe pushed into the wheel to extract a core, which is smelled and tasted and then pressed carefully back into place.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [],
+   "span": {
+    "docId": "cheese",
+    "start": 4240,
+    "end": 4703
+   }
+  },
+  {
+   "id": "n86",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "Indigo behaves unlike almost every other dye, and the whole practice of indigo dyeing follows from one inconvenient property: in its blue form the pigment is completely insoluble in water. It cannot simply be dissolved and applied. It must first be chemically converted into a different, soluble form, taken up by the fibre in that state, and then converted back. The colour a dyer wants is created after the cloth leaves the liquid, not while it is in it.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 16,
+    "end": 472
+   }
+  },
+  {
+   "id": "n87",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "The conversion is a reduction. Blue indigotin, treated in an alkaline solution with something that will strip oxygen from it, becomes leuco-indigo, a form that dissolves readily and is not blue at all but a pale greenish yellow. A working vat therefore looks nothing like its product. Beneath the surface the liquid is yellow-green and translucent, and this appearance is the dyer's first indication that the vat is functioning.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 474,
+    "end": 902
+   }
+  },
+  {
+   "id": "n88",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "Three conditions must hold at once. The solution must be alkaline, usually somewhere around pH ten to eleven, because leuco-indigo is only stable in alkaline conditions. It must contain an active reducing agent to remove oxygen and keep removing it. And it should be warm, since both the chemistry and, in traditional vats, the organisms driving it slow markedly when cold; fermentation vats are commonly held near fifty degrees Celsius.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 904,
+    "end": 1341
+   }
+  },
+  {
+   "id": "n89",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "How that reduction is achieved divides the craft. A fermentation vat uses microorganisms, fed with something they can metabolise such as bran, madder root, dates, or fruit sugars. The bacteria consume the sugars and, in doing so, consume the dissolved oxygen and drive the reduction. Such a vat takes one to two weeks to establish, must be fed to stay alive, and can be maintained for months or years. A chemical vat instead uses a reducing agent such as sodium dithionite, often called sodium hydrosulfite, and is ready within an hour. The chemical vat is faster and more predictable; the fermentation vat is gentler on fibres and, in the view of many dyers, produces better colour.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 1343,
+    "end": 2026
+   }
+  },
+  {
+   "id": "n90",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "A healthy vat announces itself visually. The surface develops a coppery, iridescent scum, known as the flower or the bloom, where indigo in contact with the air has oxidised back to its blue form. A vat with a strong flower and a clear yellow-green body is working. A vat that has gone entirely blue throughout has lost its reduction and is described as sick; it can usually be revived by adding more reducing agent and warmth rather than being discarded.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 2028,
+    "end": 2483
+   }
+  },
+  {
+   "id": "n91",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "The dyeing itself is deliberate and slow. Cloth is wetted first, so the dye penetrates evenly, then lowered into the vat with as little disturbance as possible. Every bubble introduced brings oxygen, which oxidises indigo prematurely and depletes the vat. For the same reason the dyer stirs gently and in one direction, and lifts the cloth out slowly rather than pulling it.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 2485,
+    "end": 2859
+   }
+  },
+  {
+   "id": "n92",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "What follows is the part that surprises people watching for the first time. Cloth emerging from the vat is yellow-green. As it hangs in the air it turns, over perhaps thirty seconds to a few minutes, through a dull green and then to blue, as atmospheric oxygen converts the leuco form back to insoluble indigotin, now trapped inside the fibre. The colour is not applied to the cloth so much as precipitated within it.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 2861,
+    "end": 3278
+   }
+  },
+  {
+   "id": "n93",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "Depth of shade is built by repetition, not by concentration. A single dip yields a pale blue however strong the vat is, because only a limited amount of dye can be taken up at once. Dyers therefore dip repeatedly, oxidising fully between each immersion, and it is common to use eight, twelve, or twenty dips to reach a deep navy. Each layer is thin, which is why worn indigo denim fades in exactly the places it is abraded most: the outer layers are being removed one at a time.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 3280,
+    "end": 3758
+   }
+  },
+  {
+   "id": "n94",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "Because the pigment sits in layers on and near the fibre surface rather than bonded evenly throughout, indigo crocks, meaning it rubs off onto other surfaces. Careful rinsing in water, and often a final wash in a mildly acidic solution to neutralise remaining alkali, removes the loosest material. Some transfer nonetheless remains characteristic of the dye and is not regarded as a fault.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 3760,
+    "end": 4149
+   }
+  },
+  {
+   "id": "n95",
+   "level": 0,
+   "title": "The Indigo Vat",
+   "text": "Fibre choice constrains the vat more than most dyers expect. Cellulose fibres such as cotton, linen, and hemp tolerate the alkalinity well. Protein fibres, wool and silk, do not; sustained exposure above roughly pH ten damages them, leaving wool harsh and weakened. Dyers working with protein fibres therefore keep the vat at the lower end of the workable range, accept slower uptake, and limit how long each dip lasts.",
+   "docs": [
+    "indigo"
+   ],
+   "children": [],
+   "span": {
+    "docId": "indigo",
+    "start": 4151,
+    "end": 4570
+   }
+  },
+  {
+   "id": "n96",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "Green tea, oolong, black tea, and white tea are not different plants. All of them come from Camellia sinensis, and in most cases from the same varieties and often the same gardens. What separates them is entirely a matter of processing, and specifically of how far one enzymatic reaction is allowed to proceed before it is stopped with heat.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 17,
+    "end": 358
+   }
+  },
+  {
+   "id": "n97",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "That reaction is oxidation, and it is worth naming carefully because the tea trade has called it fermentation for over a century and the term persists. Fermentation, properly, is microbial. What happens in black tea is not: it is an enzyme within the leaf itself, polyphenol oxidase, acting on the leaf's own catechins in the presence of oxygen. There is one genuine exception, discussed below, and it is the reason the confusion has survived so long.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 360,
+    "end": 811
+   }
+  },
+  {
+   "id": "n98",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "Processing begins with withering. Fresh leaf arrives at roughly seventy-five to eighty percent moisture and is spread on troughs or racks, often with air drawn through them, for several hours and sometimes overnight. The leaf loses perhaps a fifth of its water and becomes limp enough to handle without shattering. Withering is not merely drying; the concentration of compounds inside the leaf changes as water leaves, and aroma precursors develop that will not appear if this stage is rushed.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 813,
+    "end": 1306
+   }
+  },
+  {
+   "id": "n99",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "Rolling comes next and is the step that starts the clock. Rolling, whether by hand or between machine plates, ruptures cell walls and brings polyphenol oxidase into contact with the catechins it will act on. Until this moment the enzyme and its substrate have been kept apart inside intact cells. From the instant the leaf is bruised, oxidation is running, and everything after this point is a decision about when to stop it.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 1308,
+    "end": 1733
+   }
+  },
+  {
+   "id": "n100",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "Left to proceed, oxidation converts colourless catechins into theaflavins and then into the larger thearubigins. The leaf darkens from green through copper to brown, and the liquor it will brew shifts from pale and astringent toward deep, malty, and full-bodied. Black tea is oxidised essentially to completion, typically over forty-five minutes to two hours in a cool humid room around twenty-five to thirty degrees Celsius, with the maker judging progress by smell as much as by colour.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 1735,
+    "end": 2223
+   }
+  },
+  {
+   "id": "n101",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "Stopping oxidation requires denaturing the enzyme, which means heat, and the step is universally called kill-green. Chinese practice traditionally pan-fires the leaf in a wok at roughly one hundred and fifty to two hundred degrees, tumbling it constantly for a few minutes; the brief contact with hot metal contributes a toasty note characteristic of many Chinese green teas. Japanese practice instead steams the leaf for fifteen to forty-five seconds, which halts oxidation faster and preserves a vivid green colour and a distinctly marine, vegetal character. The same plant, processed by these two methods, produces teas that taste almost nothing alike.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 2225,
+    "end": 2880
+   }
+  },
+  {
+   "id": "n102",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "Green tea is simply tea in which kill-green happens almost immediately, before meaningful oxidation has occurred. Oolong is the deliberate middle ground, oxidised anywhere from ten to eighty percent before firing, and it is the most labour-intensive category to make. Oolong leaves are typically bruised repeatedly and gently, often by tossing in bamboo baskets, so that the leaf edges oxidise while the centres do not. A finished oolong leaf inspected closely shows a red rim around a still-green middle, which is a direct record of that selective bruising.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 2882,
+    "end": 3440
+   }
+  },
+  {
+   "id": "n103",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "White tea is the least processed of all and, counterintuitively, is not unoxidised. It is withered and dried with no rolling and no kill-green, so a slow light oxidation occurs throughout without the enzyme ever being released in quantity. The result is delicate and sweet, and depends more on the quality of the raw leaf than any other style, since there is almost no processing to hide behind.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 3442,
+    "end": 3837
+   }
+  },
+  {
+   "id": "n104",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "Firing, or drying, finishes every style. The leaf is brought down to around three percent moisture, usually in hot air dryers near one hundred and twenty degrees, which arrests all remaining activity and makes the tea stable for storage. Insufficient drying is the most common cause of tea spoiling in transit, since residual moisture allows moulds to establish.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 3839,
+    "end": 4201
+   }
+  },
+  {
+   "id": "n105",
+   "level": 0,
+   "title": "Tea Processing",
+   "text": "The genuine exception is puerh, and it justifies the older vocabulary. After the leaf is fired, puerh is deliberately exposed to microbial action, with fungi including Aspergillus species and various bacteria acting on the leaf over months or years. Ripe puerh accelerates this by piling damp leaf under controlled warmth and humidity for weeks, while raw puerh is compressed and left to change slowly over decades. That is fermentation in the strict sense, driven by organisms rather than by the leaf's own enzymes, and it is the only branch of tea making for which the word is accurate.",
+   "docs": [
+    "tea"
+   ],
+   "children": [],
+   "span": {
+    "docId": "tea",
+    "start": 4203,
+    "end": 4791
+   }
+  },
+  {
+   "id": "n106",
+   "level": 1,
+   "title": "Coffee Roasting Process Overview",
+   "text": "Coffee roasting begins with preheating the drum to a target temperature between 180 and 220 degrees Celsius before adding green coffee beans. The initial cooling of the beans causes a temperature drop, reaching a low point known as the turnaround point within sixty to ninety seconds. The roaster then manages the temperature rise for eight to fourteen minutes, with critical judgment required during the development time after the first crack, which typically constitutes fifteen to twenty-five percent of the total roast length to avoid undesirable flavors.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [
+    "n0",
+    "n2",
+    "n6"
+   ]
+  },
+  {
+   "id": "n107",
+   "level": 1,
+   "title": "Coffee Roasting Phases",
+   "text": "The coffee roasting process begins with the drying phase, lasting four to six minutes and ending near 150 degrees Celsius, where water evaporates and the beans change from green to pale yellow, emitting a toasted grain aroma. At around 196 degrees Celsius, the first crack occurs, marking the point when the beans become drinkable, doubling in volume and shedding their silverskin. Continuing to apply heat leads to the second crack at approximately 224 degrees Celsius, characterized by a quieter crackling sound, resulting in dark, glossy roasts typical of espresso and French blends, but risking carbonization and drum fire if overdone.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [
+    "n3",
+    "n5",
+    "n7"
+   ]
+  },
+  {
+   "id": "n108",
+   "level": 1,
+   "title": "Steel Hardening and Treatment Processes",
+   "text": "Steel's properties can be altered significantly through heating and cooling without changing its composition. The quenching process, which cools steel rapidly, transforms austenite into hard martensite, but risks cracking due to volume changes during transformation. After quenching, tempering at temperatures between one hundred and fifty and three hundred and fifty degrees restores toughness by allowing carbon to precipitate out, balancing hardness and durability. Additional treatments like annealing and normalising further modify steel's properties, with annealing producing the softest condition and normalising refining grain structure.",
+   "docs": [
+    "steel"
+   ],
+   "children": [
+    "n58",
+    "n61",
+    "n62",
+    "n63",
+    "n65"
+   ]
+  },
+  {
+   "id": "n109",
+   "level": 1,
+   "title": "Annealing Process in Glasswork",
+   "text": "Annealing in glasswork consists of two phases: first, the piece is held at or just above the annealing point for a duration that varies from twenty minutes for thin blown vessels to several hours for thick solid sculptures, allowing stress to relax. After this, the piece is cooled slowly through the strain point in a continuously running lehr, which can accept finished pieces throughout the day and cool them overnight on a programmed schedule. The effectiveness of annealing can be visually assessed using a polariscope, where stressed glass shows bright colored fringes due to birefringence, while properly annealed glass appears nearly uniform.",
+   "docs": [
+    "glass"
+   ],
+   "children": [
+    "n71",
+    "n73"
+   ]
+  },
+  {
+   "id": "n110",
+   "level": 1,
+   "title": "Oxidation in Black Tea Production",
+   "text": "The process occurring in black tea production is oxidation, often mistakenly referred to as fermentation, a term that has been used for over a century. This oxidation involves the enzyme polyphenol oxidase acting on the leaf's catechins in the presence of oxygen, rather than microbial activity. The confusion between these terms has persisted due to one genuine exception that will be discussed later.",
+   "docs": [
+    "tea"
+   ],
+   "children": [
+    "n97"
+   ]
+  },
+  {
+   "id": "n111",
+   "level": 1,
+   "title": "Bee Development and Worker Roles",
+   "text": "In honeybees, the development time varies by caste, with queens emerging after 16 days, workers after 21 days, and drones after 24 days. The nutritional diet determines the caste, as queen larvae are fed royal jelly throughout their development, while worker larvae are switched to pollen and honey. Worker bees follow a structured life cycle, starting with cleaning cells for the first two to three days, then nursing larvae until day eleven, followed by nectar reception, comb building, and guard duty, before becoming foragers around day twenty-two. Summer workers typically live about six weeks, while winter bees can survive four to six months due to their fat reserves.",
+   "docs": [
+    "bees"
+   ],
+   "children": [
+    "n16",
+    "n17"
+   ]
+  },
+  {
+   "id": "n112",
+   "level": 1,
+   "title": "Key Processes in Bread Making",
+   "text": "Hydration, gluten development, bulk fermentation, and baking are critical processes in bread making. Hydration, expressed as a percentage of water to flour weight, affects dough behavior, with sixty-five percent yielding a stiff dough and eighty-five percent producing a slack dough. Gluten forms through the interaction of glutenin and gliadin in water, often initiated by an autolyse period of twenty to sixty minutes. Bulk fermentation, typically lasting four to six hours at twenty-four to twenty-six degrees, involves folding the dough to develop gluten and redistribute gas, while baking requires reaching an internal temperature of ninety-six to ninety-nine degrees for proper crust formation and flavor development.",
+   "docs": [
+    "sourdough"
+   ],
+   "children": [
+    "n50",
+    "n52",
+    "n53",
+    "n56"
+   ]
+  },
+  {
+   "id": "n113",
+   "level": 1,
+   "title": "Steel Tempering and Heat Treatment",
+   "text": "Carbon steel undergoes structural changes at specific temperatures, transitioning from ferrite and cementite below seven hundred and twenty-three degrees Celsius to austenite above that point. Smiths typically heat the steel to between eight hundred and eight hundred and seventy degrees to ensure complete conversion. The Curie point, around seven hundred and seventy degrees, serves as a practical indicator for determining when the steel has reached austenitic form, as a magnet will no longer stick at this temperature. Additionally, the tempering process can be assessed by the color of the oxide film on the steel, with pale straw appearing at around two hundred and thirty degrees and full blue at approximately three hundred degrees, indicating different hardness and toughness levels.",
+   "docs": [
+    "steel"
+   ],
+   "children": [
+    "n59",
+    "n60",
+    "n64"
+   ]
+  },
+  {
+   "id": "n114",
+   "level": 1,
+   "title": "Controlled Cooling in Glass and Ceramics",
+   "text": "Controlled cooling is essential in both ceramics and glassmaking to prevent defects and ensure quality. In ceramics, a cooling cycle may involve holding temperatures between 1050 and 950 degrees Celsius for several hours to allow crystal growth in glazes, while glossy glazes risk devitrification if cooled too slowly. For soda-lime glass, the working point is around 1000 degrees Celsius, with the softening point near 700 degrees, and controlled annealing occurs between 510 and 560 degrees to relieve internal stress. The differences in thermal expansion between glass types necessitate strict adherence to compatible materials to avoid stress and failure.",
+   "docs": [
+    "kilns",
+    "glass"
+   ],
+   "children": [
+    "n35",
+    "n68",
+    "n70",
+    "n74"
+   ]
+  },
+  {
+   "id": "n115",
+   "level": 1,
+   "title": "Indigo Dyeing Process Overview",
+   "text": "Indigo dyeing involves a complex chemical process where the insoluble blue pigment, indigotin, is converted into a soluble form, leuco-indigo, in an alkaline solution typically maintained at a pH of ten to eleven and around fifty degrees Celsius. The dyeing process requires careful handling, with cloth needing to be dipped multiple times—often twelve dips—to achieve a deep navy color, as each dip only deposits a thin layer of dye. The resulting color develops as the cloth oxidizes in the air, transitioning from yellow-green to blue, while the choice of fiber affects the vat's conditions, with cellulose fibers tolerating higher alkalinity than protein fibers.",
+   "docs": [
+    "marta",
+    "indigo"
+   ],
+   "children": [
+    "n45",
+    "n86",
+    "n87",
+    "n88",
+    "n90",
+    "n91",
+    "n92",
+    "n93",
+    "n94",
+    "n95"
+   ]
+  },
+  {
+   "id": "n116",
+   "level": 1,
+   "title": "Coffee Roasting Dynamics",
+   "text": "Green coffee beans, initially pale and dense with 10 to 12 percent moisture, undergo a transformative roasting process that involves chemical reactions driven by heat over time. The degree of roast affects weight loss, with light roasts losing 12 to 14 percent, medium roasts 15 to 17 percent, and dark roasts shedding 18 to 20 percent or more, leading to a significant reduction in density. Contrary to common beliefs, caffeine levels remain relatively stable during roasting, while chlorogenic acid decreases, altering the flavor profile from bright acidity to bitterness. The roasting behavior also varies between Arabica and Robusta beans, with Arabica offering more delicate flavors and Robusta providing a heavier profile due to its higher caffeine and chlorogenic acid content.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [
+    "n1",
+    "n8",
+    "n9",
+    "n10"
+   ]
+  },
+  {
+   "id": "n117",
+   "level": 1,
+   "title": "Cheese Making and Ripening Processes",
+   "text": "Cheese making and ripening are distinct crafts, with the affineur transforming young wheels into complex flavors over weeks to years. Ripening involves proteolysis and lipolysis, breaking down proteins and fats to develop textures and tastes, while different cheese families utilize unique surface ecologies, such as Penicillium camemberti for bloomy rinds and Brevibacterium linens for washed rinds. Hard cheeses like Comté and Gruyère can age from four months to three years, developing characteristic crystals, while blue cheeses require oxygen for their veining. Affineurs assess readiness through tactile and auditory cues, ensuring optimal ripeness.",
+   "docs": [
+    "cheese"
+   ],
+   "children": [
+    "n76",
+    "n78",
+    "n80",
+    "n81",
+    "n82",
+    "n83",
+    "n85"
+   ]
+  },
+  {
+   "id": "n118",
+   "level": 1,
+   "title": "Tea Processing and Varieties",
+   "text": "Green tea, oolong, black tea, and white tea all originate from the same plant, Camellia sinensis, with their differences arising from processing methods that control oxidation. Black tea undergoes full oxidation over forty-five minutes to two hours at 25 to 30 degrees Celsius, while green tea is quickly processed through methods like pan-firing at 150 to 200 degrees Celsius or steaming for 15 to 45 seconds to halt oxidation. Oolong tea is partially oxidised between 10 to 80 percent, requiring careful bruising of the leaves, while white tea is the least processed, allowing for slow light oxidation without rolling or kill-green, resulting in a delicate flavor that highlights the quality of the raw leaves.",
+   "docs": [
+    "tea"
+   ],
+   "children": [
+    "n96",
+    "n100",
+    "n101",
+    "n102",
+    "n103"
+   ]
+  },
+  {
+   "id": "n119",
+   "level": 1,
+   "title": "Coffee Roasting and Storage Dynamics",
+   "text": "The roasting process of coffee involves critical reactions such as the Maillard reaction and caramelization, which develop flavor and color, and is influenced by time and temperature. After roasting, beans undergo degassing to release carbon dioxide, with optimal resting periods of three to seven days for filter coffee and seven to fourteen days for espresso. Proper storage is essential to maintain freshness, with oxygen, moisture, heat, and light being the main enemies, while one-way valve bags and freezing methods can help preserve quality, although grinding accelerates staling.",
+   "docs": [
+    "coffee"
+   ],
+   "children": [
+    "n4",
+    "n11",
+    "n12"
+   ]
+  },
+  {
+   "id": "n120",
+   "level": 1,
+   "title": "Properties and Challenges of Glass",
+   "text": "Glass is a non-crystalline liquid that cools without forming a crystal structure, resulting in a continuous range of viscosity rather than a specific melting point. When glass cools from working temperature to room temperature, it often breaks due to poor heat conduction, which causes the surface to contract and rigidify while the interior remains hot and mobile. This leads to internal stress as the interior cools and tries to contract, often resulting in spontaneous breakage without any external impact.",
+   "docs": [
+    "glass"
+   ],
+   "children": [
+    "n67",
+    "n69"
+   ]
+  },
+  {
+   "id": "n121",
+   "level": 1,
+   "title": "Ceramic Firing Techniques and Effects",
+   "text": "Firing ceramics is a critical process that transforms clay into durable materials through controlled temperature and atmosphere. Electric kilns create an oxidation atmosphere, while fuel-burning kilns can achieve a reduction atmosphere, significantly affecting the colors and textures of glazes, such as the transformation of iron oxide from warm yellows in oxidation to cool blue-greens in reduction. Techniques like salt and soda firing introduce materials that create unique glazes, while raku firing employs rapid cooling to produce distinctive metallic lusters. A potter's specific practices, such as maintaining high firing temperatures and careful cooling, are essential for achieving desired results, as demonstrated by her signature copper glaze that requires a reduction atmosphere to develop its rich color.",
+   "docs": [
+    "kilns",
+    "marta"
+   ],
+   "children": [
+    "n24",
+    "n25",
+    "n31",
+    "n32",
+    "n33",
+    "n34",
+    "n39",
+    "n40",
+    "n46"
+   ]
+  },
+  {
+   "id": "n122",
+   "level": 1,
+   "title": "Profile of Marta Vance",
+   "text": "Marta Vance is a fictional character who operates a small workshop on a north-facing hillside, engaging in various crafts without prioritizing any particular one. Her profile is intentionally vague, as it relies on external data points that are not explicitly stated within the document.",
+   "docs": [
+    "marta"
+   ],
+   "children": [
+    "n36",
+    "n37",
+    "n38"
+   ]
+  },
+  {
+   "id": "n123",
+   "level": 1,
+   "title": "Tea Processing and Oxidation",
+   "text": "Rolling is a critical step in tea processing that initiates oxidation by rupturing cell walls and allowing polyphenol oxidase to interact with catechins. This process begins the moment the leaves are bruised, marking the start of a timer for oxidation. Decisions made after this point will determine the extent of oxidation in the tea.",
+   "docs": [
+    "tea"
+   ],
+   "children": [
+    "n99"
+   ]
+  },
+  {
+   "id": "n124",
    "level": 1,
    "title": "Honeybee Colony Dynamics and Behavior",
-   "text": "A honeybee colony, primarily the western honeybee (Apis mellifera), functions as a single organism with populations ranging from 20,000 to 80,000 in summer, collapsing to about 10,000 in winter. The queen can lay up to 2,000 eggs daily and controls the sex of each egg, while worker bees undergo a structured life cycle with specific roles tied to their age. Foraging involves visiting 50 to 100 flowers per trip, and the remarkable waggle dance communicates food source location and distance. Temperature regulation within the brood nest is critical for development, and honey production involves reducing nectar's water content to below 18 percent, ensuring its longevity.",
+   "text": "A honeybee colony functions as a single organism with populations ranging from 20,000 to 80,000 bees in summer, reducing to about 10,000 in winter. The queen can lay up to 2,000 eggs daily and controls the sex of each egg, while worker bees perform various tasks, including foraging, which involves visiting 50 to 100 flowers per trip. Communication through the waggle dance allows foragers to share food source locations, and the colony maintains a stable brood temperature of 34 to 35 degrees Celsius. Honey production involves reducing nectar's water content to below 18 percent, making it resistant to microbial growth, and swarming is a method of reproduction that involves collective decision-making.",
    "docs": [
     "bees",
     "marta"
@@ -761,8 +1886,6 @@
     "n13",
     "n14",
     "n15",
-    "n16",
-    "n17",
     "n18",
     "n19",
     "n20",
@@ -773,148 +1896,278 @@
    ]
   },
   {
-   "id": "n50",
+   "id": "n125",
    "level": 1,
-   "title": "Coffee Roasting Process Overview",
-   "text": "Coffee roasting involves critical temperature milestones, starting with first crack at around 196 degrees Celsius (385 degrees Fahrenheit), where the bean's structure fractures and it becomes drinkable. The development time following first crack, typically 15 to 25 percent of the total roast, is crucial for flavor, as too short a time leads to sourness while too long masks the coffee's origin. Continuing to apply heat leads to second crack at approximately 224 degrees Celsius (435 degrees Fahrenheit), resulting in a darker, bittersweet profile, but risks carbonization if overdone. The roasting behavior also varies between Arabica and Robusta beans, with Arabica offering floral notes and Robusta providing a thicker crema due to its higher caffeine content.",
+   "title": "Cheese and Tea Processing Techniques",
+   "text": "In cheese ripening, temperatures are maintained between ten and thirteen degrees Celsius with high humidity levels of eighty-five to ninety-five percent to ensure even enzyme activity and prevent unwanted moulds. The affineur must regularly turn the cheese wheels to avoid moisture accumulation and uneven ripening, with daily turns at first and weekly later, especially in large caves with thousands of wheels. In tea processing, fresh leaves undergo withering to reduce moisture from seventy-five to eighty percent, enhancing aroma precursors, followed by firing at around one hundred and twenty degrees to reduce moisture to three percent, preventing spoilage during storage.",
    "docs": [
-    "coffee"
+    "cheese",
+    "tea"
    ],
    "children": [
-    "n5",
-    "n6",
-    "n7",
-    "n10"
+    "n79",
+    "n84",
+    "n98",
+    "n104"
    ]
   },
   {
-   "id": "n51",
+   "id": "n126",
    "level": 1,
-   "title": "Ceramic Firing Techniques and Atmospheres",
-   "text": "Ceramic firing techniques vary significantly based on the kiln atmosphere, which can be oxidation or reduction. Electric kilns create an oxidation atmosphere, while gas, wood, or oil kilns can achieve a reduction atmosphere by limiting air supply, affecting the color and quality of glazes. Techniques such as salt and soda firing introduce materials into the kiln to create unique glazes, while wood firing allows ash to form natural glazes over time. An example of this is a potter who uses a gas kiln to achieve a specific copper glaze, which only develops its desired color in a reduction atmosphere.",
+   "title": "Puerh Tea Fermentation Process",
+   "text": "Puerh tea undergoes a unique fermentation process involving microbial action, specifically from fungi like Aspergillus and various bacteria, which can last for months or years. Ripe puerh is accelerated through a method that piles damp leaves under controlled warmth and humidity for weeks, while raw puerh is compressed and allowed to mature slowly over decades. This fermentation is distinct as it is driven by organisms rather than the leaf's own enzymes, making it the only tea-making process accurately described by the term fermentation.",
    "docs": [
-    "kilns",
-    "marta"
+    "tea"
    ],
    "children": [
-    "n24",
-    "n31",
-    "n33",
-    "n39"
+    "n105"
    ]
   },
   {
-   "id": "n52",
+   "id": "n127",
    "level": 1,
-   "title": "Kiln Cooling and Cracking Risks",
-   "text": "Quartz inversion at 573 degrees Celsius is a critical threshold where free silica in clay changes structure, causing a one percent volume change that can lead to dunting if cooling is too rapid. Additionally, cristobalite inversion near 226 degrees Celsius can cause cracks even after the kiln appears cool. A potter emphasizes the importance of holding the kiln for several hours during cooling to avoid these issues, recalling instances where rushing the process resulted in significant losses.",
+   "title": "Critical Temperature Transformations in Firing",
+   "text": "Firing ceramics involves critical temperature transformations that require careful management to avoid catastrophic failures. Below 200 degrees Celsius, water smoking can cause explosions due to trapped steam, while between 300 and 800 degrees, organic matter burns out, necessitating adequate ventilation to prevent black coring. The quartz inversion at 573 degrees Celsius poses a significant risk, as it causes a rapid volume change that can lead to dunting if not managed properly. Overheating can result in brittle pieces due to coarse grain formation and decarburisation, while devitrification can occur if glass is held too long in the cooling range, leading to irreversible surface damage.",
    "docs": [
     "kilns",
-    "marta"
+    "steel",
+    "glass"
    ],
    "children": [
+    "n29",
     "n30",
-    "n40"
+    "n66",
+    "n75"
    ]
   },
   {
-   "id": "n53",
+   "id": "n128",
    "level": 1,
-   "title": "Effects of Firing on Glaze Colors",
-   "text": "The firing atmosphere significantly influences the colors produced in pottery glazes, particularly with iron and copper. In oxidation, iron oxide results in ambers, honey browns, and warm yellows, while in reduction, it transforms into cool blue-greens, as seen in celadon glazes. Copper exhibits even more dramatic changes, yielding greens and turquoises in oxidation and deep, luminous reds known as sang de boeuf in reduction, which are challenging to replicate. Additionally, reduction firing affects the clay body, darkening and speckling it due to iron impurities.",
+   "title": "Coffee Roasting and Brewing Techniques",
+   "text": "She meticulously roasts high-grown, dense green coffee beans in a one-kilo drum roaster, completing each batch in about eleven minutes and stopping at first crack to achieve a light roast. After roasting, she allows her coffee to rest for nearly a week before brewing, particularly for espresso, which requires longer resting to avoid exposing under-rested flavors. All coffee is stored in valved bags, and she insists on grinding immediately before brewing, considering this practice essential.",
+   "docs": [
+    "marta"
+   ],
+   "children": [
+    "n42",
+    "n43"
+   ]
+  },
+  {
+   "id": "n129",
+   "level": 1,
+   "title": "Microbial Processes in Food Production",
+   "text": "Sourdough starters are complex ecosystems dominated by lactic acid bacteria and wild yeasts, with bacteria outnumbering yeasts by about a hundred to one, contributing to the bread's flavor and preservation. Maintaining a starter involves discarding most of it and feeding the remainder with equal weights of flour and water to prevent excessive acidity, which can hinder yeast activity. In cheese production, young wheels start as bland masses containing enzymes from lactic acid bacteria and rennet, while fermentation vats utilize microorganisms to achieve reduction over one to two weeks, contrasting with faster chemical vats that use sodium dithionite.",
+   "docs": [
+    "sourdough",
+    "cheese",
+    "indigo"
+   ],
+   "children": [
+    "n48",
+    "n49",
+    "n77",
+    "n89"
+   ]
+  },
+  {
+   "id": "n130",
+   "level": 1,
+   "title": "Kiln Firing Processes Explained",
+   "text": "Studio ceramics typically undergo two kiln firings: bisque firing and glaze firing. The bisque firing occurs at Orton cone 06 to cone 04, approximately 999 to 1063 degrees Celsius, transforming raw clay into a porous state suitable for glazing. The subsequent glaze firing reaches higher temperatures, commonly cone 6 at about 1222 degrees Celsius or cone 10 at around 1285 degrees Celsius, resulting in a dense, strong, and nearly impermeable ceramic body. Understanding the significance of cone numbers is crucial, as they measure heat work rather than just temperature, with lower cone numbers indicating cooler firings.",
    "docs": [
     "kilns"
    ],
    "children": [
-    "n32"
+    "n26",
+    "n27",
+    "n28"
    ]
   },
   {
-   "id": "n54",
+   "id": "n131",
    "level": 1,
-   "title": "Marta Vance's Craft Workshop",
-   "text": "Marta Vance is a fictional character created to illustrate a concept, with her profile intentionally omitting specific factual details that are recorded elsewhere. She operates a small workshop on a north-facing hillside, where she dedicates her time to three distinct crafts, which she believes are fundamentally the same, as they all involve the management of heat and time applied to living materials.",
+   "title": "Sourdough Baking Techniques and Science",
+   "text": "A baker maintains a starter for eleven years, favoring a cool and stiff environment to produce acetic acid for a sharper flavor. The balance between lactic and acetic acids is controlled by fermentation temperature and dough hydration, with cooler conditions enhancing sourness. Many bakers retard shaped loaves in a refrigerator at four to twelve degrees Celsius for twelve to eighteen hours to develop flavor and manage yeast activity. Baking involves rapid transformations at temperatures between two hundred and thirty to two hundred and fifty degrees Celsius, where steam aids in oven spring, and cooling for an hour is essential to achieve the right texture.",
    "docs": [
-    "marta"
+    "marta",
+    "sourdough"
    ],
    "children": [
-    "n37",
-    "n38"
+    "n44",
+    "n47",
+    "n51",
+    "n54",
+    "n55",
+    "n57"
    ]
   },
   {
-   "id": "n55",
+   "id": "n132",
    "level": 1,
-   "title": "Coffee Roasting Process Explained",
-   "text": "Green coffee beans, initially pale and dense with 10 to 12 percent moisture, undergo a transformative roasting process that involves a series of chemical reactions driven by heat. The first phase, lasting four to six minutes, is the drying phase, where the beans reach around 150 degrees Celsius, allowing for a color shift and a toasted grain aroma. Following this, the browning phase begins, dominated by the Maillard reaction and caramelization, which create the complex flavors and aromas associated with roasted coffee, highlighting the importance of time and temperature in determining the final taste.",
+   "title": "Annealing Time and Thickness",
+   "text": "Annealing time is primarily influenced by thickness rather than size, as heat must travel from the center of an object. A large thin bowl can anneal faster than a small solid paperweight due to this heat distribution. The annealing time roughly scales with the square of the thickness, explaining why a seemingly simple paperweight may require a day or more to anneal, while a delicate goblet can be safely annealed overnight.",
    "docs": [
-    "coffee"
+    "glass"
    ],
    "children": [
-    "n1",
-    "n3",
-    "n4"
+    "n72"
    ]
   },
   {
-   "id": "n56",
-   "level": 1,
-   "title": "The Hillside Workshop Overview",
-   "text": "The Hillside Workshop is a fictional establishment known for its unique approach to craftsmanship and creativity. It emphasizes the importance of community involvement and hands-on learning, offering various programs and workshops that cater to different skill levels. The workshop is set in a picturesque location, providing an inspiring environment for artists and craftsmen to develop their talents.",
-   "docs": [
-    "marta"
-   ],
-   "children": [
-    "n36"
-   ]
-  },
-  {
-   "id": "n57",
+   "id": "n133",
    "level": 2,
-   "title": "Craftsmanship and Nature's Processes",
-   "text": "Coffee roasting and honey production both require careful management of moisture and temperature for optimal results, with coffee needing precise timing to avoid poor outcomes. Honeybees, particularly Apis mellifera, play a crucial role in this process, with colonies ranging from 20,000 to 80,000 in summer and the queen laying up to 2,000 eggs daily. Marta Vance, a fictional character, embodies the connection between various crafts, emphasizing their shared reliance on heat and time management. The Hillside Workshop, also fictional, fosters community engagement and skill development in these crafts.",
+   "title": "Coffee Roasting Process Overview",
+   "text": "Coffee roasting starts with preheating the drum to 180-220 degrees Celsius before adding green beans, which initially cool down to a turnaround point within 60-90 seconds. The drying phase lasts 4-6 minutes, ending near 150 degrees Celsius, followed by the first crack at around 196 degrees Celsius, and the second crack at approximately 224 degrees Celsius. Roasting affects weight loss, with light roasts losing 12-14% and dark roasts over 18%, while caffeine levels remain stable and chlorogenic acid decreases. Post-roasting, beans require a resting period of 3-14 days depending on the brew method, and proper storage is crucial to maintain freshness.",
+   "docs": [
+    "coffee",
+    "marta"
+   ],
+   "children": [
+    "n106",
+    "n107",
+    "n116",
+    "n119",
+    "n128"
+   ]
+  },
+  {
+   "id": "n134",
+   "level": 2,
+   "title": "Steel Treatment Processes and Effects",
+   "text": "Steel's properties can be significantly altered through various heating and cooling processes, including quenching, tempering, annealing, and normalising. Quenching transforms austenite into hard martensite but risks cracking, while tempering at temperatures between one hundred and fifty and three hundred and fifty degrees restores toughness. Carbon steel transitions from ferrite and cementite to austenite at seven hundred and twenty-three degrees Celsius, with the Curie point at around seven hundred and seventy degrees indicating this change. Additionally, annealing time is influenced by thickness, with larger, thinner objects annealing faster than smaller, thicker ones.",
+   "docs": [
+    "steel",
+    "glass"
+   ],
+   "children": [
+    "n108",
+    "n113",
+    "n132"
+   ]
+  },
+  {
+   "id": "n135",
+   "level": 2,
+   "title": "Marta Vance's Craft Workshop",
+   "text": "Marta Vance is a fictional character who runs a small workshop located on a north-facing hillside. She engages in a variety of crafts, without focusing on any specific one, and her character profile is designed to be intentionally vague, relying on external data points that are not detailed in the document.",
+   "docs": [
+    "marta"
+   ],
+   "children": [
+    "n122"
+   ]
+  },
+  {
+   "id": "n136",
+   "level": 2,
+   "title": "Honeybee Development and Colony Dynamics",
+   "text": "Honeybee development varies by caste, with queens emerging after 16 days, workers after 21 days, and drones after 24 days, influenced by their diet of royal jelly or pollen and honey. A colony can consist of 20,000 to 80,000 bees in summer, with the queen laying up to 2,000 eggs daily, while worker bees engage in tasks such as foraging, which involves visiting 50 to 100 flowers per trip. The colony maintains a brood temperature of 34 to 35 degrees Celsius and produces honey by reducing nectar's water content to below 18 percent, ensuring its preservation.",
+   "docs": [
+    "bees",
+    "marta"
+   ],
+   "children": [
+    "n111",
+    "n124"
+   ]
+  },
+  {
+   "id": "n137",
+   "level": 2,
+   "title": "Bread and Cheese Making Processes",
+   "text": "Bread making involves critical processes such as hydration, gluten development, bulk fermentation lasting four to six hours at twenty-four to twenty-six degrees Celsius, and baking at temperatures between two hundred and thirty to two hundred and fifty degrees Celsius. In cheese making, the affineur transforms young wheels over weeks to years, with ripening temperatures maintained between ten and thirteen degrees Celsius and high humidity levels of eighty-five to ninety-five percent. Both crafts require careful monitoring of conditions; bakers manage sourdough starters for flavor development, while affineurs assess cheese readiness through tactile and auditory cues.",
+   "docs": [
+    "sourdough",
+    "cheese",
+    "tea",
+    "indigo",
+    "marta"
+   ],
+   "children": [
+    "n112",
+    "n117",
+    "n125",
+    "n129",
+    "n131"
+   ]
+  },
+  {
+   "id": "n138",
+   "level": 2,
+   "title": "Tea Production and Oxidation Processes",
+   "text": "Black tea production involves oxidation, a process where polyphenol oxidase acts on catechins in the presence of oxygen, lasting from forty-five minutes to two hours at 25 to 30 degrees Celsius. In contrast, green tea is quickly processed to halt oxidation through methods like pan-firing at 150 to 200 degrees Celsius for 15 to 45 seconds. Indigo dyeing requires a pH of ten to eleven and a temperature of around fifty degrees Celsius, with cloth needing twelve dips to achieve a deep navy color. Puerh tea uniquely undergoes microbial fermentation, lasting months or years, driven by fungi and bacteria, distinguishing it from other teas that rely on enzymatic oxidation.",
+   "docs": [
+    "tea",
+    "marta",
+    "indigo"
+   ],
+   "children": [
+    "n110",
+    "n115",
+    "n118",
+    "n123",
+    "n126"
+   ]
+  },
+  {
+   "id": "n139",
+   "level": 2,
+   "title": "Glass and Ceramics Firing Processes",
+   "text": "Annealing in glasswork involves holding pieces at or just above the annealing point for durations ranging from twenty minutes to several hours, followed by slow cooling in a lehr to relieve internal stress. In ceramics, controlled cooling is crucial, with cycles holding temperatures between 1050 and 950 degrees Celsius for several hours, while firing processes transform clay into durable materials through specific temperature management. Both glass and ceramics require careful attention to thermal expansion and cooling rates to prevent defects, with glass cooling from working temperatures around 1000 degrees Celsius and ceramics undergoing bisque and glaze firings at temperatures from 999 to 1285 degrees Celsius.",
+   "docs": [
+    "glass",
+    "kilns",
+    "marta",
+    "steel"
+   ],
+   "children": [
+    "n109",
+    "n114",
+    "n120",
+    "n121",
+    "n127",
+    "n130"
+   ]
+  },
+  {
+   "id": "n140",
+   "level": 3,
+   "title": "Processes in Food and Nature",
+   "text": "Coffee roasting involves preheating the drum to 180-220 degrees Celsius, with a drying phase of 4-6 minutes and key temperature points at 150 degrees Celsius for drying, 196 degrees Celsius for the first crack, and 224 degrees Celsius for the second crack. Honeybee development varies by caste, with queens emerging after 16 days and workers after 21 days, while maintaining a brood temperature of 34 to 35 degrees Celsius. Black tea production requires oxidation at 25 to 30 degrees Celsius for 45 minutes to 2 hours, while green tea is processed at 150 to 200 degrees Celsius for 15 to 45 seconds, and indigo dyeing necessitates a pH of 10-11 at around 50 degrees Celsius.",
    "docs": [
     "coffee",
     "marta",
-    "bees"
+    "bees",
+    "tea",
+    "indigo"
    ],
    "children": [
-    "n45",
-    "n49",
-    "n54",
-    "n56"
+    "n133",
+    "n136",
+    "n138"
    ]
   },
   {
-   "id": "n58",
-   "level": 2,
-   "title": "Coffee Roasting Process Overview",
-   "text": "The coffee roasting process begins with preheating the drum to 180 to 220 degrees Celsius, followed by the addition of green coffee, which causes a temperature drop and the turnaround point within sixty to ninety seconds. Key milestones include the first crack at around 196 degrees Celsius, where the beans become drinkable, and the second crack at approximately 224 degrees Celsius, which can lead to a darker profile if overdone. The roasting process involves a drying phase lasting four to six minutes at around 150 degrees Celsius, followed by a browning phase that develops complex flavors through the Maillard reaction and caramelization. Proper post-roasting degassing for three to seven days, with espresso benefiting from seven to fourteen days, and storage in one-way valve bags are essential for maintaining freshness.",
+   "id": "n141",
+   "level": 3,
+   "title": "Craft Processes and Temperature Management",
+   "text": "Various crafts, including steel treatment, bread making, cheese aging, glasswork, and ceramics, rely heavily on specific heating and cooling processes to achieve desired properties. Steel undergoes transformations such as quenching and tempering, with critical temperatures like 723 degrees Celsius for austenite transition and tempering between 150 and 350 degrees Celsius. Bread making requires bulk fermentation at 24 to 26 degrees Celsius and baking at 230 to 250 degrees Celsius, while cheese ripening occurs at 10 to 13 degrees Celsius with high humidity. Glass and ceramics also demand precise temperature control, with glass annealing at around 1000 degrees Celsius and ceramics firing between 999 and 1285 degrees Celsius, emphasizing the importance of thermal management across these crafts.",
    "docs": [
-    "coffee",
-    "marta"
+    "steel",
+    "glass",
+    "marta",
+    "sourdough",
+    "cheese",
+    "tea",
+    "indigo",
+    "kilns"
    ],
    "children": [
-    "n46",
-    "n50",
-    "n55"
-   ]
-  },
-  {
-   "id": "n59",
-   "level": 2,
-   "title": "Ceramic Firing Techniques and Effects",
-   "text": "The firing process is essential for transforming clay into durable ceramics, involving two main stages: bisque firing at 999 to 1063 degrees Celsius and glaze firing at 1222 to 1285 degrees Celsius. The kiln atmosphere, whether oxidation or reduction, significantly impacts glaze colors and the overall quality of the pottery, with specific techniques like salt and soda firing enhancing unique effects. Critical temperature thresholds, such as quartz inversion at 573 degrees Celsius and cristobalite inversion at 226 degrees Celsius, must be carefully managed to prevent defects like cracking. The choice of materials and firing methods, including the use of Orton pyrometric cones, plays a vital role in achieving desired aesthetic outcomes.",
-   "docs": [
-    "kilns",
-    "marta"
-   ],
-   "children": [
-    "n47",
-    "n48",
-    "n51",
-    "n52",
-    "n53"
+    "n134",
+    "n135",
+    "n137",
+    "n139"
    ]
   }
  ]

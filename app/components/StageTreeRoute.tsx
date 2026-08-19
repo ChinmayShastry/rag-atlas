@@ -168,13 +168,11 @@ export default function StageTreeRoute({ n }: StageProps) {
                   })}
                 </div>
                 <p className="mt-2.5 text-[12px] leading-relaxed text-muted">
-                  Leaves will usually dominate here, and that is honest rather
-                  than broken: this corpus has {levels[0]?.length ?? 0} leaves
-                  against {(tree?.nodes.length ?? 0) - (levels[0]?.length ?? 0)}{" "}
-                  summaries, and on four documents a specific passage is nearly
-                  always the better match. RAPTOR earns its keep when no single
-                  passage can cover the question — which needs a far larger
-                  corpus than this one.
+                  This is the whole idea, and it is worth testing directly. Ask
+                  something specific — a temperature, a duration — and the mix
+                  collapses onto leaves. Ask what the documents have in common
+                  and summaries climb, because no leaf can answer it. Nobody
+                  told the search which altitude to use; the question did.
                 </p>
               </Panel>
             </div>

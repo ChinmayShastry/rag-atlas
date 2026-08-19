@@ -215,11 +215,12 @@ export default function StageTree({ n }: StageProps) {
 
           <Insight>
             The summaries are lossy by construction — that is the point, not a
-            defect. A level-2 node cannot tell you a specific temperature, but it
-            can tell you what a whole region of the corpus is about, which no
-            individual chunk can. The build prompt explicitly asks for figures to
-            be preserved, because a summary that drops the numbers is useless to
-            retrieve with.
+            defect. A node near the root cannot tell you a specific temperature,
+            but it can describe a whole region of the corpus, which no individual
+            chunk can. The build prompt explicitly asks for figures to be
+            preserved, because a summary that drops the numbers is useless to
+            retrieve with. Click the root and walk down: each level is a
+            compression of everything highlighted beneath it.
           </Insight>
         </>
       )}

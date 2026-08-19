@@ -10,12 +10,23 @@ import path from "node:path";
  * ever be shown text that already exists in these three files.
  */
 
-const FILES = [
-  "coffee-roasting.txt",
-  "honeybee-colonies.txt",
-  "pottery-kiln-firing.txt",
-  "marta-workshop.txt",
-];
+/**
+ * Read from the shared manifest rather than duplicated here. The app, this
+ * allowlist, and both build scripts all take the document list from one file,
+ * because keeping four copies in step is exactly the kind of thing that
+ * silently stops being true.
+ */
+function corpusFiles(): string[] {
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "public", "corpus", "manifest.json"),
+      "utf8",
+    );
+    return (JSON.parse(raw) as { file: string }[]).map((d) => d.file);
+  } catch {
+    return [];
+  }
+}
 
 let cache: string[] | null = null;
 let summaryCache: string[] | null = null;
@@ -29,7 +40,7 @@ function loadCorpus(): string[] {
   if (cache) return cache;
   const dir = path.join(process.cwd(), "public", "corpus");
   const out: string[] = [];
-  for (const file of FILES) {
+  for (const file of corpusFiles()) {
     try {
       out.push(normalize(fs.readFileSync(path.join(dir, file), "utf8")));
     } catch {
@@ -113,8 +124,10 @@ export const LIMITS = {
   maxPassages: 12,
   maxPassageChars: 4000,
   maxGuardrailChars: 2000,
-  maxEmbedChunks: 300,
-  maxEmbedChars: 200_000,
+  // A ten-document corpus at the minimum chunk size produces roughly 600
+  // chunks. Embedding that many still costs well under a cent.
+  maxEmbedChunks: 750,
+  maxEmbedChars: 400_000,
 };
 
 /**

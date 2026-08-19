@@ -9,6 +9,14 @@ import { chunkColor } from "../lib/types";
 import type { Chunk, Doc, Strategy } from "../lib/types";
 import { Insight, Panel, Segmented, Slider, Stat, StepSection } from "./ui";
 
+/**
+ * Cards are capped rather than virtualised. At the minimum chunk size a large
+ * corpus produces hundreds per document, and rendering them all is the one
+ * thing that makes the slider feel sluggish. The ribbon above still shows every
+ * cut, so nothing is actually hidden from view.
+ */
+const MAX_CARDS = 120;
+
 export default function Step2Chunking({ n }: StageProps) {
   const {
     activeDocs,
@@ -205,12 +213,14 @@ export default function Step2Chunking({ n }: StageProps) {
             title="The chunks themselves"
             right={
               <span className="font-mono text-[11px] text-muted">
-                hover to link with the ribbon
+                {docChunks.length > MAX_CARDS
+                  ? `showing ${MAX_CARDS} of ${docChunks.length}`
+                  : "hover to link with the ribbon"}
               </span>
             }
           >
             <div className="warm-scroll grid max-h-[300px] gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
-              {docChunks.map((c) => {
+              {docChunks.slice(0, MAX_CARDS).map((c) => {
                 const col = chunkColor(c.index);
                 const isHot = hovered === c.id;
                 return (

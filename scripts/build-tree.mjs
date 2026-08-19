@@ -26,12 +26,9 @@ const EMBED_MODEL = "text-embedding-3-small";
 const LEAF_TARGET = 700;
 const MAX_LEVELS = 3;
 
-const DOCS = [
-  { id: "coffee", title: "Coffee Roasting", file: "coffee-roasting.txt" },
-  { id: "bees", title: "Honeybee Colonies", file: "honeybee-colonies.txt" },
-  { id: "kilns", title: "Pottery Kiln Firing", file: "pottery-kiln-firing.txt" },
-  { id: "marta", title: "The Hillside Workshop", file: "marta-workshop.txt" },
-];
+const DOCS = JSON.parse(
+  fs.readFileSync(path.join(CORPUS_DIR, "manifest.json"), "utf8"),
+);
 
 const key = process.env.OPENAI_API_KEY;
 if (!key) {
