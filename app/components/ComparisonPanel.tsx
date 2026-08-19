@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { apiPost, streamChat } from "../lib/api";
 import { useRag } from "../lib/store";
-import { RAG_TYPES, ragTypeDef } from "../lib/ragTypes";
+import { RAG_TYPES, entryStage, ragTypeDef } from "../lib/ragTypes";
 import type { RagType } from "../lib/ragTypes";
 import { toPassages } from "../lib/prompt";
 import { cosine } from "../lib/vector";
@@ -474,6 +474,26 @@ export default function ComparisonPanel() {
     (s, r) => s + costOf(chatModel, r.inputTokens, r.outputTokens),
     0,
   );
+  /**
+   * Switch the page to an architecture and scroll to the first stage that is
+   * actually its own. Deliberately does not carry the comparison's results
+   * across: the stages re-run so you can watch the thing happen, which is the
+   * only reason to leave the summary card you just read. The corpus and the
+   * question are already embedded, so nothing is re-paid for twice.
+   *
+   * setTimeout rather than requestAnimationFrame — rAF does not fire when the
+   * tab is not compositing, which silently swallowed this kind of hand-off
+   * once already.
+   */
+  function jumpTo(type: RagType) {
+    rag.setRagType(type);
+    setTimeout(() => {
+      document
+        .getElementById(entryStage(type))
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
+  }
+
   const done = rows.filter((r) => r.status === "done").length;
   const best = rows
     .filter((r) => r.scores)
@@ -571,6 +591,7 @@ export default function ComparisonPanel() {
                       isBest={!!best && best.type === row.type && done === 6}
                       expanded={expanded === row.type}
                       chatModel={chatModel}
+                      onOpen={() => jumpTo(row.type)}
                       onToggle={() =>
                         setExpanded((c) => (c === row.type ? null : row.type))
                       }
@@ -601,12 +622,14 @@ function ResultCard({
   isBest,
   expanded,
   chatModel,
+  onOpen,
   onToggle,
 }: {
   row: Row;
   isBest: boolean;
   expanded: boolean;
   chatModel: string;
+  onOpen: () => void;
   onToggle: () => void;
 }) {
   const def = ragTypeDef(row.type);
@@ -661,19 +684,43 @@ function ResultCard({
       )}
 
       {row.answer && (
-        <>
-          <p
-            className={`mt-2 text-[12.5px] leading-relaxed text-ink-soft ${expanded ? "" : "line-clamp-4"}`}
-          >
-            {row.answer}
-          </p>
+        <p
+          className={`mt-2 text-[12.5px] leading-relaxed text-ink-soft ${expanded ? "" : "line-clamp-4"}`}
+        >
+          {row.answer}
+        </p>
+      )}
+
+      {(row.status === "done" || row.status === "error") && (
+        <div className="mt-auto flex items-center gap-3 pt-2">
+          {row.answer && (
+            <button
+              onClick={onToggle}
+              className="text-[11px] font-bold uppercase tracking-wider text-terracotta"
+            >
+              {expanded ? "Show less" : "Show all"}
+            </button>
+          )}
           <button
-            onClick={onToggle}
-            className="mt-1.5 self-start text-[11px] font-bold uppercase tracking-wider text-terracotta"
+            onClick={onOpen}
+            className="ml-auto flex items-center gap-1 rounded-lg border border-terracotta/30 bg-white/70 px-2 py-1 text-[11px] font-bold text-terracotta transition hover:border-terracotta hover:bg-terracotta/[0.07]"
+            title={`Open ${def.name} and step through it`}
           >
-            {expanded ? "Show less" : "Show all"}
+            Open this flow
+            <svg
+              viewBox="0 0 20 20"
+              className="h-3 w-3"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <path d="M4 10h11M11 6l4 4-4 4" />
+            </svg>
           </button>
-        </>
+        </div>
       )}
     </div>
   );

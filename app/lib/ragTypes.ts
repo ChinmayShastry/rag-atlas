@@ -228,3 +228,18 @@ export function stageNumber(type: RagType, stageId: string): number | null {
   const i = ragTypeDef(type).stages.indexOf(stageId);
   return i === -1 ? null : i + 1;
 }
+
+/**
+ * Where to land someone who jumps straight into an architecture.
+ *
+ * Every flow opens with the same shared stages, so scrolling to stage one
+ * would drop you four identical panels above anything that distinguishes the
+ * architecture you picked. Land on the first stage this flow does not share
+ * with Naive RAG instead — `hyde` for Advanced, `extract` for Graph, and so
+ * on. Naive shares everything with itself, so it falls back to retrieval,
+ * where its behaviour actually becomes visible.
+ */
+export function entryStage(id: RagType): string {
+  const shared = ragTypeDef("naive").stages;
+  return ragTypeDef(id).stages.find((s) => !shared.includes(s)) ?? "retrieval";
+}

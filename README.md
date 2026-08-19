@@ -90,7 +90,7 @@ Any API that speaks the OpenAI wire format works. On the key screen, open **"Not
 | Mistral | `https://api.mistral.ai/v1` |
 | Ollama (local) | `http://localhost:11434/v1` |
 
-**The pipeline needs both chat completions and embeddings from the same endpoint.** That rules out chat-only services — Groq, DeepSeek and OpenRouter serve no embeddings API, so they cannot drive this app. Embedding dimensionality does not matter; the plots, PCA and cosine ranking all read it from the response.
+**The pipeline needs both chat completions and embeddings from the same endpoint.** Not every provider serves both, so check yours does before starting — this README deliberately does not name which, because that list ages badly. Embedding dimensionality does not matter; the plots, PCA and cosine ranking all read it from the response.
 
 Three things degrade, and the app says so where they do:
 

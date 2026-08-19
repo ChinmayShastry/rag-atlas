@@ -7,9 +7,12 @@ import type { ProviderSettings } from "../lib/api";
 
 /**
  * Any API that speaks the OpenAI wire format works. The catch is that this app
- * needs BOTH chat completions and embeddings from the same endpoint, and
- * several popular providers — Groq, DeepSeek, OpenRouter — serve chat only.
- * Only providers that do both are offered as presets.
+ * needs BOTH chat completions and embeddings from the same endpoint, and not
+ * every provider serves both.
+ *
+ * Deliberately no list of who does and does not — that ages badly. Two
+ * providers named here as chat-only shipped embeddings within a day of the
+ * claim being written. State the requirement, let the visitor check it.
  *
  * Model names are starting points, not guarantees: providers rename and retire
  * them. Every field stays editable, and a wrong name comes back as a plain
@@ -288,8 +291,8 @@ export default function KeyGate({
                 <p className="text-[12.5px] leading-relaxed text-ink-soft">
                   Any API that speaks the OpenAI format works. This pipeline
                   needs <strong className="font-semibold text-ink">both</strong>{" "}
-                  chat and embeddings from the same endpoint, so chat-only
-                  services — Groq, DeepSeek, OpenRouter — cannot drive it.
+                  chat and embeddings from the same endpoint — check your
+                  provider offers both before you start.
                 </p>
 
                 <div className="flex flex-wrap gap-1.5">
