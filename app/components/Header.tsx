@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { STAGE_META, ragTypeDef } from "../lib/ragTypes";
 import { useRag } from "../lib/store";
+import { useDismiss } from "../lib/useDismiss";
 import { costOf, formatCount, formatUSD } from "../lib/pricing";
 import ArchitectureSwitcher from "./ArchitectureSwitcher";
 
@@ -73,9 +74,12 @@ export default function Header() {
 function CostMeter() {
   const { usage, totalCost, totalTokens } = useRag();
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const close = useCallback(() => setOpen(false), []);
+  useDismiss(ref, open, close);
 
   return (
-    <div className="relative shrink-0">
+    <div className="relative shrink-0" ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
         className="flex items-center gap-2 rounded-xl border border-line bg-white/70 px-2.5 py-1.5 transition hover:border-terracotta/40 hover:shadow-warm"
@@ -103,9 +107,7 @@ function CostMeter() {
       </button>
 
       {open && (
-        <>
-          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-full z-50 mt-2 w-[330px] animate-pop rounded-2xl border border-line bg-card p-4 shadow-warm-lg">
+        <div className="absolute right-0 top-full z-50 mt-2 w-[330px] animate-pop rounded-2xl border border-line bg-card p-4 shadow-warm-lg">
             <div className="mb-2 flex items-baseline justify-between">
               <h4 className="text-[12px] font-bold uppercase tracking-[0.1em] text-ink-soft">
                 Session spend
@@ -151,8 +153,7 @@ function CostMeter() {
               Estimated from published per-token rates. Your OpenAI dashboard is
               the authoritative figure.
             </p>
-          </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { apiPost, streamChat } from "../lib/api";
 import { useRag } from "../lib/store";
 import { RAG_TYPES, ragTypeDef } from "../lib/ragTypes";
@@ -68,6 +68,8 @@ export default function ComparisonPanel() {
     tree,
     treeVectors,
     runTreeEmbedding,
+    runEmbedding,
+    runQueryEmbedding,
     embedOne,
     addUsage,
   } = rag;
@@ -75,21 +77,43 @@ export default function ComparisonPanel() {
   const [open, setOpen] = useState(false);
   const [rows, setRows] = useState<Row[]>(RAG_TYPES.map((t) => blank(t.id)));
   const [running, setRunning] = useState(false);
+  const [prep, setPrep] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<RagType | null>(null);
 
-  const ready = !!embeddedQuery && !!queryVector && !!vectors;
+  /**
+   * Resolved once at the start of a run. Graph RAG never produces a query
+   * vector and has no chunk-embedding stage, so arriving here from that flow
+   * means neither exists yet — the panel acquires them rather than telling the
+   * visitor to go and do it themselves.
+   */
+  const ctx = useRef<{ vectors: number[][] | null; queryVector: number[] | null }>(
+    { vectors: null, queryVector: null },
+  );
+
+  // A question is the only thing the panel cannot supply for itself.
+  const ready = !!embeddedQuery;
+  const needsSetup = !vectors || !queryVector;
+
+  // Openable from the architecture dropdown.
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener("open-comparison", onOpen);
+    return () => window.removeEventListener("open-comparison", onOpen);
+  }, []);
 
   const patch = (type: RagType, next: Partial<Row>) =>
     setRows((prev) => prev.map((r) => (r.type === type ? { ...r, ...next } : r)));
 
-  /** Ranks all chunks against a vector. Local, free. */
-  const rank = (v: number[]): Scored[] =>
-    !vectors || vectors.length !== chunks.length
+  /** Ranks all chunks against a vector, using the run's resolved embeddings. */
+  const rank = (v: number[]): Scored[] => {
+    const vecs = ctx.current.vectors;
+    return !vecs || vecs.length !== chunks.length
       ? []
       : chunks
-          .map((chunk, i) => ({ chunk, score: cosine(v, vectors[i]) }))
+          .map((chunk, i) => ({ chunk, score: cosine(v, vecs[i]) }))
           .sort((a, b) => b.score - a.score);
+  };
 
   async function generate(
     type: RagType,
@@ -149,7 +173,7 @@ export default function ComparisonPanel() {
 
   async function runNaive(q: string): Promise<Scored[]> {
     patch("naive", { step: "ranking" });
-    return rank(queryVector!).slice(0, PASSAGE_COUNT);
+    return rank(ctx.current.queryVector!).slice(0, PASSAGE_COUNT);
   }
 
   async function runAdvanced(q: string): Promise<Scored[]> {
@@ -169,7 +193,7 @@ export default function ComparisonPanel() {
     patch("advanced", { step: "embedding + fusing" });
     const hv = await embedOne(hyde, "hyde");
     bump("advanced", { inputTokens: 0, outputTokens: 0 });
-    const dense = chunks.map((_, i) => cosine(hv, vectors![i]));
+    const dense = chunks.map((_, i) => cosine(hv, ctx.current.vectors![i]));
     const sparse = bm25Scores(buildBm25(chunks.map((c) => c.text)), q);
     const fused = fuse(dense, sparse, 0.6);
     const shortlist = chunks
@@ -209,7 +233,7 @@ export default function ComparisonPanel() {
     }
 
     patch("agentic", { step: "grading passages" });
-    const base = rank(queryVector!).slice(0, PASSAGE_COUNT + 2);
+    const base = rank(ctx.current.queryVector!).slice(0, PASSAGE_COUNT + 2);
     const graded = await apiPost<{
       grades: { index: number; verdict: string }[];
       usage: { inputTokens: number; outputTokens: number };
@@ -310,7 +334,7 @@ export default function ComparisonPanel() {
       return [];
     }
     patch("hierarchical", { step: "searching all levels" });
-    const hits = collapsedSearch(tree, tv, queryVector!, PASSAGE_COUNT);
+    const hits = collapsedSearch(tree, tv, ctx.current.queryVector!, PASSAGE_COUNT);
     const levels = new Set(hits.map((h) => h.node.level));
     patch("hierarchical", { note: `levels ${[...levels].sort().join(", ")}` });
     return hits.map(({ node, score }) => ({
@@ -407,12 +431,37 @@ export default function ComparisonPanel() {
     setRunning(true);
     setError(null);
     setRows(RAG_TYPES.map((t) => blank(t.id)));
+
     try {
+      // Acquire whatever is missing. Use the return values rather than reading
+      // state back — it would still be the pre-update value in this closure.
+      let vecs = vectors;
+      let qv = queryVector;
+
+      if (!vecs) {
+        setPrep(`Embedding ${chunks.length} chunks…`);
+        vecs = await runEmbedding();
+      }
+      if (!qv) {
+        setPrep("Embedding the question…");
+        qv = await runQueryEmbedding();
+      }
+      setPrep(null);
+
+      if (!vecs || !qv) {
+        setError(
+          "Could not prepare embeddings for the comparison. Check the key and try again.",
+        );
+        return;
+      }
+      ctx.current = { vectors: vecs, queryVector: qv };
+
       // Each architecture is independent; only their internal steps are ordered.
       await Promise.all(RAG_TYPES.map((t) => runOne(t.id, embeddedQuery)));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Comparison failed.");
     } finally {
+      setPrep(null);
       setRunning(false);
     }
   }
@@ -471,8 +520,8 @@ export default function ComparisonPanel() {
           <div className="p-5">
             {!ready ? (
               <p className="py-4 text-center text-[13.5px] leading-relaxed text-muted">
-                Embed the chunks and a question first — the comparison reuses
-                the same embeddings rather than recomputing them.
+                Ask a question in the query stage first — that is the only thing
+                the comparison cannot supply for itself.
               </p>
             ) : (
               <>
@@ -484,7 +533,7 @@ export default function ComparisonPanel() {
                   >
                     {running ? (
                       <>
-                        <Spinner /> Running {done}/6…
+                        <Spinner /> {prep ?? `Running ${done}/6…`}
                       </>
                     ) : done > 0 ? (
                       "Run again"
@@ -495,6 +544,11 @@ export default function ComparisonPanel() {
                   <span className="text-[13px] text-ink-soft">
                     &ldquo;{embeddedQuery}&rdquo;
                   </span>
+                  {needsSetup && !running && done === 0 && (
+                    <span className="text-[12px] text-muted">
+                      · will embed the corpus first
+                    </span>
+                  )}
                   {done > 0 && (
                     <span className="ml-auto font-mono text-[12.5px] text-muted">
                       {formatUSD(totalCost)} ·{" "}

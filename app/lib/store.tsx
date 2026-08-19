@@ -110,7 +110,8 @@ interface RagState {
   embedding: boolean;
   embedError: string | null;
   embedFromCache: boolean;
-  runEmbedding: () => Promise<void>;
+  /** Returns the vectors as well as storing them, so callers need not read state back. */
+  runEmbedding: () => Promise<number[][] | null>;
   vectorsStale: boolean;
 
   query: string;
@@ -119,7 +120,7 @@ interface RagState {
   querying: boolean;
   queryError: string | null;
   embeddedQuery: string | null;
-  runQueryEmbedding: () => Promise<void>;
+  runQueryEmbedding: () => Promise<number[] | null>;
   /**
    * Accepts the query without embedding it. Graph RAG seeds its walk by
    * lexical match on entity labels, so it never needs a query vector.
@@ -415,7 +416,7 @@ export function RagProvider({
   }, []);
 
   const runEmbedding = useCallback(async () => {
-    if (!chunks.length) return;
+    if (!chunks.length) return null;
     setEmbedError(null);
 
     const cached = chunkCache.current.get(chunkSignature);
@@ -424,7 +425,7 @@ export function RagProvider({
       setVectorSig(chunkSignature);
       setEmbedDims(cached[0]?.length ?? 0);
       setEmbedFromCache(true);
-      return;
+      return cached;
     }
 
     setEmbedding(true);
@@ -449,8 +450,10 @@ export function RagProvider({
         inputTokens: data.usage.inputTokens,
         outputTokens: 0,
       });
+      return data.vectors;
     } catch (err) {
       setEmbedError(err instanceof Error ? err.message : "Embedding failed.");
+      return null;
     } finally {
       setEmbedding(false);
     }
@@ -458,14 +461,14 @@ export function RagProvider({
 
   const runQueryEmbedding = useCallback(async () => {
     const q = query.trim();
-    if (!q) return;
+    if (!q) return null;
     setQueryError(null);
 
     const cached = queryCache.current.get(q);
     if (cached) {
       setQueryVector(cached);
       setEmbeddedQuery(q);
-      return;
+      return cached;
     }
 
     setQuerying(true);
@@ -484,8 +487,10 @@ export function RagProvider({
         inputTokens: data.usage.inputTokens,
         outputTokens: 0,
       });
+      return data.vectors[0];
     } catch (err) {
       setQueryError(err instanceof Error ? err.message : "Query embedding failed.");
+      return null;
     } finally {
       setQuerying(false);
     }
