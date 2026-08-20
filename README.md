@@ -6,9 +6,9 @@ Nothing is simulated. Real chunking, real 1536-dimensional embeddings, real cosi
 
 ### **[▶ Try it live →](https://rag-atlas-learn.vercel.app)**
 
-![The chunk size slider sweeping from 1200 down to 300 characters: the chunk count climbs from 26 to 100, average size falls from 808 to 226, and the coloured bands over the source text re-flow in step](docs/chunking.gif)
+![The chunk size slider sweeping from 1,200 characters down to 300 and back: the coffee document splits from 8 chunks into 32, and the coloured bands over the source text re-flow in step](docs/chunking.gif)
 
-> One slider, nothing else touched. Chunk size drops from 1200 to 300 characters, the count climbs from **26 to 100**, average size falls from 808 to 226 — and the coloured bands over the source text redraw to match. Every colour is one chunk; striped regions are overlap, text belonging to two chunks at once, which is what rescues a fact that lands on a boundary.
+> One slider, nothing else touched. Chunk size drops from 1,200 characters to 300, and this one document splits from **8 chunks into 32** — the coloured bands over the source text redraw to match. Every colour is one chunk; striped regions are overlap, text belonging to two chunks at once, which is what rescues a fact that lands on a boundary.
 >
 > This runs entirely in the browser. No request, no cost, no latency.
 
@@ -49,6 +49,10 @@ It is opt-in and collapsed by default, because it is the only thing on the site 
 
 It deliberately does not drive the visible page. Switching the architecture six times would leave you looking at whatever state the last run finished in, so each pipeline is reproduced from the same primitives the stages use and the page you were reading is left untouched.
 
+![The same question run through all six architectures side by side, each card showing its answer, faithfulness score, passages used, calls made, cost and elapsed time](docs/comparison.png)
+
+> One question — *at what temperature does first crack happen?* — through all six. Five answer it identically and score 100; Graph RAG reports that its context does not cover the question, because entity-graph retrieval is the wrong instrument for a single numeric lookup. Each card opens the architecture that produced it, so you can step through the run rather than take the summary on trust.
+>
 > On a shared demo key, six generations per comparison against a 40/hour cap works out to roughly six comparisons per visitor per hour.
 
 ---
@@ -155,13 +159,13 @@ Every architecture begins and ends the same way.
 
 ### Chunking strategy, compared on the same text
 
-![Three chunking strategies side by side: fixed windows produce 37 chunks that start mid-word, while sentence-aware and recursive produce none](docs/chunking-strategies.png)
+![Three chunking strategies side by side across ten documents: fixed windows produce 110 chunks of which 94 start mid-word, while sentence-aware (112) and recursive (118) produce none](docs/chunking-strategies.png)
 
-Same document, same size and overlap, three splitters. The counter at the bottom of each card is the honest cost of the fixed window: **37 chunks begin mid-word**, against zero for the other two.
+Same corpus, same size and overlap, three splitters. The counter at the bottom of each card is the honest cost of the fixed window: **94 of its 110 chunks begin mid-word**, against zero for the other two.
 
 ### Guardrails that fire as you type
 
-![The guardrails stage blocking a question containing an email address and a credit card number](docs/guardrails.png)
+![The guardrails stage on a question containing an email address and a credit card number: the regex PII rule and the LLM injection classifier both return BLOCK, while the injection-pattern rule and moderation pass](docs/guardrails.png)
 
 Deterministic rules run client-side on every keystroke, at no cost and no latency — the card detector even runs a Luhn checksum so it does not trip on every long number. Model-based moderation and an injection classifier sit behind a button, because those spend tokens.
 

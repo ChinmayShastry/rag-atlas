@@ -166,9 +166,9 @@ export default function Step3Embedding({ n }: StageProps) {
       <Insight>
         {hasVectors ? (
           <>
-            The three documents have separated into visible clusters without
-            anyone labelling them — proximity here <em>is</em> semantic
-            similarity, and that is the entire basis for retrieval. The axes are
+            The documents have separated into visible clusters without anyone
+            labelling them — proximity here <em>is</em> semantic similarity, and
+            that is the entire basis for retrieval. The axes are
             a PCA projection down from {embedDims} dimensions, so they have no
             individual meaning; only relative distance does.
           </>

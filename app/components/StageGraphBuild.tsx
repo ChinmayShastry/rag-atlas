@@ -47,7 +47,7 @@ export default function StageGraphBuild({ n }: StageProps) {
       n={n}
       kicker={stageKicker(n)}
       title="The graph"
-      lede="Entities extracted separately from every paragraph are merged by name, so a concept mentioned in three documents becomes one node joining them."
+      lede="Entities extracted separately from every paragraph are merged by name, so a concept mentioned in several documents becomes one node joining them."
       locked={graphLoading && !graph}
       lockNote="Loading the knowledge graph…"
     >
